@@ -8,15 +8,23 @@ using UnityEngine.UIElements;
 
 public class DialogueManager : MonoBehaviour
 {
+    [SerializeField] PlayerController playerController;
+
+    [SerializeField] KeyCode keyToSeeNextLine = KeyCode.Tab;
+    
     [SerializeField] GameObject dialoquePanel;
     [SerializeField] TextMeshProUGUI nameText;
     [SerializeField] TextMeshProUGUI dialoqueBox;
-    [SerializeField] Animator animator;
+    
+    [SerializeField] Animator dialogueAnimator;
+    
     public static DialogueManager Instance;
 
     Queue<string> dialoqueMessages;
 
-    [SerializeField] PlayerController playerController;
+    private bool _isDialogueOpen;
+    
+    private string sentence;
 
     private void Awake()
     {
@@ -37,15 +45,35 @@ public class DialogueManager : MonoBehaviour
         playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
+    private void Update()
+    {
+        if (_isDialogueOpen && Input.GetKeyDown(keyToSeeNextLine))
+        {
+            if (dialoqueBox.text == sentence)
+            {
+                DisplayNextSentence();
+            }
+            else
+            {
+                StopAllCoroutines();
+                dialoqueBox.text = sentence;
+            }
+        }
+    }
+
     public void StartDialogue(Dialogue dialogue)
     {
+        _isDialogueOpen = true;
+
         // Find a better way to pause game when in dialogue
         playerController.StopPlayerMovement();
         playerController.enabled = false;
 
-        //dialoquePanel.SetActive(true);
+        if (!dialoquePanel.activeInHierarchy) { // Safety
+            dialoquePanel.SetActive(true);
+        }
 
-        animator.SetBool("IsOpen", true);
+        dialogueAnimator.SetBool("IsOpen", true);
 
         // Debug.Log("Start conversation with" + dialogue.CharacterName);
         nameText.text = dialogue.CharacterName;
@@ -68,7 +96,7 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
-        string sentence = dialoqueMessages.Dequeue();
+        sentence = dialoqueMessages.Dequeue();
         
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
@@ -90,8 +118,10 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialoque()
     {
+        _isDialogueOpen = false;
+
         // Debug.Log("Conversation ended!");
-        animator.SetBool("IsOpen", false);
+        dialogueAnimator.SetBool("IsOpen", false);
         //dialoquePanel.SetActive(false); // change this if panel closes before animation
         playerController.enabled = true;
     }
