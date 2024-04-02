@@ -50,9 +50,9 @@ public class UINoteInventory : MonoBehaviour
     public bool RemoveNote(Note note)
     {
         // Loop through children
-        foreach (NoteHolder child in parentNotePanel)
+        foreach (Transform child in parentNotePanel)
         {
-            if (child.HeldNote == note)
+            if (child.GetComponent<NoteHolder>().HeldNote == note)
             {
                 Destroy(child.gameObject);
                 notes.Remove(note);

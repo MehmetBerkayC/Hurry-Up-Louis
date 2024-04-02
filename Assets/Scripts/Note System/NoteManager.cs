@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class NoteManager : MonoBehaviour
 {
+    public static NoteManager Instance;
+    
     [SerializeField] private Animator noteAnimator;
     [SerializeField] private KeyCode keyToReturn;
     [SerializeField] private Button returnButton;
@@ -13,7 +15,7 @@ public class NoteManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI context;
     [SerializeField] private GameObject notePanel;
 
-    public static NoteManager Instance;
+    [SerializeField] private float timeToForget = 15;
 
     private List<Note> _currentNotes = new List<Note>();
     private bool _isNoteOpen;
@@ -48,6 +50,8 @@ public class NoteManager : MonoBehaviour
 
             // Add note to UI
             UINoteInventory.Instance.AddNote(note);
+
+            StartCoroutine(ForgetTimer(note));
         }
 
         _isNoteOpen = true; // Open input listen
@@ -61,10 +65,25 @@ public class NoteManager : MonoBehaviour
 
         label.text = note.Label;
         context.text = note.Notes;
+
+        StartCoroutine(CloseNote(note.ReadableTime));
     }
 
     public void CloseNote()
     {
+        _isNoteOpen = false; // Close input listen
+
+        // Play animation
+        noteAnimator.SetBool("IsOpen", false);
+
+        // Reset Text
+        label.text = "";
+        context.text = "";
+    }
+    
+    public IEnumerator CloseNote(int readableTime)
+    {
+        yield return new WaitForSeconds(readableTime);
         _isNoteOpen = false; // Close input listen
 
         // Play animation
@@ -103,5 +122,12 @@ public class NoteManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    public IEnumerator ForgetTimer(Note note)
+    {
+        yield return new WaitForSeconds(timeToForget);
+
+        RemoveNote(note);
     }
 }
