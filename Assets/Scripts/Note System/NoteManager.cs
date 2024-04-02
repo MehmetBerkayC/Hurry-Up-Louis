@@ -42,8 +42,12 @@ public class NoteManager : MonoBehaviour
     public void OpenNote(Note note)
     {
         // Add note to the list if it is a new one
-        if (!_currentNotes.Contains(note)) {
+        if (!_currentNotes.Contains(note))
+        {
             _currentNotes.Add(note);
+
+            // Add note to UI
+            UINoteInventory.Instance.AddNote(note);
         }
 
         _isNoteOpen = true; // Open input listen
@@ -78,6 +82,26 @@ public class NoteManager : MonoBehaviour
 
     public bool RemoveNote(Note note) // For memory time implementation
     {
-        return _currentNotes.Remove(note);
+        bool removeFromUI = UINoteInventory.Instance.RemoveNote(note); // probably will use this instead
+        bool removeFromManager = _currentNotes.Remove(note);
+
+        if (removeFromUI && removeFromManager)
+        {
+            return true; // Successfully removed
+        }
+        else if (!removeFromManager)
+        {
+            Debug.LogError("Couldn't remove note from manager!");
+            return false;
+        }
+        else if (!removeFromUI)
+        {
+            Debug.LogError("Couldn't remove note from UI inventory");
+            return false;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
