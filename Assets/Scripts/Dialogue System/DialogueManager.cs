@@ -68,6 +68,8 @@ public class DialogueManager : MonoBehaviour
         // Find a better way to pause game when in dialogue
         playerController.StopPlayerMovement();
         playerController.enabled = false;
+        playerController.gameObject.TryGetComponent(out PlayerInteract playerInteract);
+        playerInteract.IsInteractable = false;
 
         if (!dialoquePanel.activeInHierarchy) { // Safety
             dialoquePanel.SetActive(true);
@@ -124,5 +126,9 @@ public class DialogueManager : MonoBehaviour
         dialogueAnimator.SetBool("IsOpen", false);
         //dialoquePanel.SetActive(false); // change this if panel closes before animation
         playerController.enabled = true;
+        playerController.gameObject.TryGetComponent(out PlayerInteract playerInteract);
+        playerInteract.IsInteractable = true;
+
+        GameManager.Instance.UpdateGameState(GameState.None); // Do as you wish
     }
 }
