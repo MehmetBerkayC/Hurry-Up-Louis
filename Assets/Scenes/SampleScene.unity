@@ -201,9 +201,8 @@ GameObject:
   m_Component:
   - component: {fileID: 212943607}
   - component: {fileID: 212943606}
-  - component: {fileID: 212943608}
   - component: {fileID: 212943610}
-  - component: {fileID: 212943609}
+  - component: {fileID: 212943611}
   m_Layer: 0
   m_Name: Pool (Obstacle)
   m_TagString: Untagged
@@ -275,57 +274,10 @@ Transform:
   m_LocalPosition: {x: 5.28, y: -1.71, z: 0}
   m_LocalScale: {x: 2.2208, y: 4.2128, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1371273165}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -44.073}
---- !u!114 &212943608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212943605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bad12fd3edb212d419360c2c80caa4e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 84b03f2c1375c0847b343fef8b0f8a94, type: 2}
---- !u!58 &212943609
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 212943605}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.65416604
 --- !u!61 &212943610
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -371,6 +323,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &212943611
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 212943605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94b0ae3d405434a43a304a64423d36c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  obstacleCollision: {fileID: 212943610}
+  dialogueCollision: {fileID: 0}
+  playerSpeedWhileSwimming: 3
+  RelatedNote: {fileID: 11400000, guid: 1811fea6fc5377d42888e7ccb18abd54, type: 2}
 --- !u!1 &322678087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1264,6 +1232,87 @@ Transform:
   - {fileID: 643151997}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1371273164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1371273165}
+  - component: {fileID: 1371273167}
+  - component: {fileID: 1371273166}
+  m_Layer: 0
+  m_Name: Dialogue Trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1371273165
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371273164}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 212943607}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1371273166
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371273164}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6086291
+--- !u!114 &1371273167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371273164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bad12fd3edb212d419360c2c80caa4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: 84b03f2c1375c0847b343fef8b0f8a94, type: 2}
 --- !u!4 &1539606100 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2151895968094433601, guid: dd9753852d288e74b92735a729012606, type: 3}
@@ -1282,7 +1331,7 @@ GameObject:
   - component: {fileID: 1967010519}
   - component: {fileID: 1967010520}
   m_Layer: 0
-  m_Name: Note
+  m_Name: First Note (Pool)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2347,6 +2396,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactRadius: 2
+  keyToInterract: 32
 --- !u!222 &6596098263867828493
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2732,7 +2782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 492144d3baa41454d900d1d4281bf7d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 7
+  movementSpeed: 8
 --- !u!1 &9191391060661507671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2761,7 +2811,7 @@ SceneRoots:
   - {fileID: 8092938799118942192}
   - {fileID: 4908199712352632863}
   - {fileID: 15696711142417130}
-  - {fileID: 207424809}
   - {fileID: 212943607}
   - {fileID: 1967010518}
+  - {fileID: 207424809}
   - {fileID: 1338227887}

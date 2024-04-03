@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class NoteManager : MonoBehaviour
 {
     public static NoteManager Instance;
-    
+
     [SerializeField] private Animator noteAnimator;
     [SerializeField] private KeyCode keyToReturn;
     [SerializeField] private Button returnButton;
@@ -51,6 +51,9 @@ public class NoteManager : MonoBehaviour
             // Add note to UI
             UINoteInventory.Instance.AddNote(note);
 
+            //Check Interactable Objects
+            CheckNoteDependencies(note, false);
+
             StartCoroutine(ForgetTimer(note));
         }
 
@@ -80,7 +83,7 @@ public class NoteManager : MonoBehaviour
         label.text = "";
         context.text = "";
     }
-    
+
     public IEnumerator CloseNote(int readableTime)
     {
         yield return new WaitForSeconds(readableTime);
@@ -101,6 +104,8 @@ public class NoteManager : MonoBehaviour
 
     public bool RemoveNote(Note note) // For memory time implementation
     {
+        CheckNoteDependencies(note, true); // true because note is being forgotten
+
         bool removeFromUI = UINoteInventory.Instance.RemoveNote(note); // probably will use this instead
         bool removeFromManager = _currentNotes.Remove(note);
 
@@ -122,6 +127,22 @@ public class NoteManager : MonoBehaviour
         {
             return false;
         }
+    }
+
+    private void CheckNoteDependencies(Note note, bool forgetting)
+    {
+        // This will suck ass as a system but should work for every gameobject dependency situation
+        if (note == PoolBehaviour.Instance.RelatedNote)
+        {
+            if (forgetting) //  Just for the outcome of the memory check false -> new addition to memory, true -> removing from memory
+            {
+                PoolBehaviour.Instance.BecomeImpassable();
+            }
+            else
+            {
+                PoolBehaviour.Instance.BecomePassable();
+            }
+        } // Add more when needed
     }
 
     public IEnumerator ForgetTimer(Note note)

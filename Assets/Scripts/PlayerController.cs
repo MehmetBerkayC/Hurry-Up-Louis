@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     private Vector3 _playerInput;
 
-    [SerializeField] private float movementSpeed = 2f;
+    [SerializeField] private float movementSpeed = 7f;
 
     private Rigidbody2D _rb;
 
@@ -29,4 +30,8 @@ public class PlayerController : MonoBehaviour
     {
         _rb.velocity = Vector3.zero;
     }
+
+    public float GetPlayerSpeed() => movementSpeed;
+    public void SetPlayerSpeed(float speed) => movementSpeed = speed;
+    
 }
