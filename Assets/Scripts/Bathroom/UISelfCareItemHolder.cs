@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,4 +21,8 @@ public class UISelfCareItemHolder : MonoBehaviour
         valueText.text = careItem.ItemValue.ToString();
     }
 
+    public void SelectItem() // Send item info on selection
+    {
+        BathroomMinigameManager.Instance.ItemSelectedFromDisplay(careItem);
+    }
 }

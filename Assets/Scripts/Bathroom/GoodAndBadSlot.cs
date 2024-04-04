@@ -11,6 +11,11 @@ public class GoodAndBadSlot : MonoBehaviour
 
     private SelfCareItem selfCareItem;
 
+    private void Start()
+    {
+        Reset();
+    }
+
     public void Initialize(SelfCareItem item)
     {
         selfCareItem = item;
@@ -20,9 +25,16 @@ public class GoodAndBadSlot : MonoBehaviour
 
     public void Reset()
     {
-        selfCareItem = null;
         icon.sprite = null; // Maybe find a default sprite
         valueText.text = "0";
+
+        // Try to remove item
+        if(!BathroomMinigameManager.Instance.RemoveItemFromList(selfCareItem))
+        {
+            Debug.Log("Couldn't remove item from list!");
+        }
+
+        selfCareItem = null;
     }
 
     public SelfCareItem GetItem()
