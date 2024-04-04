@@ -8,7 +8,7 @@ public class RecipeManager : MonoBehaviour
     [SerializeField] Ingredient _currentIngredient;
     [SerializeField] private List<Ingredient> ProgressList = new List<Ingredient>();
 
-    int[] _checkpoint = { 0, 1, 5 };
+    int[] _checkpoint = { 0, 1, 6 };
 
     int k = 0;
     int temp = 0;
@@ -43,6 +43,12 @@ public class RecipeManager : MonoBehaviour
     {
         if(_currentIngredient == ProgressList[k])
         {
+            if (k == ProgressList.Count - 1)
+            {
+                UnityEngine.Debug.Log("Mini game ends");
+                return true;
+            }
+
             UnityEngine.Debug.Log("Dogru malzeme devam edin.");
             UnityEngine.Debug.Log("Bir sonraki malzeme: " + ProgressList[k + 1]);
 
@@ -53,22 +59,15 @@ public class RecipeManager : MonoBehaviour
                     temp = j;
                 }
             }
+            UnityEngine.Debug.Log("k degeri: " + k + "Count degeri: " + ProgressList.Count);
 
             k++;
-
-            if(k == ProgressList.Count)
-            {
-                UnityEngine.Debug.Log("Mini game ends");
-            }
 
             return true;
         }
         else
         {
-            UnityEngine.Debug.Log("Yanlis malzeme secimi yaptiniz.");
-
-            if(temp == 0) UnityEngine.Debug.Log("Bir sonraki malzeme: " + ProgressList[temp]);
-            else UnityEngine.Debug.Log("Bir sonraki malzeme: " + ProgressList[temp + 1]);
+            UnityEngine.Debug.Log("Yanlis malzeme secimi yaptiniz." + "Bir sonraki malzeme: " + ProgressList[temp]);
 
             UnityEngine.Debug.Log("son checkpoint: " + temp);
             k = temp;
