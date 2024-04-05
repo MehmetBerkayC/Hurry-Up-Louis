@@ -3,22 +3,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// add triggers to the rooms to trigger objectives -> triggers work only once
 public enum GameState
 {
     None,
-    Bedroom, // add triggers to the rooms to trigger objectives -> triggers work only once
+    Bedroom, 
     Bathroom,
-    Decide,
+    Kitchen,
+    LivingRoom,
+    GoodEnding, 
+    BadEnding, 
 }
 
 public class GameManager : MonoBehaviour
 {
     public static event Action<GameState> OnGameStateChanged;
 
-    [SerializeField] Dialogue[] dialogues;
+    [SerializeField] Dialogue[] bedroomDialogues;
+    [SerializeField] Dialogue[] bathroomDialogues;
+    [SerializeField] Dialogue[] kitchenDialogues;
+    [SerializeField] Dialogue[] livingRoomDialogues;
+    [SerializeField] Dialogue[] endGameDialogues;
+
     public static GameManager Instance;
 
-    public GameState State; 
+    public GameState State;
+
+    private bool _IsEndingGood;
 
     private void Awake()
     {
@@ -55,7 +66,8 @@ public class GameManager : MonoBehaviour
 
         switch (State)
         {
-            case GameState.None:
+            default: // Goes to the first condition below it
+            case GameState.None: // Do nothing
                 break;
             case GameState.Bedroom:
                 StartBedroomSequence();
@@ -63,20 +75,32 @@ public class GameManager : MonoBehaviour
             case GameState.Bathroom:
                 StartBathroomSequence();
                 break;
-            case GameState.Decide:
+            case GameState.Kitchen:
+                StartKitchenSequence();
                 break;
-            default:
+            case GameState.LivingRoom:
+                StartLivingRoomSequence();
+                break;
+            case GameState.GoodEnding:
+                break;
+            case GameState.BadEnding:
                 break;
         }
 
         OnGameStateChanged?.Invoke(newState);
     }
 
-    // Fuction
+    // End the game depending on game time
+    // -> dont use coroutines use time.time + gametime and update upon that
+    private void CheckGameTime() 
+    {
+        // start timer function (once)
+    }
+
     /// Character wakes up, pulls up a dialogue, after then player mobility is unlocked(dialoge system)
     public void StartBedroomSequence()
     {
-        DialogueManager.Instance.StartDialogue(dialogues[0]); // Wake up dialogue
+        DialogueManager.Instance.StartDialogue(bedroomDialogues[0]); // Wake up dialogue
         
         // Set up objectives if needed
 
@@ -86,5 +110,37 @@ public class GameManager : MonoBehaviour
     public void StartBathroomSequence()
     {
         // TODO: guide player
+        DialogueManager.Instance.StartDialogue(bathroomDialogues[0]); // Walks through door
+    } 
+    
+    public void StartKitchenSequence()
+    {
+        // TODO: guide player
+        DialogueManager.Instance.StartDialogue(kitchenDialogues[0]); // Walks through door
+    } 
+    
+    public void StartLivingRoomSequence()
+    {
+        // TODO: guide player
+        DialogueManager.Instance.StartDialogue(livingRoomDialogues[0]); // Walks through door
+
+
+        /// Decide Game Ending
+        //if () // all objectives completed
+        //{
+
+        //}
+    }
+
+    public void StartGoodEndingSequence()
+    {
+        // TODO: guide player
+        DialogueManager.Instance.StartDialogue(endGameDialogues[0]); // Good End
+    }
+    
+    public void StartBadEndingSequence()
+    {
+        // TODO: guide player
+        DialogueManager.Instance.StartDialogue(endGameDialogues[1]); // Bad End
     }
 }
