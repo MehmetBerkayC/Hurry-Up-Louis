@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class RecipeManager : MonoBehaviour
@@ -8,10 +9,16 @@ public class RecipeManager : MonoBehaviour
     [SerializeField] private Ingredient _currentIngredient;
     [SerializeField] private List<Ingredient> ProgressList = new List<Ingredient>();
 
-    private int[] _checkpoint = { 0, 1, 6 };
+    private int[] _checkpoint = { 0, 2, 6 };
 
     private int k = 0;
     private int temp = 0;
+
+    [SerializeField] private GameObject _bowl;
+    [SerializeField] private GameObject _pan;
+    [SerializeField] private GameObject _stove;
+    [SerializeField] private GameObject _table;
+    [SerializeField] private List<GameObject> _kitchenObject;
 
     private void Awake()
     {
@@ -25,20 +32,13 @@ public class RecipeManager : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //CompareList();
-    }
-
     public void AddIngredient(Ingredient ingredient)
     {
-        UnityEngine.Debug.Log("Envantere Eklendi " + ingredient.name);
         _currentIngredient = ingredient;
-        // Yeni bir malzeme eklendiğinde progres kontrolü yapılmalı
         CompareList();
     }
 
-    public bool CompareList() //TODO son progresi eklerken bir sorun olusuyor onun disinda gorunurde sorun yok calisiyor
+    public bool CompareList()
     {
         if (_currentIngredient == ProgressList[k])
         {
@@ -47,9 +47,10 @@ public class RecipeManager : MonoBehaviour
                 UnityEngine.Debug.Log("Mini game ends");
                 return true;
             }
-
-            UnityEngine.Debug.Log("Dogru malzeme devam edin.");
             UnityEngine.Debug.Log("Bir sonraki malzeme: " + ProgressList[k + 1]);
+
+            SetObject(k);
+            k++;
 
             foreach (int j in _checkpoint)
             {
@@ -58,51 +59,78 @@ public class RecipeManager : MonoBehaviour
                     temp = j;
                 }
             }
-            UnityEngine.Debug.Log("k degeri: " + k + "Count degeri: " + ProgressList.Count);
-
-            k++;
 
             return true;
         }
         else
         {
+            SetObject(k);
             UnityEngine.Debug.Log("Yanlis malzeme secimi yaptiniz." + "Bir sonraki malzeme: " + ProgressList[temp]);
-
-            UnityEngine.Debug.Log("son checkpoint: " + temp);
             k = temp;
             return false;
         }
+            
     }
 
-    //public bool CompareList()
-    //{
-    //    for (int i = k; i < ProgressList.Count -1; i++)
-    //    {
-    //        // listeyi sirayla kontrol et
-    //        if (ProgressList[i].name == _currentIngredient.name)
-    //        {
-    //            //buraya girerse sorun yok devam et
-    //            UnityEngine.Debug.Log("Bir sonraki malzeme: " + ProgressList[i + 1]);
+    private void SetObject(int j)
+    {
+        if (j == 0 && _currentIngredient == ProgressList[k]) // pan kapat
+        {
+            _pan.SetActive(false);
+        }
+        else if (j == 1 && _currentIngredient == ProgressList[k]) // baslangicta acik olan stove u kapa pani hareket ettir
+        {
+            _pan.SetActive(true);
+            _pan.transform.position = _stove.transform.GetChild(0).position;
 
-    //            //yeni checkpointe gelindiyse onu ayarla
-    //            foreach (int j in _checkpoint)
-    //            {
-    //                if (j == i)
-    //                {
-    //                    temp = j;
-    //                }
-    //            }
-    //            UnityEngine.Debug.Log("i nin suanki degeri: " + i);
+            _stove.SetActive(false);
+        }
+        else if (j == 12&& _currentIngredient == ProgressList[k]) // pan kapat
+        {
+            _bowl.SetActive(false);
+        }
+        else if (j == 14 && _currentIngredient == ProgressList[k]) // pan kapat
+        {
+            _pan.SetActive(false);
+            _table.SetActive(true);
+        }
+        else if(j == 15 && _currentIngredient == ProgressList[k]) // baslangicta sorun olmamasi icin kapali olan masayi ac
+        {
+            _pan.SetActive(true);
+            _pan.transform.position = _table.transform.GetChild(0).position;
+        }
 
-    //            return true;
-    //        }
-    //        else
-    //        {
-    //            UnityEngine.Debug.Log("tarife uyulmadi");
-    //        }
-    //    }
-    //    // eger buraya gelirse yanlis islem yapildi checkpoint donusu
-    //    k = temp;
-    //    return false;
-    //}
+
+        if (_currentIngredient == ProgressList[k])
+        {
+            foreach (GameObject t in _kitchenObject)
+            {
+                IngredientTrigger ingredientTrigger = t.GetComponent<IngredientTrigger>();
+                if (t.GetComponent<IngredientTrigger>()._name == _currentIngredient.name)
+                {
+                    if(t==_pan)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        t.SetActive(false);
+                    }
+                }
+            }
+        }
+        else
+        {
+            for(int i = k; i<ProgressList.Count; i++)
+            {
+                foreach(GameObject t in _kitchenObject)
+                {
+                    if (t.GetComponent<IngredientTrigger>()._name == ProgressList[i].name)
+                    {
+                        t.SetActive(true);
+                    }
+                }
+            }
+        }
+    }
 }

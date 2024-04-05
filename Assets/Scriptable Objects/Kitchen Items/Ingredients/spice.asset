@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: spice
   m_EditorClassIdentifier: 
   IngredientName: Spice
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 8810747480efe5a4e94264ea9c96f9a5, type: 3}

@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 68ebdafd2c7e1c644a1c8f5ddba3ff50, type: 3}
-  m_Name: kase
+  m_Name: bowl
   m_EditorClassIdentifier: 
-  IngredientName: Pan
-  sprite: {fileID: 0}
+  IngredientName: Bowl
+  sprite: {fileID: 21300000, guid: abcb25bc5a55a234a8f3833c0e741df9, type: 3}

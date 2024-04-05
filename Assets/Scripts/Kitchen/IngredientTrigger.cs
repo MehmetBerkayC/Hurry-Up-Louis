@@ -6,7 +6,7 @@ public class IngredientTrigger : MonoBehaviour, IInteractable
 {
     [SerializeField] private Ingredient ingredient;
     private SpriteRenderer spriteRenderer;
-    private string _name;
+    public string _name;
 
     private void Start()
     {
