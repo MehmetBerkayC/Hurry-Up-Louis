@@ -40,17 +40,18 @@ public class RecipeManager : MonoBehaviour
 
     public bool CompareList()
     {
+        UnityEngine.Debug.Log("k suanda: " + k);
+        
         if (_currentIngredient == ProgressList[k])
         {
+            SetObject(k);
+            k++;
+
             if (k == ProgressList.Count - 1)
             {
                 UnityEngine.Debug.Log("Mini game ends");
                 return true;
             }
-            UnityEngine.Debug.Log("Bir sonraki malzeme: " + ProgressList[k + 1]);
-
-            SetObject(k);
-            k++;
 
             foreach (int j in _checkpoint)
             {
@@ -65,36 +66,36 @@ public class RecipeManager : MonoBehaviour
         else
         {
             SetObject(k);
-            UnityEngine.Debug.Log("Yanlis malzeme secimi yaptiniz." + "Bir sonraki malzeme: " + ProgressList[temp]);
             k = temp;
             return false;
         }
-            
+          
+        
     }
 
     private void SetObject(int j)
     {
-        if (j == 0 && _currentIngredient == ProgressList[k]) // pan kapat
+        if (j == 0 && _currentIngredient == ProgressList[k]) 
         {
             _pan.SetActive(false);
         }
-        else if (j == 1 && _currentIngredient == ProgressList[k]) // baslangicta acik olan stove u kapa pani hareket ettir
+        else if (j == 1 && _currentIngredient == ProgressList[k]) 
         {
             _pan.SetActive(true);
             _pan.transform.position = _stove.transform.GetChild(0).position;
 
             _stove.SetActive(false);
         }
-        else if (j == 12&& _currentIngredient == ProgressList[k]) // pan kapat
+        else if (j == 12&& _currentIngredient == ProgressList[k]) 
         {
             _bowl.SetActive(false);
         }
-        else if (j == 14 && _currentIngredient == ProgressList[k]) // pan kapat
+        else if (j == 14 && _currentIngredient == ProgressList[k]) 
         {
             _pan.SetActive(false);
             _table.SetActive(true);
         }
-        else if(j == 15 && _currentIngredient == ProgressList[k]) // baslangicta sorun olmamasi icin kapali olan masayi ac
+        else if(j == 15 && _currentIngredient == ProgressList[k]) 
         {
             _pan.SetActive(true);
             _pan.transform.position = _table.transform.GetChild(0).position;
