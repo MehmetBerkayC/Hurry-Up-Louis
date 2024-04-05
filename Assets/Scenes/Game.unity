@@ -591,7 +591,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 2545348600257855087, guid: 2eb9c678265b22f42a660977edab99ee, type: 3}
   m_PrefabInstance: {fileID: 4323099017575246044}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1823914751
+--- !u!1001 &2027941212
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -641,7 +641,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4018252435849753841, guid: 6d23c6189f6565d4187e0e4e989837a7, type: 3}
       propertyPath: m_Name
-      value: Home
+      value: 'Home '
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1808,6 +1808,6 @@ SceneRoots:
   - {fileID: 4571159809063930917}
   - {fileID: 4908199712352632863}
   - {fileID: 207424809}
-  - {fileID: 1823914751}
+  - {fileID: 2027941212}
   - {fileID: 7646950256507343989}
   - {fileID: 8485686526510219210}
