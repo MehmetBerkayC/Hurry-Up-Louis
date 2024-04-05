@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 835458779170652944}
   - component: {fileID: 2579420443257248021}
   - component: {fileID: 4954706270691137233}
+  - component: {fileID: 5330893336330717548}
   m_Layer: 0
   m_Name: Bathroom Trigger
   m_TagString: Untagged
@@ -59,13 +60,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3533626474919242492}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: 0.29623187, w: 0.9551161}
-  m_LocalPosition: {x: 4.34, y: -16.77, z: 0}
-  m_LocalScale: {x: 6.2513, y: 0.9102, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: -28.87, y: -3.32, z: 0}
+  m_LocalScale: {x: 2, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3622384392763615384}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 34.463}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
 --- !u!212 &835458779170652944
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -177,6 +178,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   state: 2
   door: {fileID: 0}
+--- !u!210 &5330893336330717548
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3533626474919242492}
+  m_Enabled: 1
+  m_SortingLayerID: -1432631545
+  m_SortingLayer: 8
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &4037023614311523933
 GameObject:
   m_ObjectHideFlags: 0
@@ -221,8 +234,8 @@ GameObject:
   - component: {fileID: 7624491950645011582}
   - component: {fileID: 7383724556270047243}
   - component: {fileID: 7749915513004196994}
-  - component: {fileID: 263821770126544566}
   - component: {fileID: 1026813918622236416}
+  - component: {fileID: 4770574944499816493}
   m_Layer: 0
   m_Name: Minigame Trigger
   m_TagString: Untagged
@@ -239,8 +252,8 @@ Transform:
   m_GameObject: {fileID: 7083166143172847993}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 17.2, y: -17.37, z: 0}
-  m_LocalScale: {x: 2.9494, y: 2.9494, z: 2.9494}
+  m_LocalPosition: {x: -24.625, y: -2.75, z: 0}
+  m_LocalScale: {x: 1.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 3622384392763615384}
@@ -286,7 +299,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 48e93eef0688c4a259cb0eddcd8661f7, type: 3}
   m_Color: {r: 0.5377358, g: 0.5267972, b: 0.07863118, a: 0.6862745}
   m_FlipX: 0
   m_FlipY: 0
@@ -305,12 +318,24 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7083166143172847993}
   m_Enabled: 1
-  m_SortingLayerID: 123875651
-  m_SortingLayer: 2
+  m_SortingLayerID: -1432631545
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_SortAtRoot: 0
---- !u!58 &263821770126544566
-CircleCollider2D:
+--- !u!114 &1026813918622236416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7083166143172847993}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7624f6bd35cce8940b68b3c251680463, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!61 &4770574944499816493
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -342,17 +367,15 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 0.5
---- !u!114 &1026813918622236416
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7083166143172847993}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7624f6bd35cce8940b68b3c251680463, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

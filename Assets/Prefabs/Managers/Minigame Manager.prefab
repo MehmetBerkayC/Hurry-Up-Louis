@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemDatabase: {fileID: 11400000, guid: 095840a434fc80d4d8a96027587c6bd9, type: 2}
   miniGameUI: {fileID: 0}
+  gameTrigger: {fileID: 0}
   goodSlots:
   - {fileID: 0}
   - {fileID: 0}
@@ -58,4 +59,4 @@ MonoBehaviour:
   itemDisplayParent: {fileID: 0}
   itemHolderPrefab: {fileID: 4152447287098168433, guid: e45fa4b4c08be084494d934008a5d55f, type: 3}
   clickableItemsParent: {fileID: 0}
-  clickableItemPrefab: {fileID: 5934200617366427316, guid: 82c6d22783ceeb9489e9663eef06ce24, type: 3}
+  clickableItemPrefab: {fileID: 5520519885886208749, guid: 82c6d22783ceeb9489e9663eef06ce24, type: 3}
