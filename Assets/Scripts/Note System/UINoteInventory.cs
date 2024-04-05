@@ -21,6 +21,13 @@ public class UINoteInventory : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        CheckActivity();
+    }
+
+    private void CheckActivity()
+    {
+        gameObject.SetActive(notes.Count > 0);
     }
 
     public void AddNote(Note note)
@@ -32,6 +39,8 @@ public class UINoteInventory : MonoBehaviour
             // Make new note gameObject and attach the note
             NoteHolder noteHolder = Instantiate(notePrefabUI, parentNotePanel).GetComponent<NoteHolder>();
             noteHolder.HeldNote = note;
+
+            CheckActivity();
         }
     }
 
@@ -56,6 +65,9 @@ public class UINoteInventory : MonoBehaviour
             {
                 Destroy(child.gameObject);
                 notes.Remove(note);
+
+                CheckActivity();
+                
                 return true; // Remove successful
             }
         }

@@ -10,9 +10,16 @@ public class PlayerInteract : MonoBehaviour
 
     private Collider2D[] _currentColliders;
 
+    public bool IsInteractable;
+
+    private void Awake()
+    {
+        IsInteractable = true;
+    }
+
     private void Update() // Check interactable collisions when pressed button
     {
-        if (Input.GetKeyDown(keyToInterract))
+        if (IsInteractable && Input.GetKeyDown(keyToInterract))
         {
             _currentColliders = Physics2D.OverlapCircleAll(transform.position, interactRadius); // Later do the check before interaction (will not be performant) to implement interact visuals when near interactable
 
