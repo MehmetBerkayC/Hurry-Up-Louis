@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6413883948513307796}
   - component: {fileID: 4909105893174751718}
   m_Layer: 5
-  m_Name: Dialogue Canvas Not Fresh
+  m_Name: Dialogue Canvas Old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

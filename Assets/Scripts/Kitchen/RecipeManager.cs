@@ -5,13 +5,13 @@ public class RecipeManager : MonoBehaviour
 {
     public static RecipeManager Instance;
 
-    [SerializeField] Ingredient _currentIngredient;
+    [SerializeField] private Ingredient _currentIngredient;
     [SerializeField] private List<Ingredient> ProgressList = new List<Ingredient>();
 
-    int[] _checkpoint = { 0, 1, 6 };
+    private int[] _checkpoint = { 0, 1, 6 };
 
-    int k = 0;
-    int temp = 0;
+    private int k = 0;
+    private int temp = 0;
 
     private void Awake()
     {
@@ -38,10 +38,9 @@ public class RecipeManager : MonoBehaviour
         CompareList();
     }
 
-
     public bool CompareList() //TODO son progresi eklerken bir sorun olusuyor onun disinda gorunurde sorun yok calisiyor
     {
-        if(_currentIngredient == ProgressList[k])
+        if (_currentIngredient == ProgressList[k])
         {
             if (k == ProgressList.Count - 1)
             {
@@ -72,11 +71,8 @@ public class RecipeManager : MonoBehaviour
             UnityEngine.Debug.Log("son checkpoint: " + temp);
             k = temp;
             return false;
-        }   
+        }
     }
-
-
-
 
     //public bool CompareList()
     //{
@@ -85,7 +81,7 @@ public class RecipeManager : MonoBehaviour
     //        // listeyi sirayla kontrol et
     //        if (ProgressList[i].name == _currentIngredient.name)
     //        {
-    //            //buraya girerse sorun yok devam et 
+    //            //buraya girerse sorun yok devam et
     //            UnityEngine.Debug.Log("Bir sonraki malzeme: " + ProgressList[i + 1]);
 
     //            //yeni checkpointe gelindiyse onu ayarla

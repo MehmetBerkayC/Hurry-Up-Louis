@@ -7,5 +7,4 @@ public class Ingredient : ScriptableObject
 {
     public string IngredientName;
     public Sprite sprite;
-
 }

@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class IngredientTrigger : MonoBehaviour, IInteractable
 {
-    [SerializeField] Ingredient ingredient;
-    SpriteRenderer spriteRenderer;
-    string _name;
+    [SerializeField] private Ingredient ingredient;
+    private SpriteRenderer spriteRenderer;
+    private string _name;
 
-    void Start()
+    private void Start()
     {
         _name = ingredient.name;
         //spriteRenderer.sprite = ingredient.sprite;
     }
+
     public void Interact()
     {
         PickUpIngredient();
