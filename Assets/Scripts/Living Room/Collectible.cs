@@ -2,17 +2,51 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectible : MonoBehaviour
+public class Collectible : MonoBehaviour, IInteractable
 {
-    // Start is called before the first frame update
-    void Start()
+    private bool _IsInteractable;
+    [SerializeField] bool isLastCollectible; // true if last item
+
+    private void Start()
     {
-        
+        if (isLastCollectible) // Shouldn't have done this
+        {
+            CollectibleManager.OnLastCollectible += BecomeInteractable; ; // Sub
+        }
+        else
+        {
+            CollectibleManager.OnMinigameStart += BecomeInteractable; // Sub
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void BecomeInteractable()
     {
-        
+        _IsInteractable = true;
+    }
+
+    public void Interact()
+    {
+        if (_IsInteractable)
+        {
+            Collect();
+        }
+    }
+
+    private void Collect()
+    {
+        CollectibleManager.Instance.Collect(this);
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (isLastCollectible)
+        {
+            CollectibleManager.OnMinigameStart -= BecomeInteractable; // Unsub
+        }
+        else
+        {
+            CollectibleManager.OnLastCollectible -= BecomeInteractable; // Unsub
+        }
     }
 }
