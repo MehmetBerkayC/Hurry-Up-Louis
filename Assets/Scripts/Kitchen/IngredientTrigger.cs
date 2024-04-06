@@ -8,6 +8,8 @@ public class IngredientTrigger : MonoBehaviour, IInteractable
     private SpriteRenderer spriteRenderer;
     private string _name;
 
+    public bool IsInteractable => true;
+
     private void Start()
     {
         _name = ingredient.name;

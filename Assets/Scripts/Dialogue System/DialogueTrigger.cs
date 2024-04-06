@@ -7,6 +7,8 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
     // Add support for back-n-forth or multiple dialogues
     [SerializeField] Dialogue dialogue;
 
+    public bool IsInteractable => true; // default
+
     public void Interact()
     {
         TriggerDialogue();

@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Dialogue[] livingRoomDialogues;
     [SerializeField] Dialogue[] endGameDialogues;
 
+    [SerializeField] List<GameStateTrigger> triggersInLevel = new List<GameStateTrigger>();
     public static GameManager Instance;
 
     public GameState State;
@@ -90,11 +91,24 @@ public class GameManager : MonoBehaviour
         OnGameStateChanged?.Invoke(newState);
     }
 
-    // End the game depending on game time
+    public void ActivateCorrectTrigger(TriggerConnections connection)
+    {
+        foreach (var trigger in triggersInLevel)
+        {
+            if (trigger.Connection == connection)
+            {
+                trigger.ActivateTrigger();
+            }
+        }
+    }
+
+    // Set Total Game Time Async/Coroutine (Game officially starts) // Coroutine uses the main thread
+    // End the game depending on game time (probably will use Update())
     // -> dont use coroutines use time.time + gametime and update upon that
     private void CheckGameTime() 
     {
         // start timer function (once)
+        // track game time
     }
 
     /// Character wakes up, pulls up a dialogue, after then player mobility is unlocked(dialoge system)
@@ -103,8 +117,6 @@ public class GameManager : MonoBehaviour
         DialogueManager.Instance.StartDialogue(bedroomDialogues[0]); // Wake up dialogue
         
         // Set up objectives if needed
-
-        // Set Total Game Time Async/Coroutine (Game officially starts) // Coroutine uses the main thread
     }
 
     public void StartBathroomSequence()
@@ -122,25 +134,24 @@ public class GameManager : MonoBehaviour
     public void StartLivingRoomSequence()
     {
         // TODO: guide player
-        DialogueManager.Instance.StartDialogue(livingRoomDialogues[0]); // Walks through door
-
-
-        /// Decide Game Ending
-        //if () // all objectives completed
-        //{
-
-        //}
+        DialogueManager.Instance.StartDialogue(livingRoomDialogues[0]); // Finished previous obj
     }
 
     public void StartGoodEndingSequence()
     {
         // TODO: guide player
         DialogueManager.Instance.StartDialogue(endGameDialogues[0]); // Good End
+        // Rush to the door? -> trigger
+
+        // Good End Screen
     }
     
     public void StartBadEndingSequence()
     {
         // TODO: guide player
         DialogueManager.Instance.StartDialogue(endGameDialogues[1]); // Bad End
+        // Got Late
+
+        // Bad End Screen
     }
 }

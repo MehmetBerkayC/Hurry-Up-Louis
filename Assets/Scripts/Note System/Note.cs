@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Note System/Note", fileName = "New Note")]
 public class Note : ScriptableObject
 {
+    public bool Temporary = false;
+
     public int ReadableTime = 3;
 
     public string NoteName; // For Note Inventory

@@ -7,6 +7,8 @@ public class Collectible : MonoBehaviour, IInteractable
     private bool _IsInteractable;
     [SerializeField] bool isLastCollectible; // true if last item
 
+    public bool IsInteractable => _IsInteractable;
+
     private void Start()
     {
         if (isLastCollectible) // Shouldn't have done this
@@ -28,6 +30,7 @@ public class Collectible : MonoBehaviour, IInteractable
     {
         if (_IsInteractable)
         {
+            Debug.Log("Collected");
             Collect();
         }
     }

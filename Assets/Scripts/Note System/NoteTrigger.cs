@@ -6,6 +6,8 @@ public class NoteTrigger : MonoBehaviour, IInteractable
 {
     [SerializeField] Note note;
 
+    public bool IsInteractable => true;
+
     public void Interact()
     {
         OpenNote();
