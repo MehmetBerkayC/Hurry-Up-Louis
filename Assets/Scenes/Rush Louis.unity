@@ -2490,6 +2490,7 @@ MonoBehaviour:
   reminderDialogues:
   - {fileID: 11400000, guid: 1dbd133684f580c418a4065b9d5cdd0f, type: 2}
   - {fileID: 11400000, guid: 9f5aaad15260ca64ca76fc97ee5d7193, type: 2}
+  trigger: {fileID: 2098293014}
 --- !u!1 &2136822041
 GameObject:
   m_ObjectHideFlags: 0
