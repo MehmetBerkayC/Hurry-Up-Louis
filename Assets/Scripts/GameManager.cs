@@ -11,6 +11,7 @@ public enum GameState
     Decide,
 }
 
+
 public class GameManager : MonoBehaviour
 {
     public static event Action<GameState> OnGameStateChanged;
@@ -18,7 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] Dialogue[] dialogues;
     public static GameManager Instance;
 
-    public GameState State; 
+    public static GameState State; 
 
     private void Awake()
     {
@@ -30,14 +31,18 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
+        Debug.Log("Current State is:" + State.ToString());
     }
 
     private void Start()
     {
         // UpdateGameState(GameState.Bedroom); // Make this apply after game start 
         // maybe through start game button
+
+        
     }
+
+    
 
     bool once = true;
     private void Update() // To simulate the existing of a start button

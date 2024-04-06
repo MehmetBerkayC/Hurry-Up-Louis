@@ -51,21 +51,5 @@ public class PlayerAnimation : MonoBehaviour
         else if (inputDirection.x < 0 && inputDirection.y < 0) transform.rotation = Quaternion.Euler(0, 0, -45f); //DownLeft
     }
 
-    //private void SetColliderDirection(colliderDirection direction)
-    //{
-    //    switch (direction)
-    //    {
-    //        case colliderDirection.Horizontal:
-    //            capsuleCollider.direction = CapsuleDirection2D.Horizontal;
-    //            capsuleCollider.offset = new Vector2(0, -0.01f);
-    //            capsuleCollider.size = new Vector2(1f, 0.41f);
-    //            break;
 
-    //        case colliderDirection.Vertical:
-    //            capsuleCollider.direction = CapsuleDirection2D.Vertical;
-    //            capsuleCollider.offset = new Vector2(0.05f, 0);
-    //            capsuleCollider.size = new Vector2(0.41f, 1f);
-    //            break;
-    //    }
-    //}
 }
