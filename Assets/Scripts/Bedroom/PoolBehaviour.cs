@@ -45,9 +45,6 @@ public class PoolBehaviour : MonoBehaviour
 
         obstacleCollision.isTrigger = true; // Swimmable
         dialogueCollision.enabled = false;
-
-        // Geçici
-        GameManager.Instance.ActivateCorrectTrigger(TriggerConnections.LivingRoom);
     }
 
     public void BecomeImpassable()

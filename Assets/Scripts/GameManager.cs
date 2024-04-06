@@ -19,13 +19,24 @@ public class GameManager : MonoBehaviour
 {
     public static event Action<GameState> OnGameStateChanged;
 
+    [Header("Bedroom")]
     [SerializeField] Dialogue[] bedroomDialogues;
+    
+    [Header("Bathroom")]
     [SerializeField] Dialogue[] bathroomDialogues;
+    
+    [Header("Kitchen")]
     [SerializeField] Dialogue[] kitchenDialogues;
+
+    [Header("Living Room")]
+    [SerializeField] NoteTrigger livingRoomNote;
     [SerializeField] Dialogue[] livingRoomDialogues;
+
+    [Header("End Game Dialogues")]
     [SerializeField] Dialogue[] endGameDialogues;
 
     [SerializeField] List<GameStateTrigger> triggersInLevel = new List<GameStateTrigger>();
+    
     public static GameManager Instance;
 
     public GameState State;
@@ -133,6 +144,9 @@ public class GameManager : MonoBehaviour
     
     public void StartLivingRoomSequence()
     {
+        // Make Note Interactable
+        livingRoomNote.BecomeInteractable(true);
+
         // TODO: guide player
         DialogueManager.Instance.StartDialogue(livingRoomDialogues[0]); // Finished previous obj
     }

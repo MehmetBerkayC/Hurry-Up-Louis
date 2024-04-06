@@ -144,6 +144,7 @@ public class NoteManager : MonoBehaviour
             else
             {
                 PoolBehaviour.Instance.BecomePassable();
+                ActivateDecisionTrigger.Instance.ActivateTrigger();
             }
         }
         else if (note == CollectibleGameTrigger.Instance.RelatedNote)

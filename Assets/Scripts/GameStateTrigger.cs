@@ -17,6 +17,7 @@ public class GameStateTrigger : MonoBehaviour
     [SerializeField] private GameState state;
 
     [SerializeField] Collider2D trigger;
+    [SerializeField] SpriteRenderer sprite;
     [SerializeField] DoorBehaviour door;
 
     public TriggerConnections Connection;
@@ -24,21 +25,26 @@ public class GameStateTrigger : MonoBehaviour
     private void Start()
     {
         TryGetComponent(out trigger);   
+        TryGetComponent(out sprite);   
         
         if (!triggerActiveByDefault)
         {
-            trigger.enabled = false;
+            DeactivateTrigger();
         }
     }
 
     public void ActivateTrigger()
     {
         trigger.enabled = true;
+        // Debug
+        sprite.enabled = true;
     }
-    
+
     public void DeactivateTrigger()
     {
         trigger.enabled = false;
+        // Debug
+        sprite.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

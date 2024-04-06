@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class Collectible : MonoBehaviour, IInteractable
 {
-    private bool _IsInteractable;
     [SerializeField] bool isLastCollectible; // true if last item
 
-    public bool IsInteractable => _IsInteractable;
+    public bool IsInteractable { get; set; } = false;
 
     private void Start()
     {
@@ -23,12 +22,12 @@ public class Collectible : MonoBehaviour, IInteractable
 
     private void BecomeInteractable()
     {
-        _IsInteractable = true;
+        IsInteractable = true;
     }
 
     public void Interact()
     {
-        if (_IsInteractable)
+        if (IsInteractable)
         {
             Debug.Log("Collected");
             Collect();
