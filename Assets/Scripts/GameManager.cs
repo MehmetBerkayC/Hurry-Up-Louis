@@ -15,6 +15,7 @@ public enum GameState
     BadEnding, 
 }
 
+
 public class GameManager : MonoBehaviour
 {
     public static event Action<GameState> OnGameStateChanged;

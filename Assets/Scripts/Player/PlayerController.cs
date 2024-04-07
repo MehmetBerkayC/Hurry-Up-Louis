@@ -5,11 +5,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    private Vector3 _playerInput;
+    public Vector3 _playerInput;
 
     [SerializeField] private float movementSpeed = 7f;
 
     private Rigidbody2D _rb;
+
 
     // Start is called before the first frame update
     void Start()
@@ -24,6 +25,7 @@ public class PlayerController : MonoBehaviour
         _playerInput = new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"), 0).normalized;
 
         _rb.velocity = _playerInput * movementSpeed;
+        
     }
 
     public void StopPlayerMovement()
