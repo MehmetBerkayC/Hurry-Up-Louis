@@ -14,7 +14,7 @@ public class NoteTrigger : MonoBehaviour, IInteractable
     {
         if (_isInteractableByDefault)
         {
-            IsInteractable = true;
+            BecomeInteractable(true);
         }
     }
 

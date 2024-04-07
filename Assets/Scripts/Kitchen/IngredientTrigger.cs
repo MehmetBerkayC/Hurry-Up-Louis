@@ -4,23 +4,48 @@ using UnityEngine;
 
 public class IngredientTrigger : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Ingredient ingredient;
+    public Ingredient ingredient;
     private SpriteRenderer spriteRenderer;
-    public string _name;
+
+    public bool IsInteractable { get; private set; } = false;
 
     private void Start()
     {
-        _name = ingredient.name;
+        RecipeManager.OnMinigameStart += Activate;
+        RecipeManager.OnMinigameEnd += Deactivate;
+
+        TryGetComponent(out spriteRenderer);
         //spriteRenderer.sprite = ingredient.sprite;
+    }
+
+    public void Activate()
+    {
+        IsInteractable = true;
+        spriteRenderer.enabled = true;
+    }
+    
+    public void Deactivate()
+    {
+        IsInteractable = false;
+        spriteRenderer.enabled = false;
     }
 
     public void Interact()
     {
-        PickUpIngredient();
+        if (IsInteractable)
+        {
+            PickUpIngredient();
+        }
     }
 
     private void PickUpIngredient()
     {
-        RecipeManager.Instance.AddIngredient(ingredient);
+        RecipeManager.Instance.AddIngredient(this);
+    }
+
+    private void OnDestroy()
+    {
+        RecipeManager.OnMinigameStart -= Activate;
+        RecipeManager.OnMinigameEnd -= Deactivate;
     }
 }

@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1411410370175133288}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -44,22 +44,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 234c4a094a1484f4ba19c2d17048622a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentIngredient: {fileID: 0}
-  ProgressList:
-  - {fileID: 11400000, guid: 4e3ef1e69ff8a4343a44305aa3c67f9a, type: 2}
-  - {fileID: 11400000, guid: 4461b4e8ac7a11a4cbafd4f18ea4f639, type: 2}
-  - {fileID: 11400000, guid: 4dfc643244785c5459d1b7c964db6d4d, type: 2}
-  - {fileID: 11400000, guid: 4e3ef1e69ff8a4343a44305aa3c67f9a, type: 2}
-  - {fileID: 11400000, guid: f1704c922c5735a4886a5fcb38484e31, type: 2}
-  - {fileID: 11400000, guid: 4e3ef1e69ff8a4343a44305aa3c67f9a, type: 2}
-  - {fileID: 11400000, guid: 2c15f44e1843a474f8f70c1b27361335, type: 2}
-  - {fileID: 11400000, guid: e737d2ee37904884cbf1239f0f641062, type: 2}
-  - {fileID: 11400000, guid: a3984cdcd39939742ae4308e803741bd, type: 2}
-  - {fileID: 11400000, guid: e737d2ee37904884cbf1239f0f641062, type: 2}
-  - {fileID: 11400000, guid: 7706cf2f409ef114a916e161603f6a46, type: 2}
-  - {fileID: 11400000, guid: e737d2ee37904884cbf1239f0f641062, type: 2}
-  - {fileID: 11400000, guid: e737d2ee37904884cbf1239f0f641062, type: 2}
-  - {fileID: 11400000, guid: 4e3ef1e69ff8a4343a44305aa3c67f9a, type: 2}
-  - {fileID: 11400000, guid: 4e3ef1e69ff8a4343a44305aa3c67f9a, type: 2}
-  - {fileID: 11400000, guid: fd8b10cf048d05a468656ac94aba007f, type: 2}
-  - {fileID: 11400000, guid: 238b22f1b2bdc9045ac903872e80f0e0, type: 2}
+  previousIngredientTrigger: {fileID: 0}
+  currentIngredientTrigger: {fileID: 0}
+  bowl: {fileID: 0}
+  pan: {fileID: 0}
+  stove: {fileID: 0}
+  table: {fileID: 0}
+  chair: {fileID: 0}
+  recipeOrder:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  kitchenRecipe: {fileID: 0}
+  bowlIndexes: 0a000000
+  panIndexes: 00000000010000000e0000000f000000
