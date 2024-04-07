@@ -1,33 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class RecipeManager : MonoBehaviour
 {
     public static RecipeManager Instance;
 
-    public static event Action OnMinigameStart;
+    [SerializeField] private Ingredient _currentIngredient;
+    [SerializeField] private List<Ingredient> ProgressList = new List<Ingredient>();
 
-    public static event Action OnMinigameEnd;
+    private int[] _checkpoint = { 0, 2, 6 };
 
-    [SerializeField] private IngredientTrigger previousIngredientTrigger;
-    [SerializeField] private IngredientTrigger currentIngredientTrigger;
+    private int k = 0;
+    private int temp = 0;
 
-    private int _listIndex = -1;
+    [SerializeField] private GameObject _wall;
 
-    [SerializeField] private IngredientTrigger bowl;
-    [SerializeField] private IngredientTrigger pan;
-    [SerializeField] private IngredientTrigger stove;
-    [SerializeField] private IngredientTrigger table;
-    [SerializeField] private IngredientTrigger chair;
-
-    [SerializeField] private List<IngredientTrigger> recipeOrder = new List<IngredientTrigger>();
-
-    [SerializeField] private NoteTrigger kitchenRecipe;
-
-    [SerializeField] private int[] bowlIndexes; 
-    [SerializeField] private int[] panIndexes; 
+    [SerializeField] private GameObject _bowl;
+    [SerializeField] private GameObject _pan;
+    [SerializeField] private GameObject _stove;
+    [SerializeField] private GameObject _table;
+    [SerializeField] private List<GameObject> _kitchenObject;
+    private bool _isMiniGameOn;
 
     private void Awake()
     {
@@ -39,117 +33,129 @@ public class RecipeManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+    }
+
+    private void Update()
+    {
+        if (_isMiniGameOn)
+        {
+            _wall.SetActive(true);
+        }
     }
 
     public void StartMinigame()
     {
-        Debug.Log("Kitchen Game Start");
-        OnMinigameStart?.Invoke();
+        _isMiniGameOn = true;
 
-        table.Deactivate();
-        chair.Deactivate();
-        stove.Deactivate();
+        CompareList();
     }
 
     private void GameCompleted()
     {
-        Debug.Log("Kitchen Game End");
+        _isMiniGameOn = false;
 
-        Destroy(kitchenRecipe.gameObject);
-        OnMinigameEnd?.Invoke();
+        _wall.SetActive(false);
     }
 
-    public void AddIngredient(IngredientTrigger ingredientTrigger)
+    public void AddIngredient(Ingredient ingredient)
     {
-        if (previousIngredientTrigger)
-        {
-            previousIngredientTrigger = currentIngredientTrigger; // remember last item
-        }
-
-        currentIngredientTrigger = ingredientTrigger; // get new item
-        _listIndex++;
-
-        // Deactivate if not a bowl or pan at specified indexes
-        if (!(currentIngredientTrigger == bowl && bowlIndexes.Contains(_listIndex)) || 
-            !(currentIngredientTrigger == pan && panIndexes.Contains(_listIndex)))
-        {
-            currentIngredientTrigger.Deactivate();
-        }
-
-        CheckProgressionOrder();
-        Debug.Log(_listIndex);
+        _currentIngredient = ingredient;
+        CompareList();
     }
 
-    public void CheckProgressionOrder()
+    public bool CompareList()
     {
-        if (currentIngredientTrigger == recipeOrder[_listIndex]) // Object is next on list
+        
+        if (_currentIngredient == ProgressList[k])
         {
-            if (currentIngredientTrigger == recipeOrder[recipeOrder.Count - 1]) // Last Item
+            SetObject(k);
+            k++;
+
+            if (k == ProgressList.Count - 1)
             {
                 GameCompleted();
+                return true;
             }
-            
-            CheckScriptedEvents();
-        }
-        else // Wrong item in sequence
-        {
-            // Reset Last Item
-            if (previousIngredientTrigger)
+
+            foreach (int j in _checkpoint)
             {
-                previousIngredientTrigger.Activate();
-                previousIngredientTrigger = null; // reset item slot
+                if (j == k)
+                {
+                    temp = j;
+                }
             }
 
-            // Reset Current Item
-            currentIngredientTrigger.Activate(); 
-            currentIngredientTrigger = null; // reset item slot
-
-            _listIndex--;
+            return true;
         }
+        else
+        {
+            SetObject(k);
+            k = temp;
+            return false;
+        }
+          
+        
     }
 
-    private void CheckScriptedEvents() // Sloppy but will work Scripted Events
+    private void SetObject(int j)
     {
-        if (currentIngredientTrigger == pan)
+        if (j == 0 && _currentIngredient == ProgressList[k]) 
         {
-            if (_listIndex == panIndexes[0]) // Deactivate Pan, Activate Stove
-            {
-                pan.Deactivate();
+            _pan.SetActive(false);
+        }
+        else if (j == 1 && _currentIngredient == ProgressList[k]) 
+        {
+            _pan.SetActive(true);
+            _pan.transform.position = _stove.transform.GetChild(0).position;
 
-                stove.Activate();
-            }
-            else if (_listIndex == panIndexes[1]) // Deactivate Stove, Activate Pan and Move it to Stove
-            {
-                pan.Activate();
-                
-                pan.transform.position = stove.transform.GetChild(0).position;
-                
-                stove.Deactivate();
-            }
-            else if (_listIndex == panIndexes[2]) // Deactivate Pan and Activate Table
-            {
-                pan.Deactivate();
+            _stove.SetActive(false);
+        }
+        else if (j == 12&& _currentIngredient == ProgressList[k]) 
+        {
+            _bowl.SetActive(false);
+        }
+        else if (j == 14 && _currentIngredient == ProgressList[k]) 
+        {
+            _pan.SetActive(false);
+            _table.SetActive(true);
+        }
+        else if(j == 15 && _currentIngredient == ProgressList[k]) 
+        {
+            _pan.SetActive(true);
+            _pan.transform.position = _table.transform.GetChild(0).position;
+        }
 
-                table.Activate();
+
+        if (_currentIngredient == ProgressList[k])
+        {
+            foreach (GameObject t in _kitchenObject)
+            {
+                IngredientTrigger ingredientTrigger = t.GetComponent<IngredientTrigger>();
+                if (t.GetComponent<IngredientTrigger>()._name == _currentIngredient.name)
+                {
+                    if(t==_pan)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        t.SetActive(false);
+                    }
+                }
             }
         }
-        else if (currentIngredientTrigger == table) // Move Pan, Deactivate Table, Activate Chair
+        else
         {
-            if (_listIndex == panIndexes[3])
+            for(int i = k; i<ProgressList.Count; i++)
             {
-                pan.Deactivate();
-                pan.transform.position = table.transform.GetChild(0).position;
-
-                table.Deactivate();
-
-                chair.Activate();
-            }
-        }
-        else if (currentIngredientTrigger == bowl) // Bowl only deactivates once
-        {
-            if (_listIndex == bowlIndexes[0])
-            {
-                bowl.Deactivate();
+                foreach(GameObject t in _kitchenObject)
+                {
+                    if (t.GetComponent<IngredientTrigger>()._name == ProgressList[i].name)
+                    {
+                        t.SetActive(true);
+                    }
+                }
             }
         }
     }
