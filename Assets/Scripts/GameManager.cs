@@ -58,11 +58,17 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    bool once = true;
+    private void Update()
     {
-        // UpdateGameState(GameState.Bedroom); // Make this apply after game start 
+        if (once)
+        {
+            UpdateGameState(GameState.Bedroom);
+            once = false;
+        }
+        /*UpdateGameState(GameState.Bedroom);*/ // Make this apply after game start 
         // maybe through start game button
-        UpdateGameState(GameState.Bedroom); // First Room
+         // First Room
     }
 
     public void UpdateGameState(GameState newState)
