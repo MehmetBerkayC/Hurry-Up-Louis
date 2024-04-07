@@ -6,7 +6,7 @@ public class KitchenGameTrigger : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // Start Kitchen Minigame
+        RecipeManager.Instance.StartMinigame();
         Destroy(this.gameObject);
     }
 }

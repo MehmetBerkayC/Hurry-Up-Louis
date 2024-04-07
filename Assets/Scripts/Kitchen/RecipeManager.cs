@@ -14,11 +14,14 @@ public class RecipeManager : MonoBehaviour
     private int k = 0;
     private int temp = 0;
 
+    [SerializeField] private GameObject _wall;
+
     [SerializeField] private GameObject _bowl;
     [SerializeField] private GameObject _pan;
     [SerializeField] private GameObject _stove;
     [SerializeField] private GameObject _table;
     [SerializeField] private List<GameObject> _kitchenObject;
+    private bool _isMiniGameOn;
 
     private void Awake()
     {
@@ -30,6 +33,29 @@ public class RecipeManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+    }
+
+    private void Update()
+    {
+        if (_isMiniGameOn)
+        {
+            _wall.SetActive(true);
+        }
+    }
+
+    public void StartMinigame()
+    {
+        _isMiniGameOn = true;
+
+        CompareList();
+    }
+
+    private void GameCompleted()
+    {
+        _isMiniGameOn = false;
+
+        _wall.SetActive(false);
     }
 
     public void AddIngredient(Ingredient ingredient)
@@ -40,7 +66,6 @@ public class RecipeManager : MonoBehaviour
 
     public bool CompareList()
     {
-        UnityEngine.Debug.Log("k suanda: " + k);
         
         if (_currentIngredient == ProgressList[k])
         {
@@ -49,7 +74,7 @@ public class RecipeManager : MonoBehaviour
 
             if (k == ProgressList.Count - 1)
             {
-                UnityEngine.Debug.Log("Mini game ends");
+                GameCompleted();
                 return true;
             }
 
