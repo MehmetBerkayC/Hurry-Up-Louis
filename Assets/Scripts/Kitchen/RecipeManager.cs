@@ -14,14 +14,14 @@ public class RecipeManager : MonoBehaviour
     private int k = 0;
     private int temp = 0;
 
-    [SerializeField] private GameObject _wall;
-
     [SerializeField] private GameObject _bowl;
     [SerializeField] private GameObject _pan;
     [SerializeField] private GameObject _stove;
     [SerializeField] private GameObject _table;
+
     [SerializeField] private List<GameObject> _kitchenObject;
-    private bool _isMiniGameOn;
+
+    public bool IsMinigameOn = false;
 
     private void Awake()
     {
@@ -36,37 +36,30 @@ public class RecipeManager : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if (_isMiniGameOn)
-        {
-            _wall.SetActive(true);
-        }
-    }
-
     public void StartMinigame()
     {
-        _isMiniGameOn = true;
-
-        CompareList();
+        IsMinigameOn = true;
     }
 
     private void GameCompleted()
     {
-        _isMiniGameOn = false;
+        IsMinigameOn = false;
 
-        _wall.SetActive(false);
+        ReminderTrigger.Instance.SetIsKitchenDone(true);
+        ReminderTrigger.Instance.ActivateTrigger(true);
     }
 
     public void AddIngredient(Ingredient ingredient)
     {
-        _currentIngredient = ingredient;
-        CompareList();
+        if (IsMinigameOn)
+        {
+            _currentIngredient = ingredient;
+            CompareList();
+        }
     }
 
     public bool CompareList()
     {
-        
         if (_currentIngredient == ProgressList[k])
         {
             SetObject(k);
@@ -94,8 +87,6 @@ public class RecipeManager : MonoBehaviour
             k = temp;
             return false;
         }
-          
-        
     }
 
     private void SetObject(int j)
@@ -132,7 +123,7 @@ public class RecipeManager : MonoBehaviour
             foreach (GameObject t in _kitchenObject)
             {
                 IngredientTrigger ingredientTrigger = t.GetComponent<IngredientTrigger>();
-                if (t.GetComponent<IngredientTrigger>()._name == _currentIngredient.name)
+                if (t.GetComponent<IngredientTrigger>().ingredient.name == _currentIngredient.name)
                 {
                     if(t==_pan)
                     {
@@ -151,7 +142,7 @@ public class RecipeManager : MonoBehaviour
             {
                 foreach(GameObject t in _kitchenObject)
                 {
-                    if (t.GetComponent<IngredientTrigger>()._name == ProgressList[i].name)
+                    if (t.GetComponent<IngredientTrigger>().ingredient.name == ProgressList[i].name)
                     {
                         t.SetActive(true);
                     }
