@@ -161,8 +161,7 @@ public class BathroomMinigameManager : MonoBehaviour
 
         ToggleUI();
 
-        ReminderTrigger.Instance.SetIsKitchenDone(false);
-        ReminderTrigger.Instance.ActivateTrigger(true);
+        ReminderTrigger.Instance.ActivateTrigger();
     }
 
     private void CalculateTargetValue()

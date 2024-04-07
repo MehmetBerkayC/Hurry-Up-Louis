@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActivateDecisionTrigger : MonoBehaviour
+public class MinigameSplitTrigger : MonoBehaviour
 {
     [SerializeField] GameStateTrigger[] triggers;
     [SerializeField] Collider2D decisionTrigger;
     [SerializeField] SpriteRenderer spriteRenderer;
 
-    public static ActivateDecisionTrigger Instance;
+    public static MinigameSplitTrigger Instance;
 
     private void Awake()
     {

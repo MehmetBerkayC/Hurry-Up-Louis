@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
 
     private bool _IsEndingGood;
 
+    public static bool BothMinigamesDone;
+
     private void Awake()
     {
         if (Instance == null)
@@ -53,23 +55,13 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
     }
 
     private void Start()
     {
         // UpdateGameState(GameState.Bedroom); // Make this apply after game start 
         // maybe through start game button
-    }
-
-    bool once = true;
-    private void Update() // To simulate the existing of a start button
-    {
-        if (once)
-        {
-            UpdateGameState(GameState.Bedroom);
-            once = false;
-        }
+        UpdateGameState(GameState.Bedroom); // First Room
     }
 
     public void UpdateGameState(GameState newState)
@@ -94,8 +86,10 @@ public class GameManager : MonoBehaviour
                 StartLivingRoomSequence();
                 break;
             case GameState.GoodEnding:
+                StartGoodEndingSequence();
                 break;
             case GameState.BadEnding:
+                StartBadEndingSequence();
                 break;
         }
 
@@ -125,6 +119,7 @@ public class GameManager : MonoBehaviour
     /// Character wakes up, pulls up a dialogue, after then player mobility is unlocked(dialoge system)
     public void StartBedroomSequence()
     {
+        // Fade IN
         DialogueManager.Instance.StartDialogue(bedroomDialogues[0]); // Wake up dialogue
         
         // Set up objectives if needed
@@ -156,7 +151,7 @@ public class GameManager : MonoBehaviour
         // TODO: guide player
         DialogueManager.Instance.StartDialogue(endGameDialogues[0]); // Good End
         // Rush to the door? -> trigger
-
+        // Fade OUT
         // Good End Screen
     }
     
@@ -165,7 +160,7 @@ public class GameManager : MonoBehaviour
         // TODO: guide player
         DialogueManager.Instance.StartDialogue(endGameDialogues[1]); // Bad End
         // Got Late
-
+        // Fade OUT
         // Bad End Screen
     }
 }

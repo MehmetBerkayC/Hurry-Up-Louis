@@ -13,6 +13,7 @@ public class ReminderTrigger : MonoBehaviour
     public static ReminderTrigger Instance;
 
     public bool IsKitchenDone { get; private set; } = false;
+    public bool ActivatedOnceAlready { get; private set; } = false;
 
     private void Awake()
     {
@@ -30,13 +31,23 @@ public class ReminderTrigger : MonoBehaviour
     {
         TryGetComponent(out spriteRenderer);
         TryGetComponent(out trigger);
-        ActivateTrigger(false);
+        DeactivateTrigger();
     }
 
-    public void ActivateTrigger(bool value)
+    public void ActivateTrigger()
     {
-        trigger.enabled = value;
-        spriteRenderer.enabled = value;
+        CheckBothGamesDone();
+        
+        gameObject.SetActive(true);
+        trigger.enabled = true;
+        spriteRenderer.enabled = true;
+    }
+    
+    public void DeactivateTrigger()
+    {
+        gameObject.SetActive(false);
+        trigger.enabled = false;
+        spriteRenderer.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,11 +63,25 @@ public class ReminderTrigger : MonoBehaviour
             DialogueManager.Instance.StartDialogue(reminderDialogues[1]);
         }
 
-        ActivateTrigger(false);
+        DeactivateTrigger();
     }
 
-    public void SetIsKitchenDone(bool value)
+    public void SetKitchenAsDone()
     {
-        IsKitchenDone = value;
+        IsKitchenDone = true;
+    }
+
+    public void CheckBothGamesDone()
+    {
+        if (ActivatedOnceAlready)
+        {
+            // Activate Livingroom Trigger
+            GameManager.Instance.ActivateCorrectTrigger(TriggerConnections.LivingRoom);
+            Destroy(gameObject);
+        }
+        else
+        {
+            ActivatedOnceAlready = true;
+        }
     }
 }

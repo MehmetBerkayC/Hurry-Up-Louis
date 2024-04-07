@@ -6,20 +6,22 @@ public class RecipeManager : MonoBehaviour
 {
     public static RecipeManager Instance;
 
-    [SerializeField] private Ingredient _currentIngredient;
-    [SerializeField] private List<Ingredient> ProgressList = new List<Ingredient>();
+    [SerializeField] private Ingredient currentIngredient;
+    [SerializeField] private List<Ingredient> progressList = new List<Ingredient>();
 
     private int[] _checkpoint = { 0, 2, 6 };
 
     private int k = 0;
     private int temp = 0;
 
-    [SerializeField] private GameObject _bowl;
-    [SerializeField] private GameObject _pan;
-    [SerializeField] private GameObject _stove;
-    [SerializeField] private GameObject _table;
+    [SerializeField] private GameObject bowl;
+    [SerializeField] private GameObject pan;
+    [SerializeField] private GameObject stove;
+    [SerializeField] private GameObject table;
 
-    [SerializeField] private List<GameObject> _kitchenObject;
+    [SerializeField] private List<GameObject> kitchenObject;
+
+    [SerializeField] private NoteTrigger kitchenNote;
 
     public bool IsMinigameOn = false;
 
@@ -33,7 +35,6 @@ public class RecipeManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
     }
 
     public void StartMinigame()
@@ -45,27 +46,29 @@ public class RecipeManager : MonoBehaviour
     {
         IsMinigameOn = false;
 
-        ReminderTrigger.Instance.SetIsKitchenDone(true);
-        ReminderTrigger.Instance.ActivateTrigger(true);
+        ReminderTrigger.Instance.SetKitchenAsDone();
+        ReminderTrigger.Instance.ActivateTrigger();
+
+        Destroy(kitchenNote.gameObject);
     }
 
     public void AddIngredient(Ingredient ingredient)
     {
         if (IsMinigameOn)
         {
-            _currentIngredient = ingredient;
+            currentIngredient = ingredient;
             CompareList();
         }
     }
 
     public bool CompareList()
     {
-        if (_currentIngredient == ProgressList[k])
+        if (currentIngredient == progressList[k])
         {
             SetObject(k);
             k++;
 
-            if (k == ProgressList.Count - 1)
+            if (k == progressList.Count - 1)
             {
                 GameCompleted();
                 return true;
@@ -91,41 +94,41 @@ public class RecipeManager : MonoBehaviour
 
     private void SetObject(int j)
     {
-        if (j == 0 && _currentIngredient == ProgressList[k]) 
+        if (j == 0 && currentIngredient == progressList[k]) 
         {
-            _pan.SetActive(false);
+            pan.SetActive(false);
         }
-        else if (j == 1 && _currentIngredient == ProgressList[k]) 
+        else if (j == 1 && currentIngredient == progressList[k]) 
         {
-            _pan.SetActive(true);
-            _pan.transform.position = _stove.transform.GetChild(0).position;
+            pan.SetActive(true);
+            pan.transform.position = stove.transform.GetChild(0).position;
 
-            _stove.SetActive(false);
+            stove.SetActive(false);
         }
-        else if (j == 12&& _currentIngredient == ProgressList[k]) 
+        else if (j == 12&& currentIngredient == progressList[k]) 
         {
-            _bowl.SetActive(false);
+            bowl.SetActive(false);
         }
-        else if (j == 14 && _currentIngredient == ProgressList[k]) 
+        else if (j == 14 && currentIngredient == progressList[k]) 
         {
-            _pan.SetActive(false);
-            _table.SetActive(true);
+            pan.SetActive(false);
+            table.SetActive(true);
         }
-        else if(j == 15 && _currentIngredient == ProgressList[k]) 
+        else if(j == 15 && currentIngredient == progressList[k]) 
         {
-            _pan.SetActive(true);
-            _pan.transform.position = _table.transform.GetChild(0).position;
+            pan.SetActive(true);
+            pan.transform.position = table.transform.GetChild(0).position;
         }
 
 
-        if (_currentIngredient == ProgressList[k])
+        if (currentIngredient == progressList[k])
         {
-            foreach (GameObject t in _kitchenObject)
+            foreach (GameObject t in kitchenObject)
             {
                 IngredientTrigger ingredientTrigger = t.GetComponent<IngredientTrigger>();
-                if (t.GetComponent<IngredientTrigger>().ingredient.name == _currentIngredient.name)
+                if (t.GetComponent<IngredientTrigger>().ingredient.name == currentIngredient.name)
                 {
-                    if(t==_pan)
+                    if(t==pan)
                     {
                         break;
                     }
@@ -138,11 +141,11 @@ public class RecipeManager : MonoBehaviour
         }
         else
         {
-            for(int i = k; i<ProgressList.Count; i++)
+            for(int i = k; i<progressList.Count; i++)
             {
-                foreach(GameObject t in _kitchenObject)
+                foreach(GameObject t in kitchenObject)
                 {
-                    if (t.GetComponent<IngredientTrigger>().ingredient.name == ProgressList[i].name)
+                    if (t.GetComponent<IngredientTrigger>().ingredient.name == progressList[i].name)
                     {
                         t.SetActive(true);
                     }

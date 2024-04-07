@@ -49,6 +49,7 @@ public class CollectibleManager : MonoBehaviour
             DialogueManager.Instance.StartDialogue(gameDialogues[1]);
             // Game Should End
             Debug.Log("Game Ends"); // -> Trigger Halledecek
+            EndMinigame();
         }
 
         if (allCollectibles.Count - 1 == collectedCollectibles.Count) // Only 1 item remains
@@ -58,5 +59,10 @@ public class CollectibleManager : MonoBehaviour
 
             OnLastCollectible?.Invoke(); // Notify item to become active/interactable
         }
+    }
+
+    private void EndMinigame()
+    {
+        GameManager.Instance.ActivateCorrectTrigger(TriggerConnections.End);
     }
 }
