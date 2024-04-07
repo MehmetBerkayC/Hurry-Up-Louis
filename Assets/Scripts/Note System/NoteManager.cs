@@ -54,7 +54,10 @@ public class NoteManager : MonoBehaviour
             //Check Interactable Objects
             CheckNoteDependencies(note, false);
 
-            StartCoroutine(ForgetTimer(note));
+            if (note.Temporary)
+            {
+                StartCoroutine(ForgetTimer(note));
+            }
         }
 
         _isNoteOpen = true; // Open input listen
@@ -129,19 +132,24 @@ public class NoteManager : MonoBehaviour
         }
     }
 
-    private void CheckNoteDependencies(Note note, bool forgetting)
+    private void CheckNoteDependencies(Note note, bool forget)
     {
         // This will suck ass as a system but should work for every gameobject dependency situation
         if (note == PoolBehaviour.Instance.RelatedNote)
         {
-            if (forgetting) //  Just for the outcome of the memory check false -> new addition to memory, true -> removing from memory
+            if (forget) //  Just for the outcome of the memory check false -> new addition to memory, true -> removing from memory
             {
                 PoolBehaviour.Instance.BecomeImpassable();
             }
             else
             {
                 PoolBehaviour.Instance.BecomePassable();
+                ActivateDecisionTrigger.Instance.ActivateTrigger();
             }
+        }
+        else if (note == CollectibleGameTrigger.Instance.RelatedNote)
+        {
+            CollectibleManager.Instance.StartMinigame();
         } // Add more when needed
     }
 

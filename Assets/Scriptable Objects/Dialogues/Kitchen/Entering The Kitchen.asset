@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d44cfa3df4c202c4d9312d4984d370fa, type: 3}
-  m_Name: Pool Note
+  m_Script: {fileID: 11500000, guid: 1eae4b479ecf5aa4da8fc2e0cf5a0a8b, type: 3}
+  m_Name: Entering The Kitchen
   m_EditorClassIdentifier: 
-  Label: Dear Louis Poisson D'eau Douce
-  Notes: "You are LITERALLY a fish... \n\nStupid..."
+  CharacterName: Fishy Fishington
+  Sentences:
+  - I should have breakfast. TO THE FRIDGE!

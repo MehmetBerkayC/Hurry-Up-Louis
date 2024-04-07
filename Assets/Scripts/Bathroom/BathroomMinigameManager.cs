@@ -114,7 +114,7 @@ public class BathroomMinigameManager : MonoBehaviour
             FindEmptySlot(badSlots, selfCareItem);
         }
 
-        UpdateTargetValues();
+        UpdateCurrentValue();
     }
 
     private void FindEmptySlot(Array slots, SelfCareItem careItem)
@@ -137,9 +137,8 @@ public class BathroomMinigameManager : MonoBehaviour
         }
     }
 
-    private void UpdateTargetValues()
+    private void UpdateCurrentValue()
     {
-        // Calculate current value
         int sum = 0;
 
         foreach (var item in selectedItems)
@@ -161,6 +160,9 @@ public class BathroomMinigameManager : MonoBehaviour
         _isMiniGameOn = false;
 
         ToggleUI();
+
+        ReminderTrigger.Instance.SetIsKitchenDone(false);
+        ReminderTrigger.Instance.ActivateTrigger(true);
     }
 
     private void CalculateTargetValue()
@@ -219,7 +221,7 @@ public class BathroomMinigameManager : MonoBehaviour
     public bool RemoveItemFromList(SelfCareItem selfCareItem)
     {
         bool returnValue = selectedItems.Remove(selfCareItem);
-        UpdateTargetValues();
+        UpdateCurrentValue();
         return returnValue;
     }
 }

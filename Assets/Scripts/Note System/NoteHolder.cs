@@ -13,7 +13,7 @@ public class NoteHolder : MonoBehaviour
     private void Start()
     {
         buttonText = GetComponentInChildren<TextMeshProUGUI>();
-        buttonText.text = HeldNote.Label;
+        buttonText.text = HeldNote.NoteName;
     }
 
     public void OnClick()
