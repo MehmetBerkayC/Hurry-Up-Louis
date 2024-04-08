@@ -25,6 +25,8 @@ public class RecipeManager : MonoBehaviour
 
     public bool IsMinigameOn = false;
 
+    public Dialogue didItAgain; 
+
     private void Awake()
     {
         if (Instance == null)
@@ -91,6 +93,7 @@ public class RecipeManager : MonoBehaviour
             SetObject(k);
             k = temp;
             AudioManager.Instance.Play("Mission Fail");
+            DialogueManager.Instance.StartDialogue(didItAgain);
             return false;
         }
     }
