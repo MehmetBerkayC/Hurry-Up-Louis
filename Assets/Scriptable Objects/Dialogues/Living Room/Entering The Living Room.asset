@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Louis Poisson D'eau Douce
   Sentences:
-  - 'I need to get ready for the work! What was i supposed to do?... '
-  - Oh right! Study room should have something i can check to remember if my memory
-    doesn't deceive me!
+  - I need to get ready for the work! What was i supposed to do?
+  - 'Oh right! '
+  - if my memory doesn't deceive me, study room should have something i can check
+    to remember..
