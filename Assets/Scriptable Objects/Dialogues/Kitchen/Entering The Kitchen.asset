@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Louis Poisson D'eau Douce
   Sentences:
-  - I should have breakfast. My grandmother's tuna sandwich recipe should be hanging
-    on the fridge.
+  - 'I should have breakfast. '
+  - My grandmother's tuna sandwich recipe should be hanging on the fridge.

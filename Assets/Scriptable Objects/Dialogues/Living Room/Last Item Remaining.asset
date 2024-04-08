@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Louis Poisson D'eau Douce
   Sentences:
+  - I'm still missing something...
   - Where are my documents?
   - I hope it doesn't come out of stupid places again.

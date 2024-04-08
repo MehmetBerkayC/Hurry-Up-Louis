@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CharacterName: Louis Poisson D'eau Douce
   Sentences:
-  - Silly me, why did i buy a swimming pool? Such a shame, i wish i knew how to swim.
-  - 'Maybe there is something that i can use to remind somethings, my memory isn''t
-    very good these days. '
+  - Silly me, why did I buy a swimming pool? I wish I knew how to swim. Such a shame...
+  - My memory isn't very good these days. I may have a reminder note as for what
+    to do with this pool..
   - I should take look around.
