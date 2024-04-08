@@ -18,6 +18,8 @@ public class CollectibleManager : MonoBehaviour
     [SerializeField] 
     private List<Dialogue> gameDialogues = new List<Dialogue>();
 
+    [SerializeField] private GameObject endTrigger;
+
     void Start()
     {
         if (Instance == null)
@@ -65,6 +67,8 @@ public class CollectibleManager : MonoBehaviour
     private void EndMinigame()
     {
         AudioManager.Instance.Play("Mission Success");
+
+        endTrigger.SetActive(true);
         GameManager.Instance.ActivateCorrectTrigger(TriggerConnections.End);
     }
 }

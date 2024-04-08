@@ -385,7 +385,7 @@ SortingGroup:
   m_GameObject: {fileID: 235017044}
   m_Enabled: 1
   m_SortingLayerID: -1432631545
-  m_SortingLayer: 8
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &235017049
@@ -477,7 +477,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 34996a66ebb39754c884e51904a5c964, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -737,7 +737,7 @@ SortingGroup:
   m_GameObject: {fileID: 415951789}
   m_Enabled: 1
   m_SortingLayerID: -1432631545
-  m_SortingLayer: 8
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &415951794
@@ -989,7 +989,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fa3fd76e09bf9554fa6584a63a6c7f82, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1073,7 +1073,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 86ca12facf91ae54fbc33a16b3701abf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1193,7 +1193,7 @@ SortingGroup:
   m_GameObject: {fileID: 794912110}
   m_Enabled: 1
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!212 &794912115
@@ -1598,7 +1598,7 @@ SortingGroup:
   m_GameObject: {fileID: 916713180}
   m_Enabled: 1
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!212 &916713185
@@ -2005,7 +2005,7 @@ SortingGroup:
   m_GameObject: {fileID: 1176020743}
   m_Enabled: 1
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!212 &1176020748
@@ -2131,7 +2131,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6cfa4b1ee995a6842a236db67252dc18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2266,7 +2266,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2449,7 +2449,7 @@ SortingGroup:
   m_GameObject: {fileID: 1267373145}
   m_Enabled: 1
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!61 &1267373150
@@ -2731,7 +2731,7 @@ SortingGroup:
   m_GameObject: {fileID: 1340079321}
   m_Enabled: 1
   m_SortingLayerID: -1432631545
-  m_SortingLayer: 8
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &1341715885
@@ -3002,7 +3002,7 @@ SortingGroup:
   m_GameObject: {fileID: 1464467123}
   m_Enabled: 1
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!224 &1482420790 stripped
@@ -3081,7 +3081,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bb45a794ddcbaf645a58834613f516d7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3248,7 +3248,7 @@ SortingGroup:
   m_GameObject: {fileID: 1568210501}
   m_Enabled: 1
   m_SortingLayerID: -1432631545
-  m_SortingLayer: 8
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &1632765688
@@ -3364,7 +3364,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: fd0659afda1431d418edc4673f66e163, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3613,7 +3613,7 @@ SortingGroup:
   m_GameObject: {fileID: 1821042517}
   m_Enabled: 1
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!212 &1821042522
@@ -3743,7 +3743,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1893418029
 Transform:
   m_ObjectHideFlags: 0
@@ -3798,7 +3798,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1432631545
-  m_SortingLayer: 8
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.09371662, g: 0.735849, b: 0.5249301, a: 0.4117647}
@@ -3823,7 +3823,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f33ebfd5f0d8b774ba31a68be00d90a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerActiveByDefault: 0
+  triggerActiveByDefault: 1
   state: 5
   trigger: {fileID: 1893418032}
   sprite: {fileID: 1893418030}
@@ -4251,7 +4251,7 @@ SortingGroup:
   m_GameObject: {fileID: 2098293010}
   m_Enabled: 1
   m_SortingLayerID: -1432631545
-  m_SortingLayer: 8
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!61 &2098293014
@@ -4451,7 +4451,7 @@ SortingGroup:
   m_GameObject: {fileID: 2136822041}
   m_Enabled: 1
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!212 &2136822046
@@ -4708,7 +4708,7 @@ SortingGroup:
   m_GameObject: {fileID: 8742008855621108026}
   m_Enabled: 1
   m_SortingLayerID: 1292785481
-  m_SortingLayer: 9
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1 &1622641894057445841
@@ -4817,7 +4817,7 @@ PrefabInstance:
     - target: {fileID: 1374668283557745288, guid: 0cb3889f63365934d8a56219c08a1415, type: 3}
       propertyPath: endTrigger
       value: 
-      objectReference: {fileID: 1893418031}
+      objectReference: {fileID: 1893418028}
     - target: {fileID: 1374668283557745288, guid: 0cb3889f63365934d8a56219c08a1415, type: 3}
       propertyPath: allCollectibles.Array.data[0]
       value: 
@@ -5140,7 +5140,7 @@ SortingGroup:
   m_GameObject: {fileID: 1622641894057445841}
   m_Enabled: 1
   m_SortingLayerID: -1283836621
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &3846070810042868181
@@ -5256,7 +5256,7 @@ SortingGroup:
   m_GameObject: {fileID: 3736768795403247120}
   m_Enabled: 1
   m_SortingLayerID: -1432631545
-  m_SortingLayer: 8
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!1001 &4323099017575246044
@@ -5589,7 +5589,7 @@ SortingGroup:
   m_GameObject: {fileID: 8671575021414047076}
   m_Enabled: 1
   m_SortingLayerID: -1432631545
-  m_SortingLayer: 8
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &4689373458442549171
@@ -6836,7 +6836,7 @@ SortingGroup:
   m_GameObject: {fileID: 4605212325630958523}
   m_Enabled: 1
   m_SortingLayerID: -1809478743
-  m_SortingLayer: 11
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!70 &8641597733869485804

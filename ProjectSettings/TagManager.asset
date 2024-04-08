@@ -62,9 +62,6 @@ TagManager:
   - name: Obstacle
     uniqueID: 1292785481
     locked: 0
-  - name: Interactable
-    uniqueID: 3011130675
-    locked: 0
   - name: Player
     uniqueID: 2485488553
     locked: 0
@@ -73,4 +70,7 @@ TagManager:
     locked: 0
   - name: Front2
     uniqueID: 1604622521
+    locked: 0
+  - name: Interactable
+    uniqueID: 3011130675
     locked: 0
