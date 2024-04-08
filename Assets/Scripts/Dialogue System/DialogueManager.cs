@@ -130,5 +130,17 @@ public class DialogueManager : MonoBehaviour
         playerInteract.IsInteractable = true;
 
         GameManager.Instance.UpdateGameState(GameState.None); // Do as you wish
+
+        if (GameManager.Instance.DidGameEnd)
+        {
+            if (GameManager.Instance.IsGoodEnd)
+            {
+                GameManager.Instance.GoodEnd();
+            }
+            else
+            {
+                GameManager.Instance.BadEnd();
+            }
+        }
     }
 }

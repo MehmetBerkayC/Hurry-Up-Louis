@@ -5216,7 +5216,7 @@ PrefabInstance:
       objectReference: {fileID: 1267373148}
     - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
       propertyPath: remainingTimeInSeconds
-      value: 300
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
       propertyPath: endGameDialogues.Array.size
@@ -6495,6 +6495,10 @@ PrefabInstance:
       propertyPath: kitchenNote
       value: 
       objectReference: {fileID: 1263005406}
+    - target: {fileID: 3984159936755470589, guid: 4cb57e6d1774439448564df09b62da7e, type: 3}
+      propertyPath: missionSuccessful
+      value: 
+      objectReference: {fileID: 11400000, guid: d65a9b2d2c49fc3479ba984b144d1b23, type: 2}
     - target: {fileID: 3984159936755470589, guid: 4cb57e6d1774439448564df09b62da7e, type: 3}
       propertyPath: ProgressList.Array.size
       value: 17
