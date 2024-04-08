@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
         // TODO: guide player
         DialogueManager.Instance.StartDialogue(endGameDialogues[0]); // Good End
         // Good End Screen
-        SceneManager.LoadScene("End Screen");
+        SceneManager.LoadScene("Good End Screen");
     }
     
     public void StartBadEndingSequence()
@@ -186,6 +186,6 @@ public class GameManager : MonoBehaviour
         DialogueManager.Instance.StartDialogue(endGameDialogues[1]); // Bad End
         // Got Late
         // Bad End Screen
-        SceneManager.LoadScene("Game Over");
+        SceneManager.LoadScene("Bad End Screen");
     }
 }
