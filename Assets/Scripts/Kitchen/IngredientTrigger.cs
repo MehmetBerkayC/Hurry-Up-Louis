@@ -7,10 +7,19 @@ public class IngredientTrigger : MonoBehaviour, IInteractable
     public Ingredient ingredient;
     private SpriteRenderer spriteRenderer;
 
+    bool _isInteractable = true;
+
+    public bool IsInteractable => _isInteractable;
+
+
     private void Start()
     {
         TryGetComponent(out spriteRenderer);
         //spriteRenderer.sprite = ingredient.sprite;
+    }
+    public void SetInteractable(bool value)
+    {
+        _isInteractable = value;
     }
 
     public void Interact()

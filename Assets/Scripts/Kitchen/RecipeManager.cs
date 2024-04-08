@@ -18,6 +18,7 @@ public class RecipeManager : MonoBehaviour
     [SerializeField] private GameObject pan;
     [SerializeField] private GameObject stove;
     [SerializeField] private GameObject table;
+    [SerializeField] private GameObject chair;
 
     [SerializeField] private List<GameObject> kitchenObject;
 
@@ -54,6 +55,12 @@ public class RecipeManager : MonoBehaviour
         ReminderTrigger.Instance.ActivateTrigger();
 
         DialogueManager.Instance.StartDialogue(missionSuccessful);
+
+        table.GetComponent<IngredientTrigger>().SetInteractable(false);
+        stove.GetComponent<IngredientTrigger>().SetInteractable(false);
+        pan.GetComponent<IngredientTrigger>().SetInteractable(false);
+        bowl.GetComponent<IngredientTrigger>().SetInteractable(false);
+        chair.GetComponent<IngredientTrigger>().SetInteractable(false);
 
         Destroy(kitchenNote.gameObject);
     }

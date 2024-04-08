@@ -42,7 +42,7 @@ public class PlayerInteract : MonoBehaviour
 
         foreach (Collider2D collider in colliders)
         {
-            if (collider.TryGetComponent(out IInteractable interactable))
+            if (collider.TryGetComponent(out IInteractable interactable) && interactable.IsInteractable)
             {
                 return interactable;
             }
