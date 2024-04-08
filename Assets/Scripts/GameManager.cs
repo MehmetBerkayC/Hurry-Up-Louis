@@ -92,10 +92,14 @@ public class GameManager : MonoBehaviour
             if (IsGoodEnd)
             {
                 SceneManager.LoadScene("Good End Screen");
+                AudioManager.Instance.Stop("Main Theme");
+                AudioManager.Instance.Play("Good Ending");
             }
             else
             {
                 SceneManager.LoadScene("Bad End Screen");
+                AudioManager.Instance.Stop("Main Theme");
+                AudioManager.Instance.Play("Bad Ending");
             }
         }
     }
@@ -157,6 +161,7 @@ public class GameManager : MonoBehaviour
 
         if (remainingTimeInSeconds <= 0)
         {
+            timerText.text = string.Format("{0:00}:{1:00}", 0, 0);
             _timerOn = false;
             UpdateGameState(GameState.BadEnding);
         }
