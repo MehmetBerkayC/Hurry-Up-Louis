@@ -6,9 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
+    private void Start()
+    {
+        AudioManager.Instance.Play("Main Theme");
+    }
+
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("Game");
+        SceneManager.LoadScene("Rush Louis");
     }
 
     public void LoadMainMenu()
@@ -23,6 +28,4 @@ public class MenuManager : MonoBehaviour
         EditorApplication.ExitPlaymode();
 #endif
     }
-
-
 }

@@ -44,7 +44,6 @@ public class PlayerInteract : MonoBehaviour
         {
             if (collider.TryGetComponent(out IInteractable interactable))
             {
-                Debug.Log(interactable);
                 return interactable;
             }
         }

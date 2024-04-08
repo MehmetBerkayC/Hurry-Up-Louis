@@ -26,6 +26,7 @@ public class MinigameSplitTrigger : MonoBehaviour
     {
         TryGetComponent(out decisionTrigger);
         TryGetComponent(out spriteRenderer);
+        spriteRenderer.enabled = false;
 
         DeactivateTrigger();
     }
@@ -34,14 +35,14 @@ public class MinigameSplitTrigger : MonoBehaviour
     {
         decisionTrigger.enabled = true;
         // Debug
-        spriteRenderer.enabled = true;
+        //spriteRenderer.enabled = true;
     }
 
     public void DeactivateTrigger()
     {
         decisionTrigger.enabled = false;
         // Debug
-        spriteRenderer.enabled = false;
+        //spriteRenderer.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

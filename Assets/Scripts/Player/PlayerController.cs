@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [HideInInspector]
     public Vector3 _playerInput;
 
     [SerializeField] private float movementSpeed = 7f;
