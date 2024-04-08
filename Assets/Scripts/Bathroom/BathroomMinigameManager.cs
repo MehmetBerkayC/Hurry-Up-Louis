@@ -40,6 +40,8 @@ public class BathroomMinigameManager : MonoBehaviour
     private int _targetScore;
     private int _currentScore;
 
+    private float _defaultPlayerSpeed;
+
     private void Awake()
     {
         if (Instance == null)
@@ -59,17 +61,22 @@ public class BathroomMinigameManager : MonoBehaviour
         currentValue.text = 0.ToString();
     }
 
-    private void Update()
+    private void StopPlayerMovement()
     {
-        if (_isMiniGameOn)
-        {
-            _playerController.StopPlayerMovement(); // can make movement speed 0 instead of updating every frame but is similar anyways?
-        }
+        _defaultPlayerSpeed = _playerController.GetPlayerSpeed();
+        _playerController.SetPlayerSpeed(0);
+    }
+
+    private void ResumePlayerMovement()
+    {
+        _playerController.SetPlayerSpeed(_defaultPlayerSpeed);
     }
 
     public void StartMinigame()
     {
         _isMiniGameOn = true;
+
+        StopPlayerMovement();
 
         // Set up the game
         ToggleUI();
@@ -113,6 +120,8 @@ public class BathroomMinigameManager : MonoBehaviour
         {
             FindEmptySlot(badSlots, selfCareItem);
         }
+
+        AudioManager.Instance.Play("Select");
 
         UpdateCurrentValue();
     }
@@ -159,8 +168,10 @@ public class BathroomMinigameManager : MonoBehaviour
     {
         _isMiniGameOn = false;
 
+        AudioManager.Instance.Play("Mission Success");
         ToggleUI();
 
+        ResumePlayerMovement();
         ReminderTrigger.Instance.ActivateTrigger();
     }
 
@@ -220,6 +231,7 @@ public class BathroomMinigameManager : MonoBehaviour
     public bool RemoveItemFromList(SelfCareItem selfCareItem)
     {
         bool returnValue = selectedItems.Remove(selfCareItem);
+        AudioManager.Instance.Play("Select");
         UpdateCurrentValue();
         return returnValue;
     }

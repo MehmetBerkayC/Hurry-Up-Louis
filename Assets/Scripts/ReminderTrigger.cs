@@ -30,6 +30,8 @@ public class ReminderTrigger : MonoBehaviour
     private void Start()
     {
         TryGetComponent(out spriteRenderer);
+        spriteRenderer.enabled = false;
+
         TryGetComponent(out trigger);
         DeactivateTrigger();
     }
@@ -40,14 +42,14 @@ public class ReminderTrigger : MonoBehaviour
         
         gameObject.SetActive(true);
         trigger.enabled = true;
-        spriteRenderer.enabled = true;
+        //spriteRenderer.enabled = true;
     }
     
     public void DeactivateTrigger()
     {
         gameObject.SetActive(false);
         trigger.enabled = false;
-        spriteRenderer.enabled = false;
+        //spriteRenderer.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -38,6 +38,7 @@ public class CollectibleManager : MonoBehaviour
     public void Collect(Collectible collectible)
     {
         collectedCollectibles.Add(collectible);
+        AudioManager.Instance.Play("Pick Up");
         CheckProgress();
     }
 
@@ -63,6 +64,7 @@ public class CollectibleManager : MonoBehaviour
 
     private void EndMinigame()
     {
+        AudioManager.Instance.Play("Mission Success");
         GameManager.Instance.ActivateCorrectTrigger(TriggerConnections.End);
     }
 }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // add triggers to the rooms to trigger objectives -> triggers work only once
 public enum GameState
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
     }
 
     bool once = true;
+
     private void Update()
     {
         if (once)
@@ -127,6 +129,7 @@ public class GameManager : MonoBehaviour
     public void StartBedroomSequence()
     {
         // Fade IN
+        AudioManager.Instance.Play("Alarm");
         DialogueManager.Instance.StartDialogue(bedroomDialogues[0]); // Wake up dialogue
         
         // Set up objectives if needed
@@ -157,9 +160,9 @@ public class GameManager : MonoBehaviour
     {
         // TODO: guide player
         DialogueManager.Instance.StartDialogue(endGameDialogues[0]); // Good End
-        // Rush to the door? -> trigger
         // Fade OUT
         // Good End Screen
+        SceneManager.LoadScene("End Screen");
     }
     
     public void StartBadEndingSequence()
@@ -169,5 +172,6 @@ public class GameManager : MonoBehaviour
         // Got Late
         // Fade OUT
         // Bad End Screen
+        SceneManager.LoadScene("Game Over");
     }
 }

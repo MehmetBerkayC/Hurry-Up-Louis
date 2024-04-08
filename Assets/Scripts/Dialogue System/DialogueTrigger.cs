@@ -11,6 +11,7 @@ public class DialogueTrigger : MonoBehaviour, IInteractable
 
     public void Interact()
     {
+        AudioManager.Instance.Play("Pick Up");
         TriggerDialogue();
     }
 

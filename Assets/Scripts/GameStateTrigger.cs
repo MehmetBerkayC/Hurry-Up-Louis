@@ -25,8 +25,9 @@ public class GameStateTrigger : MonoBehaviour
     private void Start()
     {
         TryGetComponent(out trigger);   
-        TryGetComponent(out sprite);   
-        
+        TryGetComponent(out sprite);
+        sprite.enabled = false;
+
         if (!triggerActiveByDefault)
         {
             DeactivateTrigger();
@@ -37,14 +38,14 @@ public class GameStateTrigger : MonoBehaviour
     {
         trigger.enabled = true;
         // Debug
-        sprite.enabled = true;
+        //sprite.enabled = true;
     }
 
     public void DeactivateTrigger()
     {
         trigger.enabled = false;
         // Debug
-        sprite.enabled = false;
+        //sprite.enabled = false;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,8 +61,7 @@ public class GameStateTrigger : MonoBehaviour
             door.CloseDoor();
         }
 
-        DeactivateTrigger();
-
         GameManager.Instance.UpdateGameState(state);
+        DeactivateTrigger();
     }
 }

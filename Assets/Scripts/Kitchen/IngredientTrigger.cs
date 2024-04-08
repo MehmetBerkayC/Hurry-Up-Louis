@@ -23,6 +23,7 @@ public class IngredientTrigger : MonoBehaviour, IInteractable
 
     private void PickUpIngredient()
     {
+        AudioManager.Instance.Play("Pick Up");
         RecipeManager.Instance.AddIngredient(ingredient);
     }
 }
