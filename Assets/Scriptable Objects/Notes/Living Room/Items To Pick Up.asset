@@ -12,19 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d44cfa3df4c202c4d9312d4984d370fa, type: 3}
   m_Name: Items To Pick Up
   m_EditorClassIdentifier: 
-  ReadableTime: 3
+  Temporary: 0
+  ReadableTime: 5
   NoteName: Needed Items
   Label: Find Work Stuff
-  Notes: 'A
-
-    B
-
-    C
-
-    D
-
-    E
-
-    F
-
-    G'
+  Notes: "- Briefcase (Over here you moron)\n- Umbrella (I don't wanna get wet) (In
+    living room)\n- Launch (Go to the Kitchen)\n- Suit (Bedroom) (You can pass through
+    the swim fishman)\n- Monitor (Living Room) (PC doesn't work without it)  \n-
+    Documents (?????)"

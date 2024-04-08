@@ -5568,6 +5568,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2047452445}
     - target: {fileID: 3711528332367948781, guid: 870249186782f8344a8b35210fc6f712, type: 3}
+      propertyPath: endMiniGameDialogue
+      value: 
+      objectReference: {fileID: 11400000, guid: 719a2c55e4eac4744959c0fcee33c49a, type: 2}
+    - target: {fileID: 3711528332367948781, guid: 870249186782f8344a8b35210fc6f712, type: 3}
       propertyPath: clickableItemsParent
       value: 
       objectReference: {fileID: 1451436066}

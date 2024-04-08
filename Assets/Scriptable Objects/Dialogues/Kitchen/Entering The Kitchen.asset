@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eae4b479ecf5aa4da8fc2e0cf5a0a8b, type: 3}
   m_Name: Entering The Kitchen
   m_EditorClassIdentifier: 
-  CharacterName: Fishy Fishington
+  CharacterName: Louis Poisson D'eau Douce
   Sentences:
-  - I should have breakfast. TO THE FRIDGE!
+  - I should have breakfast. My grandmother's tuna sandwich recipe should be hanging
+    on the fridge.

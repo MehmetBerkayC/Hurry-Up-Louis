@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eae4b479ecf5aa4da8fc2e0cf5a0a8b, type: 3}
   m_Name: Pool Obstacle Dialogue
   m_EditorClassIdentifier: 
-  CharacterName: Fishy Fishington
+  CharacterName: Louis Poisson D'eau Douce
   Sentences:
-  - Why is there a mini-pool here? I don't know how to swim...
-  - Maybe there is something that i can use to get past it.
-  - I should take look around!
+  - Silly me, why did i buy a swimming pool? Such a shame, i wish i knew how to swim.
+  - 'Maybe there is something that i can use to remind somethings, my memory isn''t
+    very good these days. '
+  - I should take look around.

@@ -40,6 +40,8 @@ public class BathroomMinigameManager : MonoBehaviour
     private int _targetScore;
     private int _currentScore;
 
+    [SerializeField] private Dialogue endMiniGameDialogue;
+
     private void Awake()
     {
         if (Instance == null)
@@ -160,6 +162,8 @@ public class BathroomMinigameManager : MonoBehaviour
         _isMiniGameOn = false;
 
         ToggleUI();
+
+        DialogueManager.Instance.StartDialogue(endMiniGameDialogue);
 
         ReminderTrigger.Instance.ActivateTrigger();
     }
