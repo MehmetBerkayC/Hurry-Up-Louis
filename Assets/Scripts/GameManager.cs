@@ -48,8 +48,6 @@ public class GameManager : MonoBehaviour
 
     public static GameState State;
 
-    private bool _IsEndingGood;
-
     public static bool BothMinigamesDone;
 
     private void Awake()
@@ -62,6 +60,11 @@ public class GameManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+    }
+
+    private void Start()
+    {
+        UpdateTimeText();
     }
 
     bool once = true;
@@ -134,14 +137,21 @@ public class GameManager : MonoBehaviour
     private void CheckGameTime() 
     {
         remainingTimeInSeconds -= Time.unscaledDeltaTime;
-        int minutes = Mathf.FloorToInt(remainingTimeInSeconds / 60);
-        int seconds = Mathf.FloorToInt(remainingTimeInSeconds % 60);
+        
+        UpdateTimeText();
 
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
         if (remainingTimeInSeconds <= 0)
         {
             UpdateGameState(GameState.BadEnding);
         }
+    }
+
+    private void UpdateTimeText()
+    {
+        int minutes = Mathf.FloorToInt(remainingTimeInSeconds / 60);
+        int seconds = Mathf.FloorToInt(remainingTimeInSeconds % 60);
+
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     /// Character wakes up, pulls up a dialogue, after then player mobility is unlocked(dialoge system)
