@@ -49,7 +49,7 @@ public class GameManager : MonoBehaviour
     public static GameState State;
 
     public bool BothMinigamesDone;
-    public bool DidGameEnd;
+    public bool IsGameOver;
     public bool IsGoodEnd;
 
     private void Awake()
@@ -69,20 +69,34 @@ public class GameManager : MonoBehaviour
         UpdateTimeText();
     }
 
-    bool once = true;
+    public bool FreshStart = true;
+    private bool once;
     private bool _timerOn;
 
     private void Update()
     {
-        if (once) // Start Game
+        if (!once) // Start Game
         {
             UpdateGameState(GameState.Bedroom);
-            once = false;
+            once = true;
         }
 
         if (_timerOn)
         {
             CheckGameTime();
+        }
+
+        // Bad End Screen
+        if (!DialogueManager.Instance.IsDialogOpen() && IsGameOver)
+        {
+            if (IsGoodEnd)
+            {
+                SceneManager.LoadScene("Good End Screen");
+            }
+            else
+            {
+                SceneManager.LoadScene("Bad End Screen");
+            }
         }
     }
 
@@ -94,7 +108,6 @@ public class GameManager : MonoBehaviour
         {
             default: // Goes to the first condition below it
             case GameState.None: // Do nothing
-                StartGameTimer();
                 break;
             case GameState.Bedroom:
                 StartBedroomSequence();
@@ -109,10 +122,10 @@ public class GameManager : MonoBehaviour
                 StartLivingRoomSequence();
                 break;
             case GameState.GoodEnding:
-                StartGoodEndingDialogue();
+                StartGoodEndingSequence();
                 break;
             case GameState.BadEnding:
-                StartBadEndingDialogue();
+                StartBadEndingSequence();
                 break;
         }
 
@@ -144,6 +157,7 @@ public class GameManager : MonoBehaviour
 
         if (remainingTimeInSeconds <= 0)
         {
+            _timerOn = false;
             UpdateGameState(GameState.BadEnding);
         }
     }
@@ -184,29 +198,20 @@ public class GameManager : MonoBehaviour
         DialogueManager.Instance.StartDialogue(livingRoomDialogues[0]); // Finished previous obj
     }
 
-    public void StartGoodEndingDialogue()
+    public void StartGoodEndingSequence()
     {
         // TODO: guide player
-        DidGameEnd = true;
-        IsGoodEnd = true;
         DialogueManager.Instance.StartDialogue(endGameDialogues[0]); // Good End
-    }
 
-    public void GoodEnd()
-    {
-        SceneManager.LoadScene("Good End Screen");
+        // Good End Screen
+        IsGameOver = IsGoodEnd = true;
     }
-
-    public void StartBadEndingDialogue()
+    
+    public void StartBadEndingSequence()
     {
         // TODO: guide player
-        DidGameEnd = true;
         DialogueManager.Instance.StartDialogue(endGameDialogues[1]); // Bad End
         // Got Late
-    }
-
-    public void BadEnd()
-    {
-        SceneManager.LoadScene("Bad End Screen");
+        IsGameOver = true;
     }
 }

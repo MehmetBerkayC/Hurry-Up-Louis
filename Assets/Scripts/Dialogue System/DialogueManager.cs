@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -59,6 +60,11 @@ public class DialogueManager : MonoBehaviour
                 dialoqueBox.text = sentence;
             }
         }
+    }
+
+    public bool IsDialogOpen()
+    {
+        return _isDialogueOpen;
     }
 
     public void StartDialogue(Dialogue dialogue)
@@ -129,18 +135,10 @@ public class DialogueManager : MonoBehaviour
         playerController.gameObject.TryGetComponent(out PlayerInteract playerInteract);
         playerInteract.IsInteractable = true;
 
-        GameManager.Instance.UpdateGameState(GameState.None); // Do as you wish
-
-        if (GameManager.Instance.DidGameEnd)
+        if (GameManager.Instance.FreshStart)
         {
-            if (GameManager.Instance.IsGoodEnd)
-            {
-                GameManager.Instance.GoodEnd();
-            }
-            else
-            {
-                GameManager.Instance.BadEnd();
-            }
+            GameManager.Instance.StartGameTimer();
+            GameManager.Instance.FreshStart = false;
         }
     }
 }
