@@ -5216,7 +5216,7 @@ PrefabInstance:
       objectReference: {fileID: 1267373148}
     - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
       propertyPath: remainingTimeInSeconds
-      value: 3
+      value: 420
       objectReference: {fileID: 0}
     - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
       propertyPath: endGameDialogues.Array.size
