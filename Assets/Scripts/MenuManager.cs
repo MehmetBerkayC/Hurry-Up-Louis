@@ -18,8 +18,6 @@ public class MenuManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -29,22 +27,22 @@ public class MenuManager : MonoBehaviour
 
     public void LoadGameScene()
     {
-        SceneManager.LoadScene("Rush Louis");
+        SceneManager.LoadScene("Rush Louis", LoadSceneMode.Single);
     }
 
     public void LoadMainMenu()
     {
-        SceneManager.LoadScene("Main Menu");
+        SceneManager.LoadScene("Main Menu", LoadSceneMode.Single);
     }
     
     public void LoadBadEndScreen()
     {
-        SceneManager.LoadScene("Bad End Screen");
+        SceneManager.LoadScene("Bad End Screen", LoadSceneMode.Single);
     }
     
     public void LoadGoodEndScreen()
     {
-        SceneManager.LoadScene("Good End Screen");
+        SceneManager.LoadScene("Good End Screen", LoadSceneMode.Single);
     }
     
     public void QuitGame()
