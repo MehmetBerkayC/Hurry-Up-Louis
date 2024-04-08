@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eae4b479ecf5aa4da8fc2e0cf5a0a8b, type: 3}
   m_Name: Entering The Living Room
   m_EditorClassIdentifier: 
-  CharacterName: Fishy Fishington
+  CharacterName: Louis Poisson D'eau Douce
   Sentences:
   - 'I need to get ready for the work! What was i supposed to do?... '
-  - Oh right! Study room should have something i can check to remember.
+  - Oh right! Study room should have something i can check to remember if my memory
+    doesn't deceive me!

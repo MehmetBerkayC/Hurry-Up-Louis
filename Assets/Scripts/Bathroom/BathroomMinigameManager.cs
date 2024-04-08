@@ -41,6 +41,7 @@ public class BathroomMinigameManager : MonoBehaviour
     private int _currentScore;
 
     private float _defaultPlayerSpeed;
+    [SerializeField] private Dialogue endMiniGameDialogue;
 
     private void Awake()
     {
@@ -172,6 +173,8 @@ public class BathroomMinigameManager : MonoBehaviour
         ToggleUI();
 
         ResumePlayerMovement();
+        DialogueManager.Instance.StartDialogue(endMiniGameDialogue);
+
         ReminderTrigger.Instance.ActivateTrigger();
     }
 
