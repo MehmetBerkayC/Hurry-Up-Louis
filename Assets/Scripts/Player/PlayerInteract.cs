@@ -35,4 +35,23 @@ public class PlayerInteract : MonoBehaviour
             }
         }
     }
+
+    public IInteractable CheckInteractables()
+    {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, interactRadius);
+
+        foreach (Collider2D collider in colliders)
+        {
+            if (collider.TryGetComponent(out IInteractable interactable))
+            {
+                Debug.Log(interactable);
+                return interactable;
+            }
+        }
+        return null;
+    }
+
+    public KeyCode GetInteractKey(){
+        return keyToInterract;
+    }
 }
