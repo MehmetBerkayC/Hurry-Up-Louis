@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,7 +23,8 @@ public class GameManager : MonoBehaviour
 {
     public static event Action<GameState> OnGameStateChanged;
 
-    [SerializeField] float gameTimeInMinutes = 7;
+    [SerializeField] float remainingTimeInSeconds = 600;
+    [SerializeField] TextMeshProUGUI timerText;
 
     [Header("Bedroom")]
     [SerializeField] Dialogue[] bedroomDialogues;
@@ -50,10 +52,6 @@ public class GameManager : MonoBehaviour
 
     public static bool BothMinigamesDone;
 
-    private float endTime;
-    private float playTime;
-    private bool timerBegun;
-
     private void Awake()
     {
         if (Instance == null)
@@ -67,6 +65,7 @@ public class GameManager : MonoBehaviour
     }
 
     bool once = true;
+    private bool _timerOn;
 
     private void Update()
     {
@@ -76,7 +75,10 @@ public class GameManager : MonoBehaviour
             once = false;
         }
 
-        CheckGameTime();
+        if (_timerOn)
+        {
+            CheckGameTime();
+        }
     }
 
     public void UpdateGameState(GameState newState)
@@ -87,6 +89,7 @@ public class GameManager : MonoBehaviour
         {
             default: // Goes to the first condition below it
             case GameState.None: // Do nothing
+                StartGameTimer();
                 break;
             case GameState.Bedroom:
                 StartBedroomSequence();
@@ -125,21 +128,20 @@ public class GameManager : MonoBehaviour
     // Set Total Game Time Async/Coroutine (Game officially starts) // Coroutine uses the main thread
     // End the game depending on game time (probably will use Update())
     // -> dont use coroutines use time.time + gametime and update upon that
+
+    public void StartGameTimer() => _timerOn = true;
+
     private void CheckGameTime() 
     {
-        if (!timerBegun)
-        {
-            endTime = Time.time + (gameTimeInMinutes * 60);
-        }
+        remainingTimeInSeconds -= Time.unscaledDeltaTime;
+        int minutes = Mathf.FloorToInt(remainingTimeInSeconds / 60);
+        int seconds = Mathf.FloorToInt(remainingTimeInSeconds % 60);
 
-        playTime += Time.unscaledDeltaTime;
-
-        if (playTime > endTime)
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        if (remainingTimeInSeconds <= 0)
         {
             UpdateGameState(GameState.BadEnding);
         }
-
-        // make logic for UI
     }
 
     /// Character wakes up, pulls up a dialogue, after then player mobility is unlocked(dialoge system)
@@ -147,8 +149,6 @@ public class GameManager : MonoBehaviour
     {
         AudioManager.Instance.Play("Alarm");
         DialogueManager.Instance.StartDialogue(bedroomDialogues[0]); // Wake up dialogue
-
-        CheckGameTime();
     }
 
     public void StartBathroomSequence()

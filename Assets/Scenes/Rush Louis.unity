@@ -5207,6 +5207,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
+      propertyPath: timerText
+      value: 
+      objectReference: {fileID: 1010302066}
+    - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
       propertyPath: livingRoomNote
       value: 
       objectReference: {fileID: 1267373148}
