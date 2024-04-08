@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Rush Louis.unity
     guid: f02408775eb9d894bafa770883bd602a
   - enabled: 1
-    path: Assets/Scenes/End Screen.unity
+    path: Assets/Scenes/Good End Screen.unity
     guid: 5b57efb141cc91a4c98a8f9bd286530b
   - enabled: 1
-    path: Assets/Scenes/Game Over.unity
+    path: Assets/Scenes/Bad End Screen.unity
     guid: 5b633e157cf548242a7a8adaa23b651b
   m_configObjects: {}

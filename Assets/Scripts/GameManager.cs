@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -20,6 +21,8 @@ public enum GameState
 public class GameManager : MonoBehaviour
 {
     public static event Action<GameState> OnGameStateChanged;
+
+    [SerializeField] float gameTimeInMinutes = 7;
 
     [Header("Bedroom")]
     [SerializeField] Dialogue[] bedroomDialogues;
@@ -47,6 +50,10 @@ public class GameManager : MonoBehaviour
 
     public static bool BothMinigamesDone;
 
+    private float endTime;
+    private float playTime;
+    private bool timerBegun;
+
     private void Awake()
     {
         if (Instance == null)
@@ -63,14 +70,13 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (once)
+        if (once) // Start Game
         {
             UpdateGameState(GameState.Bedroom);
             once = false;
         }
-        /*UpdateGameState(GameState.Bedroom);*/ // Make this apply after game start 
-        // maybe through start game button
-         // First Room
+
+        CheckGameTime();
     }
 
     public void UpdateGameState(GameState newState)
@@ -121,18 +127,28 @@ public class GameManager : MonoBehaviour
     // -> dont use coroutines use time.time + gametime and update upon that
     private void CheckGameTime() 
     {
-        // start timer function (once)
-        // track game time
+        if (!timerBegun)
+        {
+            endTime = Time.time + (gameTimeInMinutes * 60);
+        }
+
+        playTime += Time.unscaledDeltaTime;
+
+        if (playTime > endTime)
+        {
+            UpdateGameState(GameState.BadEnding);
+        }
+
+        // make logic for UI
     }
 
     /// Character wakes up, pulls up a dialogue, after then player mobility is unlocked(dialoge system)
     public void StartBedroomSequence()
     {
-        // Fade IN
         AudioManager.Instance.Play("Alarm");
         DialogueManager.Instance.StartDialogue(bedroomDialogues[0]); // Wake up dialogue
-        
-        // Set up objectives if needed
+
+        CheckGameTime();
     }
 
     public void StartBathroomSequence()
@@ -160,7 +176,6 @@ public class GameManager : MonoBehaviour
     {
         // TODO: guide player
         DialogueManager.Instance.StartDialogue(endGameDialogues[0]); // Good End
-        // Fade OUT
         // Good End Screen
         SceneManager.LoadScene("End Screen");
     }
@@ -170,7 +185,6 @@ public class GameManager : MonoBehaviour
         // TODO: guide player
         DialogueManager.Instance.StartDialogue(endGameDialogues[1]); // Bad End
         // Got Late
-        // Fade OUT
         // Bad End Screen
         SceneManager.LoadScene("Game Over");
     }
