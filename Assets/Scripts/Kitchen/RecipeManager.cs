@@ -26,6 +26,7 @@ public class RecipeManager : MonoBehaviour
     public bool IsMinigameOn = false;
 
     public Dialogue didItAgain; 
+    public Dialogue missionSuccessful; 
 
     private void Awake()
     {
@@ -51,6 +52,8 @@ public class RecipeManager : MonoBehaviour
         AudioManager.Instance.Play("Mission Success");
         ReminderTrigger.Instance.SetKitchenAsDone();
         ReminderTrigger.Instance.ActivateTrigger();
+
+        DialogueManager.Instance.StartDialogue(missionSuccessful);
 
         Destroy(kitchenNote.gameObject);
     }
