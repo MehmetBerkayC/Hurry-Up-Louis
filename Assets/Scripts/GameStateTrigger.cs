@@ -32,6 +32,10 @@ public class GameStateTrigger : MonoBehaviour
         {
             DeactivateTrigger();
         }
+        else
+        {
+            ActivateTrigger();
+        }
     }
 
     public void ActivateTrigger()

@@ -20,15 +20,10 @@ public class BathroomMinigameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI currentValue;
     [SerializeField] private TextMeshProUGUI targetValue;
 
-    [Header("Info Items")]
-    [SerializeField] private Transform itemDisplayParent;
+    [Header("UI Items")]
+    [SerializeField] private Transform uiItemsParent;
 
-    [SerializeField] private GameObject itemHolderPrefab;
-
-    [Header("Clickable Items")]
-    [SerializeField] private Transform clickableItemsParent;
-
-    [SerializeField] private GameObject clickableItemPrefab;
+    [SerializeField] private GameObject uiItemPrefab;
 
     private PlayerController _playerController;
 
@@ -96,13 +91,8 @@ public class BathroomMinigameManager : MonoBehaviour
     {
         foreach (SelfCareItem item in itemDatabase.Items)
         {
-            // Item Information Display
-            Instantiate(itemHolderPrefab, itemDisplayParent).TryGetComponent(out UISelfCareItemHolder holder);
-            holder.careItem = item;
-            holder.Initialize();
-
             // Selectable Items Display
-            Instantiate(clickableItemPrefab, clickableItemsParent.transform).TryGetComponent(out UISelfCareItemHolder clickableHolder);
+            Instantiate(uiItemPrefab, uiItemsParent.transform).TryGetComponent(out UISelfCareItemHolder clickableHolder);
             clickableHolder.careItem = item;
             clickableHolder.Initialize();
         }
