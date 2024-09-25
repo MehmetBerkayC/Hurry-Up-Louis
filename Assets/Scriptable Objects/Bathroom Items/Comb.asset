@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6465b0396b2eb5741a6e68e296ba5b69, type: 3}
-  m_Name: Hair Spray
+  m_Name: Comb
   m_EditorClassIdentifier: 
-  Icon: {fileID: 21300000, guid: 61a461db1189bf74c9520ac079e78eaa, type: 3}
-  ItemName: Hair Spray
-  ItemValue: -15
+  Icon: {fileID: 21300000, guid: 3c7b730ce25b0db40b3ffb4c7c2822bc, type: 3}
+  ItemName: Comb
+  ItemValue: 6

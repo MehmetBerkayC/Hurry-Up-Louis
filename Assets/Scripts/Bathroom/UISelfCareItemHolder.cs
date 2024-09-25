@@ -15,7 +15,8 @@ public class UISelfCareItemHolder : MonoBehaviour
 
     public void Initialize() 
     {
-        image = GetComponentInChildren<Image>(); // safety, but won't do it for texts
+        if(image == null) image = GetComponentInChildren<Image>(); // safety, but won't do it for texts
+        
         image.sprite = careItem.Icon;
         nameText.text = careItem.ItemName;
         valueText.text = careItem.ItemValue.ToString();

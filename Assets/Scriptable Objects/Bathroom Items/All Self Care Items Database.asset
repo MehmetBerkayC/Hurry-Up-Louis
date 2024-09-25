@@ -13,12 +13,17 @@ MonoBehaviour:
   m_Name: All Self Care Items Database
   m_EditorClassIdentifier: 
   Items:
-  - {fileID: 11400000, guid: 11fb7089923848544a6a107641a3cf3d, type: 2}
-  - {fileID: 11400000, guid: 9e0ba6c6ff4dc0047b455283a0e84e50, type: 2}
   - {fileID: 11400000, guid: 740a3e0436fa72148b55974d9b210d44, type: 2}
+  - {fileID: 11400000, guid: 3d53e3a521ed2af47add93275113cf98, type: 2}
+  - {fileID: 11400000, guid: 11fb7089923848544a6a107641a3cf3d, type: 2}
   - {fileID: 11400000, guid: e89699121c07091499e095ebea4038c8, type: 2}
+  - {fileID: 11400000, guid: 9e0ba6c6ff4dc0047b455283a0e84e50, type: 2}
   - {fileID: 11400000, guid: 8d8d03e1ca425db409b3b94b3a0dfb1c, type: 2}
-  - {fileID: 11400000, guid: a624bc69d9f4c424bb3511c989947a00, type: 2}
-  - {fileID: 11400000, guid: 345e50b76b7f35548a661514bea3fb90, type: 2}
   - {fileID: 11400000, guid: 88f485a754aedd14e9a0bb717a6d194b, type: 2}
+  - {fileID: 11400000, guid: 1473c9fe56319284687896ab0091d330, type: 2}
+  - {fileID: 11400000, guid: 345e50b76b7f35548a661514bea3fb90, type: 2}
+  - {fileID: 11400000, guid: d36a4e32b2c8fe444858d8d28d1035b9, type: 2}
+  - {fileID: 11400000, guid: a624bc69d9f4c424bb3511c989947a00, type: 2}
   - {fileID: 11400000, guid: 2b03433804f1d724baea9e7d0f30d2c5, type: 2}
+  - {fileID: 11400000, guid: 77991288cc9a1e247bea5334ecf66c58, type: 2}
+  - {fileID: 11400000, guid: 81fb66224d866ab42ba98feff31421bd, type: 2}

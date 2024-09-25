@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6465b0396b2eb5741a6e68e296ba5b69, type: 3}
-  m_Name: Shampoo
+  m_Name: Tweezers
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
-  ItemName: Shampoo
-  ItemValue: -7
+  Icon: {fileID: 21300000, guid: 679e1f6613499284e869954d96715af0, type: 3}
+  ItemName: Tweezers
+  ItemValue: -4

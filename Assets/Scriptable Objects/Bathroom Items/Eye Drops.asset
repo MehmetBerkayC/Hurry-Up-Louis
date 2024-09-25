@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6465b0396b2eb5741a6e68e296ba5b69, type: 3}
   m_Name: Eye Drops
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 87c974d2a96d4804497df71b6f42bc9e, type: 3}
   ItemName: Eye Drops
   ItemValue: 11

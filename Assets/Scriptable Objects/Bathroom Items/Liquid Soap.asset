@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6465b0396b2eb5741a6e68e296ba5b69, type: 3}
-  m_Name: Sea Weed
+  m_Name: Liquid Soap
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
-  ItemName: Sea Weed
-  ItemValue: 2
+  Icon: {fileID: 21300000, guid: 9e07573be4f0a7a479f592cfe3235ab6, type: 3}
+  ItemName: Liquid Soap
+  ItemValue: -3
