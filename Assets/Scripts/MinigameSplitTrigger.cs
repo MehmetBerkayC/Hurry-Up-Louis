@@ -53,7 +53,7 @@ public class MinigameSplitTrigger : MonoBehaviour
 
     private void ActivateGameTriggers()
     {
-        foreach (var trigger in triggers)
+        foreach (GameStateTrigger trigger in triggers)
         {
             trigger.ActivateTrigger();
         }

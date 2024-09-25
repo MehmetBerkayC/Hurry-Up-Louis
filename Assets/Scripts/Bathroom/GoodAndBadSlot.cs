@@ -19,12 +19,14 @@ public class GoodAndBadSlot : MonoBehaviour
     public void Initialize(SelfCareItem item)
     {
         selfCareItem = item;
+        icon.gameObject.SetActive(true);
         icon.sprite = item.Icon;
         valueText.text = item.ItemValue.ToString();
     }
 
     public void Reset()
     {
+
         icon.sprite = null; // Maybe find a default sprite
         valueText.text = "0";
 
@@ -35,6 +37,7 @@ public class GoodAndBadSlot : MonoBehaviour
         }
 
         selfCareItem = null;
+        icon.gameObject.SetActive(false);
     }
 
     public SelfCareItem GetItem()

@@ -880,7 +880,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7629655079665146322, guid: 9525a7c55c9d35c42ad8849e5c8e36b5, type: 3}
       propertyPath: m_Name
-      value: AudioManager
+      value: Audio Manager
       objectReference: {fileID: 0}
     - target: {fileID: 7827153214046961649, guid: 9525a7c55c9d35c42ad8849e5c8e36b5, type: 3}
       propertyPath: m_LocalPosition.x
