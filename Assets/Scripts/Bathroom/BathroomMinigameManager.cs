@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BathroomMinigameManager : MonoBehaviour
 {
@@ -19,7 +21,7 @@ public class BathroomMinigameManager : MonoBehaviour
     [SerializeField] private Transform[] badSlots;
     [SerializeField] private TextMeshProUGUI currentValue;
     [SerializeField] private TextMeshProUGUI targetValue;
-
+    
     [Header("UI Items")]
     [SerializeField] private Transform uiItemsParent;
 
@@ -38,6 +40,12 @@ public class BathroomMinigameManager : MonoBehaviour
     private float _defaultPlayerSpeed;
     [SerializeField] private Dialogue endMiniGameDialogue;
 
+    [Header("Timer")]
+    [SerializeField] private float triggerResetTime = 1.2f;
+    private float timer = 0;
+
+    public static event Action OnMinigameComplete;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -166,6 +174,8 @@ public class BathroomMinigameManager : MonoBehaviour
         DialogueManager.Instance.StartDialogue(endMiniGameDialogue);
 
         ReminderTrigger.Instance.ActivateTrigger();
+
+        OnMinigameComplete?.Invoke();
     }
 
     private void CalculateTargetValue()
@@ -227,5 +237,32 @@ public class BathroomMinigameManager : MonoBehaviour
         AudioManager.Instance.Play("Select");
         UpdateCurrentValue();
         return returnValue;
+    }
+
+    public void ExitMinigame()
+    {
+        _isMiniGameOn = false;
+
+        ResumePlayerMovement();
+
+        // Close the game
+        ToggleUI();
+
+        StartCoroutine(TriggerResetCountdown());
+    }
+
+    IEnumerator TriggerResetCountdown()
+    {
+        timer = 0;
+
+        Debug.Log("Cooldown start!");
+        while(timer < triggerResetTime)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        Debug.Log($"Cooldown ended at: {timer}!");
+
+        gameTrigger.enabled = true;
     }
 }
