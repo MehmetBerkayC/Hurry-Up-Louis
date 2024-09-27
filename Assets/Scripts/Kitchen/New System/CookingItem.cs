@@ -1,18 +1,40 @@
+using Cooking.Data;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CookingItem : MonoBehaviour
+namespace Cooking.World
 {
-    // Start is called before the first frame update
-    void Start()
+    public class CookingItem : MonoBehaviour, IInteractable
     {
-        
-    }
+        [SerializeField] CookingItemData itemData;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        private void Start()
+        {
+            InitializeItem();
+        }
+
+        private void InitializeItem()
+        {
+            if (itemData != null)
+            {
+                TryGetComponent(out SpriteRenderer spriteRenderer);
+                spriteRenderer.enabled = true;
+                spriteRenderer.sprite = itemData.Sprite;
+            }
+        }
+
+        public void SetItemData(CookingItemData itemInfo)
+        {
+            itemData = itemInfo;
+            InitializeItem();
+        }
+
+        public void Interact()
+        {
+            // Call manager/controller function
+            Debug.LogError("Interact body is empty!");
+        }
     }
 }
