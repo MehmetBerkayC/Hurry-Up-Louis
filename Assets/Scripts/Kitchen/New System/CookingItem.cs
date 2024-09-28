@@ -1,3 +1,4 @@
+using Cooking.Control;
 using Cooking.Data;
 using System;
 using System.Collections;
@@ -33,8 +34,19 @@ namespace Cooking.World
 
         public void Interact()
         {
-            // Call manager/controller function
-            Debug.LogError("Interact body is empty!");
+            CookingController.Instance.HoldItem(itemData);
+
+            DisableItem();
+        }
+
+        public void EnableItem()
+        {
+            gameObject.SetActive(true);
+        }
+
+        public void DisableItem()
+        {
+            gameObject.SetActive(false);
         }
     }
 }

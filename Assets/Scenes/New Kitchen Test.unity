@@ -231,9 +231,8 @@ GameObject:
   - component: {fileID: 351110321}
   - component: {fileID: 351110320}
   - component: {fileID: 351110322}
-  - component: {fileID: 351110323}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Held Item
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -324,26 +323,6 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &351110323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351110318}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 306cc8c2b49d7114eaa3623786fc2126, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreLayout: 0
-  m_MinWidth: -1
-  m_MinHeight: -1
-  m_PreferredWidth: -1
-  m_PreferredHeight: -1
-  m_FlexibleWidth: -1
-  m_FlexibleHeight: -1
-  m_LayoutPriority: 1
 --- !u!1 &533281642
 GameObject:
   m_ObjectHideFlags: 0
@@ -522,6 +501,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef158c92b1b53c439b59e0dfa3e3f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cookingRecipe: {fileID: 0}
+  currentHeldItem: {fileID: 0}
 --- !u!1 &771412608
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +641,7 @@ GameObject:
   - component: {fileID: 898444252}
   - component: {fileID: 898444254}
   m_Layer: 5
-  m_Name: Item Name Label
+  m_Name: Name Label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
