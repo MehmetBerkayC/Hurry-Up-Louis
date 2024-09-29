@@ -1,4 +1,5 @@
 using Cooking.Data;
+using Cooking.World;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,10 +18,11 @@ namespace Cooking.Control
 
         [SerializeField] CookingRecipe cookingRecipe;
         [SerializeField] UICookingItem cookingUI;
-        [SerializeField] CookingItemData currentHeldItem;
+        [SerializeField] CookingItem currentHeldItem;
+        [SerializeField] CookingItemData currentHeldItemData;
 
         private CookingItemData nextItemToAdd;
-        private int recipeIndex = 0;
+        private int recipeIndex = -1;
 
         public static CookingController Instance;
 
@@ -29,32 +31,85 @@ namespace Cooking.Control
             Instance = this;    
         }
 
-        public void HoldItem(CookingItemData itemToHold)
+        private void Start()
         {
-            cookingUI.SetHeldItem(itemToHold);
-            currentHeldItem = itemToHold;
-            CalculateNextStep();
+            StartCooking();    
+        }
+
+        private void StartCooking()
+        {
+            CalculateNextStep(); // index should start with -1
+        }
+
+        public void HoldItem(CookingItem cookingItem)
+        {
+            // World Item
+            currentHeldItem = cookingItem;
+            
+            // Set up UI
+            cookingUI.SetHeldItem(cookingItem);
+
+            // Recipe Check
+            currentHeldItemData = cookingItem.GetItemData();
+            CheckRecipeStep();
+        }
+
+        private void CheckRecipeStep()
+        {
+            if (currentHeldItemData == null) return;    // Invalid Item 
+            if (currentHeldItemData != nextItemToAdd)   // Wrong Item
+            {
+                RevertCookingStep();   
+                return;
+            }
+            CalculateNextStep(); // Valid
         }
 
         private void CalculateNextStep()
         {
-            if (recipeIndex >= cookingRecipe.Recipe.Count) return;      // Valid Index
-            if (currentHeldItem != null) return;                        // Valid Item 
-            if (currentHeldItem != nextItemToAdd) ResetCookingStep();   // ^
+            recipeIndex++;
+            if (recipeIndex < cookingRecipe.Recipe.Count) // there are items to go through
+                nextItemToAdd = cookingRecipe.Recipe[recipeIndex];
+            else
+                RecipeCompleted();
 
-
-
-
+            Debug.Log("Next: " + (recipeIndex < cookingRecipe.Recipe.Count ? nextItemToAdd.Name : "None"));
         }
 
-        private void ResetCookingStep()
+        private void RecipeCompleted()
         {
-            cookingUI.ResetHeldItem();
-            // Re-enable item, Update UI -Remove-
-            // check index
+            Debug.Log("Complete!");
+            nextItemToAdd = null;
+            // Dialogue, mission passed sound
+        }
+
+        private void RevertCookingStep()
+        {
+            // check index bounds
+            if(recipeIndex > 0) recipeIndex -= 1; // Return 1 step
+
+            // Re-enable item
+            currentHeldItem.gameObject.SetActive(true);
+
+            cookingUI.ResetHeldItem(); // UI reset
+
+            CalculateNextStep();
         }
         // Think of cooking items as objects/checkpoints with trigger
         // Interact with certain collisions to progress and
         // if there is an item to hold, equip and display on UI
     }
 }
+
+// Things to Check
+// Calculate next item by using recipeIndex:
+//  - Check that there is an item
+//  - Check that item is the one we need
+//  - Go to next step:
+//      - Increment recipe index
+//      - Decide the next item to add
+//  - If invalid item -> don't do anything
+//  - If wrong item:
+//      - Unequip the item and return back
+//      - Can display a warning, sound or something else
+//  ---- Only progress if holding the right item!! ----

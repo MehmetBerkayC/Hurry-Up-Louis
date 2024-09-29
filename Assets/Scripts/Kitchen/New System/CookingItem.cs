@@ -26,6 +26,8 @@ namespace Cooking.World
             }
         }
 
+        public CookingItemData GetItemData() => itemData;
+
         public void SetItemData(CookingItemData itemInfo)
         {
             itemData = itemInfo;
@@ -34,19 +36,7 @@ namespace Cooking.World
 
         public void Interact()
         {
-            CookingController.Instance.HoldItem(itemData);
-
-            DisableItem();
-        }
-
-        public void EnableItem()
-        {
-            gameObject.SetActive(true);
-        }
-
-        public void DisableItem()
-        {
-            gameObject.SetActive(false);
+            CookingController.Instance.HoldItem(this);
         }
     }
 }
