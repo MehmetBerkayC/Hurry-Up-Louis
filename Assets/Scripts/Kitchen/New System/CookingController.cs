@@ -16,15 +16,23 @@ namespace Cooking.Control
         // - Display a message indicating item being picked in wrong order
         // 
 
+        [Header("References")]
         [SerializeField] CookingRecipe cookingRecipe;
         [SerializeField] UICookingItem cookingUI;
         [SerializeField] CookingItem currentHeldItem;
         [SerializeField] CookingItemData currentHeldItemData;
 
+        [Header("Note & Dialogues")]
+        [SerializeField] private NoteTrigger kitchenRecipeNote;
+        [SerializeField] Dialogue wrongIngredientDialogue;
+        [SerializeField] Dialogue missionSuccessfulDialogue;
+
         private CookingItemData nextItemToAdd;
         private int recipeIndex = -1;
 
         public static CookingController Instance;
+        // Instead of doing something like this, please remember/have time to have a minigame bool in game manager
+        public static bool IsMinigameOn = false; 
 
         private void Awake()
         {
@@ -38,7 +46,39 @@ namespace Cooking.Control
 
         private void StartCooking()
         {
+            IsMinigameOn = true;
+            // Do anything with UI or pausing gameplay
             CalculateNextStep(); // index should start with -1
+        }
+
+        private void EndCooking()
+        {
+            IsMinigameOn = false;
+            // Dialogue
+            AudioManager.Instance.Play("Mission Success");
+            
+            // Triggers
+            ReminderTrigger.Instance.SetKitchenAsDone();
+            ReminderTrigger.Instance.ActivateTrigger();
+
+            // Mission Successful Dialogue
+            if(missionSuccessfulDialogue != null)
+            {
+                DialogueManager.Instance.StartDialogue(missionSuccessfulDialogue);
+            }
+
+            // Get rid of recipe note
+            kitchenRecipeNote.DisposeOf();
+        }
+
+        private void WrongIngredient() // Dialogue and Sound
+        {
+            AudioManager.Instance.Play("Mission Fail");
+
+            if (wrongIngredientDialogue != null)
+            {
+                DialogueManager.Instance.StartDialogue(wrongIngredientDialogue);
+            }
         }
 
         public void HoldItem(CookingItem cookingItem)
@@ -80,7 +120,8 @@ namespace Cooking.Control
         {
             Debug.Log("Complete!");
             nextItemToAdd = null;
-            // Dialogue, mission passed sound
+
+            EndCooking();
         }
 
         private void RevertCookingStep()
@@ -94,6 +135,8 @@ namespace Cooking.Control
             cookingUI.ResetHeldItem(); // UI reset
 
             CalculateNextStep();
+
+            WrongIngredient(); // Warn Player
         }
         // Think of cooking items as objects/checkpoints with trigger
         // Interact with certain collisions to progress and
