@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1eae4b479ecf5aa4da8fc2e0cf5a0a8b, type: 3}
-  m_Name: Kitchen Done
+  m_Name: Wrong Ingredient
   m_EditorClassIdentifier: 
   CharacterName: Louis Poisson D'eau Douce
   Sentences:
-  - I'm full.. Whats next?
+  - Oops.. This wasn't right!

@@ -41,10 +41,10 @@ namespace Cooking.Control
 
         private void Start()
         {
-            StartCooking();    
+            //StartCooking();    
         }
 
-        private void StartCooking()
+        public void StartCooking()
         {
             IsMinigameOn = true;
             // Do anything with UI or pausing gameplay
@@ -127,7 +127,7 @@ namespace Cooking.Control
         private void RevertCookingStep()
         {
             // check index bounds
-            if(recipeIndex > 0) recipeIndex -= 1; // Return 1 step
+            if(recipeIndex >= 0) recipeIndex -= 1; // Return 1 step
 
             // Re-enable item
             currentHeldItem.gameObject.SetActive(true);
