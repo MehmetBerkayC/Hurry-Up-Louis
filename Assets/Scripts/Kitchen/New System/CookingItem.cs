@@ -21,8 +21,11 @@ namespace Cooking.World
             if (itemData != null)
             {
                 TryGetComponent(out SpriteRenderer spriteRenderer);
-                spriteRenderer.enabled = true;
-                spriteRenderer.sprite = itemData.Sprite;
+                if (spriteRenderer != null || itemData.Sprite != null)
+                {
+                    spriteRenderer.enabled = true;
+                    spriteRenderer.sprite = itemData.Sprite;
+                }
             }
         }
 

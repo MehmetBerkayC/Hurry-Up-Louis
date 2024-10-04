@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df8ed71449520d24caf2253771921a8f, type: 3}
-  m_Name: Tuna
+  m_Name: Bacon and Eggs
   m_EditorClassIdentifier: 
-  Name: Tuna
-  Sprite: {fileID: 21300000, guid: 6b11f9c6c4cf47b45a2f2dca3b488ec5, type: 3}
+  Name: Bacon and Eggs
+  Sprite: {fileID: 21300000, guid: 4022ca5caab3bfb40b4c0eb4f7aecc14, type: 3}

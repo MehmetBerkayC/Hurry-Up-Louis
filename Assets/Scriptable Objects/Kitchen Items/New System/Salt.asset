@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df8ed71449520d24caf2253771921a8f, type: 3}
-  m_Name: Egg
+  m_Name: Salt
   m_EditorClassIdentifier: 
-  Name: Egg
-  Sprite: {fileID: 21300000, guid: 98cc973a0ca696b4bbb1e37a71c4c277, type: 3}
+  Name: Salt
+  Sprite: {fileID: 21300000, guid: 02478c016cc583a4a8cf835714247abf, type: 3}

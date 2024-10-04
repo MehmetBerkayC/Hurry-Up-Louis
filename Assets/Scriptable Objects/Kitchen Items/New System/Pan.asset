@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df8ed71449520d24caf2253771921a8f, type: 3}
-  m_Name: Butter
+  m_Name: Pan
   m_EditorClassIdentifier: 
-  Name: Butter
-  Sprite: {fileID: 21300000, guid: b469bc002ff0e704293c73b19410b065, type: 3}
+  Name: Pan
+  Sprite: {fileID: 21300000, guid: cd0d1f5326d7bbd49a7fb203189ee30f, type: 3}
