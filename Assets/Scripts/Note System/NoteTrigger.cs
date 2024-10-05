@@ -1,3 +1,4 @@
+using Cooking.Control;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,7 @@ public class NoteTrigger : MonoBehaviour, IInteractable
 
     private void OpenNote()
     {
+        Debug.Log("Opening Note: " +  note.NoteName);
         NoteManager.Instance.OpenNote(note);
     }
 

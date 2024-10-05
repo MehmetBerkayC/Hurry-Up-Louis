@@ -27,6 +27,7 @@ namespace Cooking.Control
         [SerializeField] Dialogue wrongIngredientDialogue;
         [SerializeField] Dialogue missionSuccessfulDialogue;
 
+        private CookingItem previousItem;
         private CookingItemData nextItemToAdd;
         private int recipeIndex = -1;
 
@@ -71,7 +72,7 @@ namespace Cooking.Control
             kitchenRecipeNote.DisposeOf();
         }
 
-        private void WrongIngredient() // Dialogue and Sound
+        private void WrongIngredientNotice() // Dialogue and Sound
         {
             AudioManager.Instance.Play("Mission Fail");
 
@@ -83,12 +84,14 @@ namespace Cooking.Control
 
         public void HoldItem(CookingItem cookingItem)
         {
+            if (!IsMinigameOn) return;
+
             // World Item
             currentHeldItem = cookingItem;
             
             // Set up UI
             cookingUI.SetHeldItem(cookingItem);
-
+            
             // Recipe Check
             currentHeldItemData = cookingItem.GetItemData();
             CheckRecipeStep();
@@ -109,7 +112,10 @@ namespace Cooking.Control
         {
             recipeIndex++;
             if (recipeIndex < cookingRecipe.Recipe.Count) // there are items to go through
+            {
+                previousItem = currentHeldItem; // Remember current item
                 nextItemToAdd = cookingRecipe.Recipe[recipeIndex];
+            }
             else
                 RecipeCompleted();
 
@@ -127,20 +133,32 @@ namespace Cooking.Control
         private void RevertCookingStep()
         {
             // check index bounds
-            if(recipeIndex >= 0) recipeIndex -= 1; // Return 1 step
+            if (recipeIndex >= 0) recipeIndex -= 1; // Return 1 step
 
             // Re-enable item
             currentHeldItem.gameObject.SetActive(true);
 
-            cookingUI.ResetHeldItem(); // UI reset
+            // Reset current item and UI
+            cookingUI.ResetHeldItem();
+            ResetCurrentItem();
 
+            // Re-calculate
             CalculateNextStep();
 
-            WrongIngredient(); // Warn Player
+            WrongIngredientNotice(); // Warn Player
         }
-        // Think of cooking items as objects/checkpoints with trigger
-        // Interact with certain collisions to progress and
-        // if there is an item to hold, equip and display on UI
+
+        private void ResetCurrentItem()
+        {
+            // Show previous item if present
+            if (previousItem != null)
+            {
+                cookingUI.SetHeldItem(previousItem);
+            }
+
+            currentHeldItem = null;
+            currentHeldItemData = null;
+        }
     }
 }
 
@@ -156,3 +174,7 @@ namespace Cooking.Control
 //      - Unequip the item and return back
 //      - Can display a warning, sound or something else
 //  ---- Only progress if holding the right item!! ----
+
+// Think of cooking items as objects/checkpoints with trigger
+// Interact with certain collisions to progress and
+// if there is an item to hold, equip and display on UI
