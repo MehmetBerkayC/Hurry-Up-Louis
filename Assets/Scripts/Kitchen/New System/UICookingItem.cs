@@ -34,7 +34,13 @@ public class UICookingItem : MonoBehaviour
         // Item Data
         heldItemData = itemToHold.GetItemData();
         itemNameText.text = heldItemData.Name;
-        itemImage.sprite = heldItemData.Sprite;
+
+        if (heldItemData.Sprite == null) itemImage.enabled = false;
+        else
+        {
+            itemImage.enabled = true;
+            itemImage.sprite = heldItemData.Sprite;
+        }
         
         gameObject.SetActive(true);
 

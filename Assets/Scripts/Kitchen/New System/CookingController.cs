@@ -22,7 +22,6 @@ namespace Cooking.Control
 
         [Header("Step Data")]
         [SerializeField] AbstractCookingItem currentHeldItem;
-        [SerializeField] CookingItemData currentHeldItemData;
         [SerializeField] AbstractCookingItem previousItem;
         [SerializeField] CookingItemData nextItemToAdd;
 
@@ -161,7 +160,6 @@ namespace Cooking.Control
             }
 
             currentHeldItem = null;
-            currentHeldItemData = null;
         }
     }
 }
