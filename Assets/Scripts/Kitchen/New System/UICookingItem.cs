@@ -13,7 +13,7 @@ public class UICookingItem : MonoBehaviour
     [SerializeField] Image itemImage;
     [SerializeField] TextMeshProUGUI itemNameText;
 
-    [SerializeField] CookingItem heldItem;
+    [SerializeField] AbstractCookingItem heldItem;
     [SerializeField] CookingItemData heldItemData;
 
     public CookingItemData GetHeldItem() => heldItemData;
@@ -28,7 +28,7 @@ public class UICookingItem : MonoBehaviour
         ResetHeldItem();
     }
 
-    public void SetHeldItem(CookingItem itemToHold)
+    public void SetHeldItem(AbstractCookingItem itemToHold)
     {
         if (itemToHold.GetItemData() == null) return;
         // Item Data
@@ -40,7 +40,10 @@ public class UICookingItem : MonoBehaviour
 
         // World Item
         heldItem = itemToHold;
-        heldItem.gameObject.SetActive(false);
+        if (!heldItem.AlwaysActive)
+        {
+            heldItem.gameObject.SetActive(false);
+        }
     }
 
     public void ResetHeldItem()

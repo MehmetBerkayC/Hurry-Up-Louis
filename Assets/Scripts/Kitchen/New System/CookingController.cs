@@ -19,21 +19,26 @@ namespace Cooking.Control
         [Header("References")]
         [SerializeField] CookingRecipe cookingRecipe;
         [SerializeField] UICookingItem cookingUI;
-        [SerializeField] CookingItem currentHeldItem;
+
+        [Header("Step Data")]
+        [SerializeField] AbstractCookingItem currentHeldItem;
         [SerializeField] CookingItemData currentHeldItemData;
+        [SerializeField] AbstractCookingItem previousItem;
+        [SerializeField] CookingItemData nextItemToAdd;
 
         [Header("Note & Dialogues")]
-        [SerializeField] private NoteTrigger kitchenRecipeNote;
+        [SerializeField] NoteTrigger kitchenRecipeNote;
         [SerializeField] Dialogue wrongIngredientDialogue;
         [SerializeField] Dialogue missionSuccessfulDialogue;
 
-        private CookingItem previousItem;
-        private CookingItemData nextItemToAdd;
         private int recipeIndex = -1;
 
         public static CookingController Instance;
         // Instead of doing something like this, please remember/have time to have a minigame bool in game manager
-        public static bool IsMinigameOn = false; 
+        public static bool IsMinigameOn = false;
+
+        public AbstractCookingItem GetPreviousItem() => previousItem;
+        public AbstractCookingItem GetCurrentItem() => currentHeldItem;
 
         private void Awake()
         {
@@ -82,38 +87,37 @@ namespace Cooking.Control
             }
         }
 
-        public void HoldItem(CookingItem cookingItem)
+        public void HoldItem(AbstractCookingItem cookingItem)
         {
             if (!IsMinigameOn) return;
 
-            // World Item
-            currentHeldItem = cookingItem;
-            
-            // Set up UI
-            cookingUI.SetHeldItem(cookingItem);
-            
-            // Recipe Check
-            currentHeldItemData = cookingItem.GetItemData();
-            CheckRecipeStep();
+            CheckRecipeStep(cookingItem);
         }
 
-        private void CheckRecipeStep()
+        private void CheckRecipeStep(AbstractCookingItem cookingItem)
         {
-            if (currentHeldItemData == null) return;    // Invalid Item 
-            if (currentHeldItemData != nextItemToAdd)   // Wrong Item
+            if (cookingItem == null) return;    // Invalid Item 
+            if (cookingItem.GetItemData() != nextItemToAdd)   // Wrong Item
             {
                 RevertCookingStep();   
                 return;
             }
-            CalculateNextStep(); // Valid
+            CalculateNextStep(cookingItem); // Valid
         }
 
-        private void CalculateNextStep()
+        private void CalculateNextStep(AbstractCookingItem cookingItem = null)
         {
             recipeIndex++;
             if (recipeIndex < cookingRecipe.Recipe.Count) // there are items to go through
             {
-                previousItem = currentHeldItem; // Remember current item
+                if(cookingItem != null)
+                {
+                    previousItem = currentHeldItem; // Remember current item
+                    currentHeldItem = cookingItem;
+                    // Set up UI
+                    cookingUI.SetHeldItem(cookingItem);
+                }
+
                 nextItemToAdd = cookingRecipe.Recipe[recipeIndex];
             }
             else
@@ -153,7 +157,7 @@ namespace Cooking.Control
             // Show previous item if present
             if (previousItem != null)
             {
-                cookingUI.SetHeldItem(previousItem);
+                cookingUI.SetHeldItem(currentHeldItem);
             }
 
             currentHeldItem = null;

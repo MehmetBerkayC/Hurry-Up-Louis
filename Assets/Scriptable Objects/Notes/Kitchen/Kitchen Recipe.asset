@@ -16,15 +16,9 @@ MonoBehaviour:
   ReadableTime: 5
   NoteName: Meal Recipe
   Label: RECIPE
-  Notes: 'Delicious Tuna Sandwich Recipe
-
-    - Put pan on stove
-
-    Add:
-
-    -
-    Butter to the pan
-
-    - Eggs to the pan
-
-    - Tuna to the pan'
+  Notes: "Delicious Tuna Sandwich Recipe\n- Put pan on stove\n- Potato basket, then
+    knife, go to cutting board\n- Put them on stove\n--- Activate Fries and deactivate
+    stove\n- Get bacon, put on stove\n- Get eggs put on stove\n- Get salt and pepper
+    put on stove\n- Get bread go to cutting board to slice it\n--- Activate sliced
+    bread, bacon and eggs, deactivate stove and cutting board\n- Get sliced bread
+    \n- Get bacon and eggs"
