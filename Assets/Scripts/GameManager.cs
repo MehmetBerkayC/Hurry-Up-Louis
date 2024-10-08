@@ -91,14 +91,14 @@ public class GameManager : MonoBehaviour
             if (IsGoodEnd)
             {
                 SceneManager.LoadScene("Good End Screen");
-                AudioManager.Instance.Stop("Main Theme");
-                AudioManager.Instance.Play("Good Ending");
+                AudioManager.Instance.StopMusic("Main Theme");
+                AudioManager.Instance.PlayMusic("Good Ending");
             }
             else
             {
                 SceneManager.LoadScene("Bad End Screen");
-                AudioManager.Instance.Stop("Main Theme");
-                AudioManager.Instance.Play("Bad Ending");
+                AudioManager.Instance.StopMusic("Main Theme");
+                AudioManager.Instance.PlayMusic("Bad Ending");
             }
         }
     }
@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
     /// Character wakes up, pulls up a dialogue, after then player mobility is unlocked(dialoge system)
     public void StartBedroomSequence()
     {
-        AudioManager.Instance.Play("Alarm");
+        AudioManager.Instance.PlaySFX("Alarm");
         DialogueManager.Instance.StartDialogue(bedroomDialogues[0]); // Wake up dialogue
     }
 

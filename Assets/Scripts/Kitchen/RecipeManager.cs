@@ -50,7 +50,7 @@ public class RecipeManager : MonoBehaviour
     {
         IsMinigameOn = false;
 
-        AudioManager.Instance.Play("Mission Success");
+        AudioManager.Instance.PlaySFX("Mission Success");
         ReminderTrigger.Instance.SetKitchenAsDone();
         ReminderTrigger.Instance.ActivateTrigger();
 
@@ -95,14 +95,14 @@ public class RecipeManager : MonoBehaviour
                 }
             }
 
-            AudioManager.Instance.Play("Pick Up");
+            AudioManager.Instance.PlaySFX("Pick Up");
             return true;
         }
         else // Wrong Item
         {
             SetObject(k);
             k = temp;
-            AudioManager.Instance.Play("Mission Fail");
+            AudioManager.Instance.PlaySFX("Mission Fail");
             DialogueManager.Instance.StartDialogue(didItAgain);
             return false;
         }

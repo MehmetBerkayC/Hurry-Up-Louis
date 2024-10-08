@@ -60,7 +60,7 @@ namespace Cooking.Control
         {
             IsMinigameOn = false;
             // Dialogue
-            AudioManager.Instance.Play("Mission Success");
+            AudioManager.Instance.PlaySFX("Mission Success");
             
             // Triggers
             ReminderTrigger.Instance.SetKitchenAsDone();
@@ -78,7 +78,7 @@ namespace Cooking.Control
 
         private void WrongIngredientNotice() // Dialogue and Sound
         {
-            AudioManager.Instance.Play("Mission Fail");
+            AudioManager.Instance.PlaySFX("Mission Fail");
 
             if (wrongIngredientDialogue != null)
             {
@@ -115,6 +115,8 @@ namespace Cooking.Control
                     currentHeldItem = cookingItem;
                     // Set up UI
                     cookingUI.SetHeldItem(cookingItem);
+                    // Pick up Sound
+                    AudioManager.Instance.PlaySFX("Pick Up");
                 }
 
                 nextItemToAdd = cookingRecipe.Recipe[recipeIndex];

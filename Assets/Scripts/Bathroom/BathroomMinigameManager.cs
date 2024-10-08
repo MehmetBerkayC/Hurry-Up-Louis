@@ -120,7 +120,7 @@ public class BathroomMinigameManager : MonoBehaviour
             FindEmptySlot(badSlots, selfCareItem);
         }
 
-        AudioManager.Instance.Play("Select");
+        AudioManager.Instance.PlaySFX("Select");
 
         UpdateCurrentValue();
     }
@@ -167,7 +167,7 @@ public class BathroomMinigameManager : MonoBehaviour
     {
         _isMiniGameOn = false;
 
-        AudioManager.Instance.Play("Mission Success");
+        AudioManager.Instance.PlaySFX("Mission Success");
         ToggleUI();
 
         ResumePlayerMovement();
@@ -234,7 +234,7 @@ public class BathroomMinigameManager : MonoBehaviour
     public bool RemoveItemFromList(SelfCareItem selfCareItem)
     {
         bool returnValue = selectedItems.Remove(selfCareItem);
-        AudioManager.Instance.Play("Select");
+        AudioManager.Instance.PlaySFX("Select");
         UpdateCurrentValue();
         return returnValue;
     }

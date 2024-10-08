@@ -22,7 +22,7 @@ public class MenuManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.Instance.Play("Main Theme");
+        AudioManager.Instance.PlayMusic("Main Theme");
     }
 
     public void LoadGameScene()

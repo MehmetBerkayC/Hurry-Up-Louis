@@ -64,7 +64,7 @@ public class NoteManager : MonoBehaviour
 
         // Play animation
         noteAnimator.SetBool("IsOpen", true);
-        AudioManager.Instance.Play("Note Paper");
+        AudioManager.Instance.PlaySFX("Note Paper");
 
         // Setup Buttons and Note Text
         var buttonText = returnButton.transform.GetComponentInChildren<TextMeshProUGUI>();
@@ -82,7 +82,7 @@ public class NoteManager : MonoBehaviour
 
         // Play animation
         noteAnimator.SetBool("IsOpen", false);
-        AudioManager.Instance.Play("Note Paper");
+        AudioManager.Instance.PlaySFX("Note Paper");
 
         // Reset Text
         label.text = "";
@@ -96,7 +96,7 @@ public class NoteManager : MonoBehaviour
 
         // Play animation
         noteAnimator.SetBool("IsOpen", false);
-        AudioManager.Instance.Play("Note Paper");
+        AudioManager.Instance.PlaySFX("Note Paper");
 
         // Reset Text
         label.text = "";

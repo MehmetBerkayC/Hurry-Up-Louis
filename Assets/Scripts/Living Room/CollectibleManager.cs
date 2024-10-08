@@ -40,7 +40,7 @@ public class CollectibleManager : MonoBehaviour
     public void Collect(Collectible collectible)
     {
         collectedCollectibles.Add(collectible);
-        AudioManager.Instance.Play("Pick Up");
+        AudioManager.Instance.PlaySFX("Pick Up 2");
         CheckProgress();
     }
 
@@ -66,7 +66,7 @@ public class CollectibleManager : MonoBehaviour
 
     private void EndMinigame()
     {
-        AudioManager.Instance.Play("Mission Success");
+        AudioManager.Instance.PlaySFX("Mission Success");
 
         endTrigger.SetActive(true);
         GameManager.Instance.ActivateCorrectTrigger(TriggerConnections.End);
