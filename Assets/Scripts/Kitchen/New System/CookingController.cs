@@ -140,8 +140,10 @@ namespace Cooking.Control
             // check index bounds
             if (recipeIndex >= 0) recipeIndex -= 1; // Return 1 step
 
-            // Re-enable item
-            currentHeldItem.gameObject.SetActive(true);
+            if(previousItem != null) { 
+                // Re-enable item
+                currentHeldItem.gameObject.SetActive(true);
+            }
 
             // Reset current item and UI
             cookingUI.ResetHeldItem();
@@ -155,13 +157,10 @@ namespace Cooking.Control
 
         private void ResetCurrentItem() //???
         {
-            // Show previous item if present
             if (previousItem != null)
             {
                 cookingUI.SetHeldItem(currentHeldItem);
             }
-            // previous item will be the current item in hand - i know stupid
-            previousItem = currentHeldItem;
         }
     }
 }

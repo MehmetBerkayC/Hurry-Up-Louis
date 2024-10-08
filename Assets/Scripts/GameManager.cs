@@ -74,6 +74,11 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.H))
+        {
+            AudioManager.Instance.PlaySFX("Note Paper");
+        }
+
         if (!_once) // Start Game
         {
             UpdateGameState(GameState.Bedroom);

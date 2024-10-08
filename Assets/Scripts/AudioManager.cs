@@ -8,17 +8,21 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
 
-    public Sound[] SFXSounds, MusicSounds;
-
-    private AudioSource _lastMusicSource;
-
-    [field: SerializeField, Range(0, 1)]
+    [field: SerializeField, Range(0, 1), Header("Audio Settings")]
     public float SFXVolumeValue { get; private set; } = 1;
 
     [field: SerializeField, Range(0, 1)]
     public float MusicVolumeValue { get; private set; } = 1;
 
-    
+    [SerializeField]
+    private AudioSource MusicSource, SFXSource;
+
+    [SerializeField, Header("Audio Clips")]
+    private AudioSource _lastMusicSource;
+
+    [SerializeField]
+    private Sound[] SFXSounds, MusicSounds;
+
     private void Awake()
     {
         if (Instance == null)
@@ -32,6 +36,16 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
+
+    private void Start()
+    {
+        AudioSource[] sources = GetComponentsInChildren<AudioSource>();
+        if(sources.Length > 0) { 
+            MusicSource = sources[0];
+            SFXSource = sources[1];
+        }
+    }
+
     public void PlaySFX(string name)
     {
         Sound sound = Array.Find(SFXSounds, sound => sound.Name == name);
@@ -41,7 +55,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        ConfigureAudioSource(sound, isSFX: true);
+        ConfigureAudioSource(SFXSource, sound, isSFX: true);
     }
 
 
@@ -54,18 +68,23 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        ConfigureAudioSource(sound, isSFX: false);
+        if(_lastMusicSource != null) // Just in case stop previous music
+        {
+            _lastMusicSource.Stop();
+        }
+
+        ConfigureAudioSource(MusicSource, sound, isSFX: false);
         sound.source = _lastMusicSource;
     }
 
-    private void ConfigureAudioSource(Sound sound, bool isSFX = true)
+    private void ConfigureAudioSource(AudioSource audioSource, Sound sound, bool isSFX = true)
     {
-        sound.source = gameObject.AddComponent<AudioSource>();
+        sound.source = audioSource;
         sound.source.clip = sound.Clip;
         sound.source.volume = isSFX ? SFXVolumeValue : MusicVolumeValue;
         sound.source.pitch = sound.Pitch;
         sound.source.loop = sound.Loop;
-        sound.source.Play();
+        audioSource.Play();
     }
 
     public void ToggleMusic()

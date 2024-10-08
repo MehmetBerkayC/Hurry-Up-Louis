@@ -64,7 +64,7 @@ public class NoteManager : MonoBehaviour
 
         // Play animation
         noteAnimator.SetBool("IsOpen", true);
-        AudioManager.Instance.PlaySFX("Note Paper");
+        AudioManager.Instance.PlaySFX("Paper Open");
 
         // Setup Buttons and Note Text
         var buttonText = returnButton.transform.GetComponentInChildren<TextMeshProUGUI>();
@@ -72,8 +72,6 @@ public class NoteManager : MonoBehaviour
 
         label.text = note.Label;
         context.text = note.Notes;
-
-        StartCoroutine(CloseNote(note.ReadableTime));
     }
 
     public void CloseNote()
@@ -82,21 +80,7 @@ public class NoteManager : MonoBehaviour
 
         // Play animation
         noteAnimator.SetBool("IsOpen", false);
-        AudioManager.Instance.PlaySFX("Note Paper");
-
-        // Reset Text
-        label.text = "";
-        context.text = "";
-    }
-
-    public IEnumerator CloseNote(int readableTime)
-    {
-        yield return new WaitForSeconds(readableTime);
-        _isNoteOpen = false; // Close input listen
-
-        // Play animation
-        noteAnimator.SetBool("IsOpen", false);
-        AudioManager.Instance.PlaySFX("Note Paper");
+        AudioManager.Instance.PlaySFX("Paper Close");
 
         // Reset Text
         label.text = "";
