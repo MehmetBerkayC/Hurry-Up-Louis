@@ -9,9 +9,14 @@ namespace Cooking.World
 {
     public class CookingItem : AbstractCookingItem, IInteractable
     {
+        public bool IsInteractable { get; private set; } = true;
+
         public void Interact()
         {
-            CookingController.Instance.HoldItem(this);
+            if (IsInteractable)
+            {
+                CookingController.Instance.HoldItem(this);
+            }
         }
     }
 }

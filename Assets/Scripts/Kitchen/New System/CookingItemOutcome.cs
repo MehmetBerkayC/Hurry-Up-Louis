@@ -13,8 +13,8 @@ public class CookingItemOutcome : AbstractCookingItem, IInteractable
     
     private Collider2D coll;
     private SpriteRenderer spriteRenderer;
-    private bool readyToInteract = false;
-    
+    public bool IsInteractable { get; private set; } = false;
+
     private new void Start()
     {
         coll = GetComponent<Collider2D>();
@@ -30,7 +30,7 @@ public class CookingItemOutcome : AbstractCookingItem, IInteractable
 
     public void Interact()
     {
-        if (readyToInteract)
+        if (IsInteractable)
         {
             CookingController.Instance.HoldItem(this);
         }
@@ -51,7 +51,7 @@ public class CookingItemOutcome : AbstractCookingItem, IInteractable
 
             if (previousStepItem == prevItem.GetItemData() && currentStepItem == currentItem.GetItemData())
             {
-                readyToInteract = true;
+                IsInteractable = true;
                 coll.enabled = true;
                 InitializeItem();
             }
