@@ -9,7 +9,8 @@ public class AudioManager : MonoBehaviour
     public static AudioManager Instance;
 
     public Sound[] SFXSounds, MusicSounds;
-    public AudioSource MusicSource;
+
+    private AudioSource _lastMusicSource;
 
     [field: SerializeField, Range(0, 1)]
     public float SFXVolumeValue { get; private set; } = 1;
@@ -40,7 +41,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        ConfigureSFXSource(sound);
+        ConfigureAudioSource(sound, isSFX: true);
     }
 
 
@@ -53,30 +54,15 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        if (MusicSource.isPlaying)
-        {
-            MusicSource.Stop();
-        }
-
-        ConfigureMusicSource(MusicSource, sound);
+        ConfigureAudioSource(sound, isSFX: false);
+        sound.source = _lastMusicSource;
     }
 
-    
-    private void ConfigureMusicSource(AudioSource audioSource, Sound sound)
-    {
-        sound.source = audioSource;
-        sound.source.clip = sound.Clip;
-        sound.source.volume = MusicVolumeValue;
-        sound.source.pitch = sound.Pitch;
-        sound.source.loop = sound.Loop;
-        sound.source.Play();
-    }
-
-    private void ConfigureSFXSource(Sound sound)
+    private void ConfigureAudioSource(Sound sound, bool isSFX = true)
     {
         sound.source = gameObject.AddComponent<AudioSource>();
         sound.source.clip = sound.Clip;
-        sound.source.volume = SFXVolumeValue;
+        sound.source.volume = isSFX ? SFXVolumeValue : MusicVolumeValue;
         sound.source.pitch = sound.Pitch;
         sound.source.loop = sound.Loop;
         sound.source.Play();
@@ -84,7 +70,7 @@ public class AudioManager : MonoBehaviour
 
     public void ToggleMusic()
     {
-        MusicSource.mute = !MusicSource.mute;
+        _lastMusicSource.mute = !_lastMusicSource.mute;
     }
 
     // Multiple Sources
@@ -99,7 +85,7 @@ public class AudioManager : MonoBehaviour
     public void MusicVolume(float volume)
     {
         MusicVolumeValue = volume;
-        MusicSource.volume = volume;
+        _lastMusicSource.volume = volume;
     }
     
     // Multiple Sources
