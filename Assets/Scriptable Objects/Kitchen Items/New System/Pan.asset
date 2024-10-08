@@ -9,9 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1eae4b479ecf5aa4da8fc2e0cf5a0a8b, type: 3}
-  m_Name: Did It Again
+  m_Script: {fileID: 11500000, guid: df8ed71449520d24caf2253771921a8f, type: 3}
+  m_Name: Pan
   m_EditorClassIdentifier: 
-  CharacterName: Louis Poisson D'eau Douce
-  Sentences:
-  - Oops.. This wasn't right!
+  Name: Pan
+  Sprite: {fileID: 21300000, guid: cd0d1f5326d7bbd49a7fb203189ee30f, type: 3}

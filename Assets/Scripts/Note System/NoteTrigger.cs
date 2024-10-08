@@ -1,3 +1,4 @@
+using Cooking.Control;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +13,7 @@ public class NoteTrigger : MonoBehaviour, IInteractable
     
     private void Awake()
     {
-        if (_isInteractableByDefault)
-        {
-            BecomeInteractable(true);
-        }
+        if (_isInteractableByDefault) BecomeInteractable(true);
     }
 
     public void BecomeInteractable(bool value)
@@ -25,14 +23,17 @@ public class NoteTrigger : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (IsInteractable)
-        {
-            OpenNote();
-        }
+        if (IsInteractable) OpenNote();
     }
 
     private void OpenNote()
     {
+        Debug.Log("Opening Note: " +  note.NoteName);
         NoteManager.Instance.OpenNote(note);
+    }
+
+    public void DisposeOf()
+    {
+        Destroy(gameObject);
     }
 }
