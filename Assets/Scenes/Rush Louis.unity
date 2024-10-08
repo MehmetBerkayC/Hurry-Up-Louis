@@ -16689,8 +16689,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemData: {fileID: 11400000, guid: ee33574aa793953428611e18050cb443, type: 2}
   AlwaysActive: 0
-  previousStepItem: {fileID: 11400000, guid: c4e55d053a8f30a43b06220a8a1690bd, type: 2}
-  currentStepItem: {fileID: 11400000, guid: 2205c38aa1a14744591395db577ceca7, type: 2}
+  previousStepItem: {fileID: 11400000, guid: 2205c38aa1a14744591395db577ceca7, type: 2}
+  currentStepItem: {fileID: 11400000, guid: 2407f25fc44926245a6bc62b6161f5c8, type: 2}
   spawnPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &8671575021414047076
 GameObject:
