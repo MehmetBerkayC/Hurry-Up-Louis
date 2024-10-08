@@ -25,8 +25,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7887122735669917332}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.77, y: -1.23, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -48,68 +48,74 @@ MonoBehaviour:
   SFXSounds:
   - Name: Note Paper
     Clip: {fileID: 8300000, guid: e30bd297a1d324c4db71ecf159f3174b, type: 3}
-    Volume: 0.1
+    Volume: 1
     Pitch: 0
     Loop: 0
     source: {fileID: 0}
   - Name: Mission Success
     Clip: {fileID: 8300000, guid: 4bc96e480f3869b459062b9cf999c2d9, type: 3}
-    Volume: 0.1
+    Volume: 1
     Pitch: 0
     Loop: 0
     source: {fileID: 0}
   - Name: Mission Fail
     Clip: {fileID: 8300000, guid: cd19be264f37b164baf61908c2b965d1, type: 3}
-    Volume: 0.1
+    Volume: 1
     Pitch: 0
     Loop: 0
     source: {fileID: 0}
   - Name: Pick Up
     Clip: {fileID: 8300000, guid: f2964268b2862174f864a00006683d64, type: 3}
-    Volume: 0.1
+    Volume: 1
     Pitch: 0
     Loop: 0
     source: {fileID: 0}
   - Name: Alarm
     Clip: {fileID: 8300000, guid: bdc1dfe24d3c52640b6714227a8c2875, type: 3}
-    Volume: 0.1
+    Volume: 1
     Pitch: 0
     Loop: 0
     source: {fileID: 0}
   - Name: Dialog
     Clip: {fileID: 8300000, guid: 343ccdc924b59784491b2d56a160f5ad, type: 3}
-    Volume: 0.1
+    Volume: 1
     Pitch: 0
     Loop: 0
     source: {fileID: 0}
   - Name: Pick Up 2
     Clip: {fileID: 8300000, guid: 74d71b0b6505d3a4299a2e214f434b94, type: 3}
-    Volume: 0.1
+    Volume: 1
     Pitch: 0
     Loop: 0
+    source: {fileID: 0}
+  - Name: Swim
+    Clip: {fileID: 8300000, guid: 38dfc4f91ab31d24589c1f55f46c383f, type: 3}
+    Volume: 1
+    Pitch: 0
+    Loop: 1
     source: {fileID: 0}
   MusicSounds:
   - Name: Main Theme
     Clip: {fileID: 8300000, guid: 8be77fadf4aaf044c9051d9817e5ce21, type: 3}
-    Volume: 0.1
+    Volume: 1
     Pitch: 0
     Loop: 1
     source: {fileID: 0}
   - Name: Bad Ending
     Clip: {fileID: 8300000, guid: 875d9e29fb03bb34b9bcb669b2e56676, type: 3}
-    Volume: 0.1
+    Volume: 1
     Pitch: 0
     Loop: 0
     source: {fileID: 0}
   - Name: Good Ending
     Clip: {fileID: 8300000, guid: d2e8e2e43505f8544aab46921d98c02e, type: 3}
-    Volume: 0.1
+    Volume: 1
     Pitch: 0
     Loop: 0
     source: {fileID: 0}
   MusicSource: {fileID: 3982264181999954399}
-  <SFXVolumeValue>k__BackingField: 0.2
-  <MusicVolumeValue>k__BackingField: 0.2
+  <SFXVolumeValue>k__BackingField: 1
+  <MusicVolumeValue>k__BackingField: 1
 --- !u!1 &8648703181259150519
 GameObject:
   m_ObjectHideFlags: 0

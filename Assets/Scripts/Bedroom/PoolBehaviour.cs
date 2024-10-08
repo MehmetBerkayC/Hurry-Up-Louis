@@ -76,7 +76,7 @@ public class PoolBehaviour : MonoBehaviour
         {
             _player.SetPlayerSpeed(_defaultPlayerSpeed);
             _player = null;
-            //AudioManager.Instance.Stop("Swim");
+            AudioManager.Instance.StopSFX("Swim");
         }
     }
 }

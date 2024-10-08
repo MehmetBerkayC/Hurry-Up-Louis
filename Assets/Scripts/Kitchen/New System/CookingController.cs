@@ -153,15 +153,15 @@ namespace Cooking.Control
             WrongIngredientNotice(); // Warn Player
         }
 
-        private void ResetCurrentItem()
+        private void ResetCurrentItem() //???
         {
             // Show previous item if present
             if (previousItem != null)
             {
                 cookingUI.SetHeldItem(currentHeldItem);
             }
-
-            currentHeldItem = null;
+            // previous item will be the current item in hand - i know stupid
+            previousItem = currentHeldItem;
         }
     }
 }

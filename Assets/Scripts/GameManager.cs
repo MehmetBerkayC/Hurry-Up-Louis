@@ -69,15 +69,15 @@ public class GameManager : MonoBehaviour
     }
 
     public bool FreshStart = true;
-    private bool once;
+    private bool _once;
     private bool _timerOn;
 
     private void Update()
     {
-        if (!once) // Start Game
+        if (!_once) // Start Game
         {
             UpdateGameState(GameState.Bedroom);
-            once = true;
+            _once = true;
         }
 
         if (_timerOn)

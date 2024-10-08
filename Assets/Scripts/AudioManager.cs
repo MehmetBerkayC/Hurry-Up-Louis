@@ -10,6 +10,13 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] SFXSounds, MusicSounds;
     public AudioSource MusicSource;
+
+    [field: SerializeField, Range(0, 1)]
+    public float SFXVolumeValue { get; private set; } = 1;
+
+    [field: SerializeField, Range(0, 1)]
+    public float MusicVolumeValue { get; private set; } = 1;
+
     
     private void Awake()
     {
@@ -24,13 +31,6 @@ public class AudioManager : MonoBehaviour
 
         DontDestroyOnLoad(gameObject);
     }
-
-    [field: SerializeField, Range(0,1)]
-    public float SFXVolumeValue { get; private set; }
-    
-    [field: SerializeField, Range(0,1)]
-    public float MusicVolumeValue { get; private set; }
-
     public void PlaySFX(string name)
     {
         Sound sound = Array.Find(SFXSounds, sound => sound.Name == name);
