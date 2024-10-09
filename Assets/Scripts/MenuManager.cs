@@ -20,10 +20,10 @@ public class MenuManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        AudioManager.Instance.PlayMusic("Main Theme");
-    }
+    //private void Start()
+    //{
+    //    AudioManager.Instance.PlayMusic("Main Theme");
+    //}
 
     public void LoadGameScene()
     {

@@ -65,6 +65,8 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        AudioManager.Instance.PlayMusic("Main Theme");
+
         UpdateTimeText();
     }
 
