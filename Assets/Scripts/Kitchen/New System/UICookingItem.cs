@@ -58,8 +58,6 @@ public class UICookingItem : MonoBehaviour
         heldItemData = null;
         itemNameText.text = "";
         itemImage.sprite = null;
-
-        gameObject.SetActive(false);
     }
 
     public void RevertHeldItem()

@@ -302,11 +302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b62f3b6330200dd48b639931714f083a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <SFXVolumeValue>k__BackingField: 0.3
+  <SFXVolumeValue>k__BackingField: 0.2
   <MusicVolumeValue>k__BackingField: 0.1
   MusicSource: {fileID: 0}
   SFXSource: {fileID: 0}
-  _lastMusicSource: {fileID: 0}
   SFXSounds:
   - Name: Mission Success
     Clip: {fileID: 8300000, guid: 4bc96e480f3869b459062b9cf999c2d9, type: 3}
@@ -324,7 +323,7 @@ MonoBehaviour:
     Loop: 0
     source: {fileID: 0}
   - Name: Alarm
-    Clip: {fileID: 8300000, guid: bdc1dfe24d3c52640b6714227a8c2875, type: 3}
+    Clip: {fileID: 8300000, guid: 72967ff6ad0c3b443ae4c8a5d2028ad5, type: 3}
     Pitch: 1
     Loop: 0
     source: {fileID: 0}
@@ -350,6 +349,11 @@ MonoBehaviour:
     source: {fileID: 0}
   - Name: Paper Open
     Clip: {fileID: 8300000, guid: 9324a284e4b80954d8c31324729a1045, type: 3}
+    Pitch: 1
+    Loop: 0
+    source: {fileID: 0}
+  - Name: UI Select
+    Clip: {fileID: 8300000, guid: 7d27725c25021f94fad12c44113d4850, type: 3}
     Pitch: 1
     Loop: 0
     source: {fileID: 0}

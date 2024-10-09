@@ -49,11 +49,14 @@ namespace Cooking.Control
             //StartCooking();    
         }
 
+
         public void StartCooking()
         {
             IsMinigameOn = true;
-            // Do anything with UI or pausing gameplay
-            CalculateNextStep(); // index should start with -1
+            // UI
+            cookingUI.gameObject.SetActive(false);
+
+            CalculateNextStep();
         }
 
         private void EndCooking()
@@ -74,6 +77,9 @@ namespace Cooking.Control
 
             // Get rid of recipe note
             kitchenRecipeNote.DisposeOf();
+            // UI
+            cookingUI.ResetHeldItem();
+            cookingUI.gameObject.SetActive(false);
         }
 
         private void WrongIngredientNotice() // Dialogue and Sound

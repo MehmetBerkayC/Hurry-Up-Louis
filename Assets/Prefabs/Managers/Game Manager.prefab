@@ -44,16 +44,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51632afd8ec653b48ba54bdd771026e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  remainingTimeInSeconds: 600
+  timerText: {fileID: 0}
   bedroomDialogues:
   - {fileID: 11400000, guid: cd0e9b33aec189e458406cbbe2358525, type: 2}
   bathroomDialogues:
   - {fileID: 11400000, guid: be09cb81e846d5c4e99b7f7d6ac50d25, type: 2}
   kitchenDialogues:
   - {fileID: 11400000, guid: 6a2ffb97f50361d4b9c1141dde2bd484, type: 2}
+  livingRoomNote: {fileID: 0}
   livingRoomDialogues:
   - {fileID: 11400000, guid: e578c26056cedf64fa64b8eef9f1c23e, type: 2}
   endGameDialogues: []
   triggersInLevel:
   - {fileID: 0}
   - {fileID: 0}
-  State: 0
+  BothMinigamesDone: 0
+  IsGameOver: 0
+  IsGoodEnd: 0
+  FreshStart: 1

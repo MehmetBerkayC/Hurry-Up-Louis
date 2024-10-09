@@ -13,14 +13,12 @@ public class AudioManager : MonoBehaviour
 
     [field: SerializeField, Range(0, 1)]
     public float MusicVolumeValue { get; private set; } = 1;
+    public bool IsSoundMuted { get; private set; } = false;
 
     [SerializeField]
     private AudioSource MusicSource, SFXSource;
 
     [SerializeField, Header("Audio Clips")]
-    private AudioSource _lastMusicSource;
-
-    [SerializeField]
     private Sound[] SFXSounds, MusicSounds;
 
     private void Awake()
@@ -68,13 +66,8 @@ public class AudioManager : MonoBehaviour
             return;
         }
 
-        if(_lastMusicSource != null) // Just in case stop previous music
-        {
-            _lastMusicSource.Stop();
-        }
-
         ConfigureAudioSource(MusicSource, sound, isSFX: false);
-        sound.source = _lastMusicSource;
+       
     }
 
     private void ConfigureAudioSource(AudioSource audioSource, Sound sound, bool isSFX = true)
@@ -84,12 +77,13 @@ public class AudioManager : MonoBehaviour
         sound.source.volume = isSFX ? SFXVolumeValue : MusicVolumeValue;
         sound.source.pitch = sound.Pitch;
         sound.source.loop = sound.Loop;
+        sound.source.mute = IsSoundMuted;
         audioSource.Play();
     }
 
     public void ToggleMusic()
     {
-        _lastMusicSource.mute = !_lastMusicSource.mute;
+        IsSoundMuted = !IsSoundMuted;
     }
 
     // Multiple Sources
@@ -104,7 +98,6 @@ public class AudioManager : MonoBehaviour
     public void MusicVolume(float volume)
     {
         MusicVolumeValue = volume;
-        _lastMusicSource.volume = volume;
     }
     
     // Multiple Sources

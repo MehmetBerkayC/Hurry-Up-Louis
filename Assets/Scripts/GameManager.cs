@@ -65,8 +65,6 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        AudioManager.Instance.PlayMusic("Main Theme");
-
         UpdateTimeText();
     }
 
@@ -83,6 +81,7 @@ public class GameManager : MonoBehaviour
 
         if (!_once) // Start Game
         {
+            AudioManager.Instance.PlayMusic("Main Theme");
             UpdateGameState(GameState.Bedroom);
             _once = true;
         }

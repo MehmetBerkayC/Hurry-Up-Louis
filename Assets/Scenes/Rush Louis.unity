@@ -15249,6 +15249,10 @@ PrefabInstance:
       value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
+      propertyPath: triggersInLevel.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
       propertyPath: endGameDialogues.Array.size
       value: 2
       objectReference: {fileID: 0}
@@ -15260,6 +15264,10 @@ PrefabInstance:
       propertyPath: triggersInLevel.Array.data[1]
       value: 
       objectReference: {fileID: 235017049}
+    - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
+      propertyPath: triggersInLevel.Array.data[2]
+      value: 
+      objectReference: {fileID: 1893418031}
     - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
       propertyPath: endGameDialogues.Array.data[0]
       value: 

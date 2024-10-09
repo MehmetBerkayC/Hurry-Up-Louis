@@ -51,7 +51,7 @@ public class CollectibleManager : MonoBehaviour
             // Dialog -> Gidebilirim Artýk (Ana Kapý Triggerý Açýlýr)
             DialogueManager.Instance.StartDialogue(gameDialogues[1]);
             // Game Should End
-            Debug.Log("Game Ends"); // -> Trigger Halledecek
+            Debug.Log("Minigame Ends"); // -> Trigger Halledecek
             EndMinigame();
         }
 
