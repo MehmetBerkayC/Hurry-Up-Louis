@@ -44,7 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ef158c92b1b53c439b59e0dfa3e3f23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cookingRecipe: {fileID: 0}
+  cookingRecipe: {fileID: 11400000, guid: baada85f61c975c46995905fdc2ceb74, type: 2}
   cookingUI: {fileID: 0}
   currentHeldItem: {fileID: 0}
-  currentHeldItemData: {fileID: 0}
+  previousItem: {fileID: 0}
+  nextItemToAdd: {fileID: 0}
+  kitchenRecipeNote: {fileID: 0}
+  wrongIngredientDialogue: {fileID: 11400000, guid: 878afcd1fdd6d61448262e549ac1be06, type: 2}
+  missionSuccessfulDialogue: {fileID: 11400000, guid: d65a9b2d2c49fc3479ba984b144d1b23, type: 2}

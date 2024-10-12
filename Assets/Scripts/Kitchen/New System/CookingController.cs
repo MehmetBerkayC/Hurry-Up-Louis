@@ -9,13 +9,6 @@ namespace Cooking.Control
 {
     public class CookingController : MonoBehaviour
     {
-        // Need some kind of recipe
-        // When the game starts, make every item interactable or visible
-        // When an item is acquired, check if it is collected in order
-        // if not, return the item back to its position -> solve by disable/enable items
-        // - Display a message indicating item being picked in wrong order
-        // 
-
         [Header("References")]
         [SerializeField] CookingRecipe cookingRecipe;
         [SerializeField] UICookingItem cookingUI;
@@ -39,20 +32,24 @@ namespace Cooking.Control
         public AbstractCookingItem GetPreviousItem() => previousItem;
         public AbstractCookingItem GetCurrentItem() => currentHeldItem;
 
+        private bool _firstItem = true;
+
         private void Awake()
         {
-            Instance = this;    
+            if(Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-
-        private void Start()
-        {
-            //StartCooking();    
-        }
-
 
         public void StartCooking()
         {
             IsMinigameOn = true;
+            _firstItem = true;
             // UI
             cookingUI.gameObject.SetActive(false);
 
@@ -101,7 +98,7 @@ namespace Cooking.Control
 
         private void CheckRecipeStep(AbstractCookingItem cookingItem)
         {
-            if (cookingItem == null) return;    // Invalid Item 
+            if (cookingItem == null && !_firstItem) return;    // Invalid Item 
             if (cookingItem.GetItemData() != nextItemToAdd)   // Wrong Item
             {
                 RevertCookingStep();   
@@ -112,25 +109,39 @@ namespace Cooking.Control
 
         private void CalculateNextStep(AbstractCookingItem cookingItem = null)
         {
+            if(cookingItem == null && _firstItem) // Firt item of the recipe
+            {
+                recipeIndex++;
+                nextItemToAdd = cookingRecipe.Recipe[recipeIndex]; // Advance to next item
+                _firstItem = false;
+                Debug.Log("Next: " + (recipeIndex < cookingRecipe.Recipe.Count ? nextItemToAdd.Name : "None"));
+                return;
+            }
+
+            // ----- Other Items -----
             recipeIndex++;
             if (recipeIndex < cookingRecipe.Recipe.Count) // there are items to go through
             {
-                if(cookingItem != null)
-                {
-                    previousItem = currentHeldItem; // Remember current item
-                    currentHeldItem = cookingItem;
-                    // Set up UI
-                    cookingUI.SetHeldItem(cookingItem);
-                    // Pick up Sound
-                    AudioManager.Instance.PlaySFX("Pick Up");
-                }
-
-                nextItemToAdd = cookingRecipe.Recipe[recipeIndex];
+                PickUpItem(cookingItem);
+                nextItemToAdd = cookingRecipe.Recipe[recipeIndex]; // Advance to next item
             }
             else
+            {
+                PickUpItem(cookingItem);
                 RecipeCompleted();
+            }
 
             Debug.Log("Next: " + (recipeIndex < cookingRecipe.Recipe.Count ? nextItemToAdd.Name : "None"));
+        }
+
+        private void PickUpItem(AbstractCookingItem cookingItem)
+        {
+            previousItem = currentHeldItem; // Remember current item
+            currentHeldItem = cookingItem;
+            // Set up UI
+            cookingUI.SetHeldItem(cookingItem);
+            // Pick up Sound
+            AudioManager.Instance.PlaySFX("Pick Up");
         }
 
         private void RecipeCompleted()
@@ -161,7 +172,7 @@ namespace Cooking.Control
             WrongIngredientNotice(); // Warn Player
         }
 
-        private void ResetCurrentItem() //???
+        private void ResetCurrentItem() 
         {
             if (previousItem != null)
             {
@@ -187,3 +198,9 @@ namespace Cooking.Control
 // Think of cooking items as objects/checkpoints with trigger
 // Interact with certain collisions to progress and
 // if there is an item to hold, equip and display on UI
+// ------------------------------------------------------------------
+// Need some kind of recipe
+// When the game starts, make every item interactable or visible
+// When an item is acquired, check if it is collected in order
+// if not, return the item back to its position -> solve by disable/enable items
+// - Display a message indicating item being picked in wrong order
