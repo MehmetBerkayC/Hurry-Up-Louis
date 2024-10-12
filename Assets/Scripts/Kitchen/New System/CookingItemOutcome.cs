@@ -3,29 +3,35 @@ using Cooking.Data;
 using Cooking.World;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Cooking.Data
 {
     public class CookingItemOutcome : AbstractCookingItem, IInteractable
     {
-        [SerializeField] List<AbstractCookingItem> prerequisiteItems;
-        private List<AbstractCookingItem> _previousItems;
+        [Header("Required Items to Function -InOrder-")]
+        [SerializeField] List<AbstractCookingItem> prerequisiteItems = new();
+        private List<AbstractCookingItem> _previousItems = new();
 
-        [SerializeField] CookingItemData previousStepItem;
-        [SerializeField] CookingItemData currentStepItem;   // Next one is this one
+        [Header("Item Configuration")]
+        [SerializeField] Vector3 spawnPosition = Vector3.zero;
+        [field: SerializeField] public bool IsInteractable { get; private set; } = false;
+
+        [Header("After Item Function")]
         [SerializeField] CookingItem[] itemsToDeactivate;
         [SerializeField] CookingItem[] itemsToActivate;
-
-        [SerializeField] Vector3 spawnPosition = Vector3.zero;
     
         private Collider2D coll;
         private SpriteRenderer spriteRenderer;
 
-        [field: SerializeField]
-        public bool IsInteractable { get; private set; } = false;
 
         private new void Start()
+        {
+            AssignAndDeactivate_VisualsAndCollider();
+        }
+
+        private void AssignAndDeactivate_VisualsAndCollider()
         {
             coll = GetComponent<Collider2D>();
             coll.enabled = false;
@@ -45,10 +51,6 @@ namespace Cooking.Data
             CookingController.OnItemPickedUp -= UpdatePrerequisiteItems;
         }
 
-        private void Update()
-        {
-            ItemConditionsSatisfied();
-        }
 
         public void Interact()
         {
@@ -73,11 +75,13 @@ namespace Cooking.Data
         private void UpdatePrerequisiteItems() // DONE
         {
             // Get new item
-            AbstractCookingItem item = CookingController.Instance.GetCurrentItem();
+            AbstractCookingItem item = CookingController.Instance.CurrentItem;
+            Debug.Log(item);
             if (item != null)
             {
                 _previousItems.Add(item);
             }
+            else { return; }
 
             // Enough items
             if (_previousItems.Count == prerequisiteItems.Count)

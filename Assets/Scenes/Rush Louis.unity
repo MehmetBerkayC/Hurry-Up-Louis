@@ -834,6 +834,17 @@ MonoBehaviour:
   - {fileID: 1340079325}
   decisionTrigger: {fileID: 415951792}
   spriteRenderer: {fileID: 415951790}
+--- !u!114 &432298195 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 729005281581229252, guid: 1317967fa82140e47b2d893c94074c13, type: 3}
+  m_PrefabInstance: {fileID: 8887977013796593695}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1dff147ac611043b376aff17dacc53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &498318924
 GameObject:
   m_ObjectHideFlags: 0
@@ -2685,6 +2696,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3063053247878848639, guid: 33618253c0aef0c499a22c9aed38fb4f, type: 3}
   m_PrefabInstance: {fileID: 2056297297736240737}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1102114361 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2021165892238460377, guid: dd33388fb814a284ca688a61dd68c5c5, type: 3}
+  m_PrefabInstance: {fileID: 2719227207875316131}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1dff147ac611043b376aff17dacc53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1138655897 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8362226494960477042, guid: 32ba69d8293e6d04eafc907334c04c62, type: 3}
@@ -3608,6 +3630,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8670891110312793021, guid: 4aa4ab6b328209d43b1baf95edce3e96, type: 3}
   m_PrefabInstance: {fileID: 7935920510196578424}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1446262794 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4815149759140424516, guid: 33618253c0aef0c499a22c9aed38fb4f, type: 3}
+  m_PrefabInstance: {fileID: 2056297297736240737}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1dff147ac611043b376aff17dacc53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1464467123
 GameObject:
   m_ObjectHideFlags: 0
@@ -6259,9 +6292,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7973055641621757594, guid: b19ad8500d4994643806f0ecd5f19e21, type: 3}
+      propertyPath: prerequisiteItems.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7973055641621757594, guid: b19ad8500d4994643806f0ecd5f19e21, type: 3}
       propertyPath: itemsToDeactivate.Array.data[0]
       value: 
       objectReference: {fileID: 1317025535}
+    - target: {fileID: 7973055641621757594, guid: b19ad8500d4994643806f0ecd5f19e21, type: 3}
+      propertyPath: prerequisiteItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 8543353046954388891}
     - target: {fileID: 8472332887395542038, guid: b19ad8500d4994643806f0ecd5f19e21, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.46
@@ -6568,6 +6609,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate with Fries
       objectReference: {fileID: 0}
+    - target: {fileID: 4815048569323932239, guid: 3b757c2ede4fd8b49ac7ad39b3939c98, type: 3}
+      propertyPath: prerequisiteItems.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4815048569323932239, guid: 3b757c2ede4fd8b49ac7ad39b3939c98, type: 3}
+      propertyPath: prerequisiteItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 1446262794}
+    - target: {fileID: 4815048569323932239, guid: 3b757c2ede4fd8b49ac7ad39b3939c98, type: 3}
+      propertyPath: prerequisiteItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 1102114361}
+    - target: {fileID: 4815048569323932239, guid: 3b757c2ede4fd8b49ac7ad39b3939c98, type: 3}
+      propertyPath: prerequisiteItems.Array.data[2]
+      value: 
+      objectReference: {fileID: 1317025535}
     - target: {fileID: 6507999271204956858, guid: 3b757c2ede4fd8b49ac7ad39b3939c98, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.43
@@ -7052,6 +7109,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sliced Bread
       objectReference: {fileID: 0}
+    - target: {fileID: 7634122765651575728, guid: 7f86e53f168ea0c418b1183184ce58c7, type: 3}
+      propertyPath: prerequisiteItems.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634122765651575728, guid: 7f86e53f168ea0c418b1183184ce58c7, type: 3}
+      propertyPath: prerequisiteItems.Array.data[0]
+      value: 
+      objectReference: {fileID: 432298195}
+    - target: {fileID: 7634122765651575728, guid: 7f86e53f168ea0c418b1183184ce58c7, type: 3}
+      propertyPath: prerequisiteItems.Array.data[1]
+      value: 
+      objectReference: {fileID: 1102114361}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7650,6 +7719,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 32ba69d8293e6d04eafc907334c04c62, type: 3}
+--- !u!114 &8543353046954388891 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7634122765651575728, guid: 7f86e53f168ea0c418b1183184ce58c7, type: 3}
+  m_PrefabInstance: {fileID: 7176686767289025089}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c8acb2b48241bc44876698e25192b0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8671575021414047076
 GameObject:
   m_ObjectHideFlags: 0

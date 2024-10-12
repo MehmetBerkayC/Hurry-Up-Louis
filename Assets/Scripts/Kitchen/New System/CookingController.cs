@@ -29,7 +29,7 @@ namespace Cooking.Control
         // Instead of doing something like this, please remember/have time to have a minigame bool in game manager
         public static bool IsMinigameOn = false;
 
-        public AbstractCookingItem GetCurrentItem() => _currentHeldItem;
+        public AbstractCookingItem CurrentItem => _currentHeldItem;
 
         public static Action OnStateChanged;
         public static Action OnItemPickedUp;
