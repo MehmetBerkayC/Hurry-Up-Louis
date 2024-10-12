@@ -8,7 +8,7 @@ public class PoolBehaviour : MonoBehaviour
     public static PoolBehaviour Instance; // Will have only 1 soo....
 
     [SerializeField] private Collider2D obstacleCollision;
-    [SerializeField] private CircleCollider2D dialogueCollision;
+    [SerializeField] private Collider2D dialogueCollision;
     
     [SerializeField] private float playerSpeedWhileSwimming = 2f;
 
@@ -33,8 +33,12 @@ public class PoolBehaviour : MonoBehaviour
 
     private void Start()
     {
-        obstacleCollision = GetComponent<Collider2D>();
-        dialogueCollision = GetComponentInChildren<CircleCollider2D>();
+        if(obstacleCollision == null || dialogueCollision == null)
+        {
+            Collider2D[] collisions = GetComponentsInChildren<Collider2D>();
+            obstacleCollision = collisions[0];
+            dialogueCollision = collisions[1];
+        }
     }
 
     public void BecomePassable()
