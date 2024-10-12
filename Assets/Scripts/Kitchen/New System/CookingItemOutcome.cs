@@ -5,101 +5,156 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CookingItemOutcome : AbstractCookingItem, IInteractable
+namespace Cooking.Data
 {
-    [SerializeField] CookingItemData previousStepItem;
-    [SerializeField] CookingItemData currentStepItem;   // Next one is this one
-    [SerializeField] CookingItem[] itemsToDeactivate;
-    [SerializeField] CookingItem[] itemsToActivate;
+    public class CookingItemOutcome : AbstractCookingItem, IInteractable
+    {
+        [SerializeField] List<AbstractCookingItem> prerequisiteItems;
+        private List<AbstractCookingItem> _previousItems;
 
-    [SerializeField] Vector3 spawnPosition = Vector3.zero;
+        [SerializeField] CookingItemData previousStepItem;
+        [SerializeField] CookingItemData currentStepItem;   // Next one is this one
+        [SerializeField] CookingItem[] itemsToDeactivate;
+        [SerializeField] CookingItem[] itemsToActivate;
+
+        [SerializeField] Vector3 spawnPosition = Vector3.zero;
     
-    private Collider2D coll;
-    private SpriteRenderer spriteRenderer;
-    public bool IsInteractable { get; private set; } = false;
+        private Collider2D coll;
+        private SpriteRenderer spriteRenderer;
 
-    private new void Start()
-    {
-        coll = GetComponent<Collider2D>();
-        coll.enabled = false;
-        spriteRenderer = GetComponent<SpriteRenderer>();
-        spriteRenderer.enabled = false;
-    }
+        [field: SerializeField]
+        public bool IsInteractable { get; private set; } = false;
 
-    private void OnEnable()
-    {
-        CookingController.OnStateChanged += CheckInteractability;
-    }
-
-    private void OnDisable()
-    {
-        CookingController.OnStateChanged -= CheckInteractability;
-    }
-
-    private void Update()
-    {
-        CheckItemConditions();
-    }
-
-    public void Interact()
-    {
-        if (IsInteractable)
+        private new void Start()
         {
-            CookingController.Instance.HoldItem(this);
+            coll = GetComponent<Collider2D>();
+            coll.enabled = false;
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            spriteRenderer.enabled = false;
         }
-    }
-    private void CheckInteractability()
-    {
-        if (!CookingController.IsMinigameOn)
-        {
-            IsInteractable = false;
-        }
-        else
-        {
-            IsInteractable = true;
-        }
-    }
 
-    private void CheckItemConditions()
-    {
-        // is required item valid?
-        AbstractCookingItem prevItem = CookingController.Instance.GetPreviousItem();
-        AbstractCookingItem currentItem = CookingController.Instance.GetCurrentItem();
-
-        if (previousStepItem != null && prevItem != null && currentStepItem != null && currentItem != null)
+        private void OnEnable()
         {
-            if (spawnPosition != Vector3.zero) // Set Spawn Position
+            CookingController.OnStateChanged += CheckInteractability;
+            CookingController.OnItemPickedUp += UpdatePrerequisiteItems;
+        }
+
+        private void OnDisable()
+        {
+            CookingController.OnStateChanged -= CheckInteractability;
+            CookingController.OnItemPickedUp -= UpdatePrerequisiteItems;
+        }
+
+        private void Update()
+        {
+            ItemConditionsSatisfied();
+        }
+
+        public void Interact()
+        {
+            if (IsInteractable)
+            {
+                CookingController.Instance.HoldItem(this);
+            }
+        }
+
+        private void CheckInteractability()
+        {
+            if (!CookingController.IsMinigameOn)
+            {
+                IsInteractable = false;
+            }
+            else
+            {
+                IsInteractable = true;
+            }
+        }
+
+        private void UpdatePrerequisiteItems() // DONE
+        {
+            // Get new item
+            AbstractCookingItem item = CookingController.Instance.GetCurrentItem();
+            if (item != null)
+            {
+                _previousItems.Add(item);
+            }
+
+            // Enough items
+            if (_previousItems.Count == prerequisiteItems.Count)
+                CheckPrerequisiteItems();
+
+            // More items than needed
+            if (_previousItems.Count > prerequisiteItems.Count) { 
+                _previousItems.RemoveAt(0); // remove first item
+            }
+        }
+
+        private void CheckPrerequisiteItems() // DONE
+        {
+            int validConditionSteps = 0;
+
+            if (_previousItems.Count == prerequisiteItems.Count)
+            {
+                for (int i = 0; i < prerequisiteItems.Count; i++)
+                {
+                    CookingItemData previousItem = _previousItems[i].GetItemData();
+                    CookingItemData requiredItem = prerequisiteItems[i].GetItemData();
+
+                    if (previousItem != requiredItem) { 
+                        Debug.Log("Item order not met, aborting operation!");
+                        break;
+                    }
+                    else
+                    {
+                        validConditionSteps ++;
+                    }
+                }
+
+                // Conditions Satisfied
+                if (validConditionSteps == prerequisiteItems.Count) 
+                    ItemConditionsSatisfied();
+            }
+        }
+
+        private void ItemConditionsSatisfied() // DONE
+        {
+            // Activate Item
+            SetUpItem();
+
+            // Affect Items
+            CheckAffectedItems();
+        }
+
+        private void SetUpItem() // DONE
+        {
+            // Set Spawn Position
+            if (spawnPosition != Vector3.zero)
             {
                 transform.position = spawnPosition;
             }
 
-            // Activate item with conditions
-            if (previousStepItem == prevItem.GetItemData() && currentStepItem == currentItem.GetItemData())
-            {
-                IsInteractable = true;
-                coll.enabled = true;
-                InitializeItem();
+            IsInteractable = true;
+            coll.enabled = true;
+            InitializeItem();
+        }
 
-                if(itemsToActivate.Length > 0)
+        private void CheckAffectedItems() // DONE
+        {
+            if (itemsToActivate.Length > 0)
+            {
+                foreach (var item in itemsToActivate)
                 {
-                    foreach (var item in itemsToActivate)
-                    {
-                        if (item != null) item.gameObject.SetActive(true);
-                    }
-                }
-                
-                if(itemsToDeactivate.Length > 0)
-                {
-                    foreach (var item in itemsToDeactivate)
-                    {
-                        if(item != null) item.gameObject.SetActive(false);
-                    }
+                    if (item != null) item.gameObject.SetActive(true);
                 }
             }
-        }
-        else
-        {
-            return;   
+
+            if (itemsToDeactivate.Length > 0)
+            {
+                foreach (var item in itemsToDeactivate)
+                {
+                    if (item != null) item.gameObject.SetActive(false);
+                }
+            }
         }
     }
 }
