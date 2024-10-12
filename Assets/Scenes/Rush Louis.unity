@@ -237,21 +237,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 550969332}
     - target: {fileID: 3368475519205534812, guid: 37e43d22f0db95b4c8b875013dd2bad1, type: 3}
-      propertyPath: cookingRecipe
-      value: 
-      objectReference: {fileID: 11400000, guid: baada85f61c975c46995905fdc2ceb74, type: 2}
-    - target: {fileID: 3368475519205534812, guid: 37e43d22f0db95b4c8b875013dd2bad1, type: 3}
       propertyPath: kitchenRecipeNote
       value: 
       objectReference: {fileID: 1263005406}
-    - target: {fileID: 3368475519205534812, guid: 37e43d22f0db95b4c8b875013dd2bad1, type: 3}
-      propertyPath: wrongIngredientDialogue
-      value: 
-      objectReference: {fileID: 11400000, guid: 878afcd1fdd6d61448262e549ac1be06, type: 2}
-    - target: {fileID: 3368475519205534812, guid: 37e43d22f0db95b4c8b875013dd2bad1, type: 3}
-      propertyPath: missionSuccessfulDialogue
-      value: 
-      objectReference: {fileID: 11400000, guid: d65a9b2d2c49fc3479ba984b144d1b23, type: 2}
     - target: {fileID: 7517289804073987702, guid: 37e43d22f0db95b4c8b875013dd2bad1, type: 3}
       propertyPath: m_Name
       value: Cooking Controller
