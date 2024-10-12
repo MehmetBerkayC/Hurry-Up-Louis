@@ -15,7 +15,6 @@ namespace Cooking.Control
 
         [Header("Step Data")]
         [SerializeField] AbstractCookingItem currentHeldItem;
-        [SerializeField] AbstractCookingItem previousItem;
         [SerializeField] CookingItemData nextItemToAdd;
 
         [Header("Note & Dialogues")]
@@ -23,16 +22,13 @@ namespace Cooking.Control
         [SerializeField] Dialogue wrongIngredientDialogue;
         [SerializeField] Dialogue missionSuccessfulDialogue;
 
-        private int recipeIndex = -1;
+        private int recipeIndex = -1; // Starts from 0 as first item check
 
         public static CookingController Instance;
         // Instead of doing something like this, please remember/have time to have a minigame bool in game manager
         public static bool IsMinigameOn = false;
 
-        public AbstractCookingItem GetPreviousItem() => previousItem;
         public AbstractCookingItem GetCurrentItem() => currentHeldItem;
-
-        private bool _firstItem = true;
 
         public static Action OnStateChanged;
 
@@ -48,30 +44,38 @@ namespace Cooking.Control
             }
         }
 
-        public void StartCooking()
+        public void StartCooking() // DONE
         {
+            // Set Up the Game
+            recipeIndex = -1;
             IsMinigameOn = true;
-            _firstItem = true;
-            // UI
-            cookingUI.gameObject.SetActive(false);
-
-            // Change State
-            OnStateChanged?.Invoke();
             
-            CalculateNextStep();
+            // Decide the first item
+            CalculateFirstItem();
+
+            // Invoke Events
+            OnStateChanged?.Invoke();
         }
 
-        private void EndCooking()
+        private void CalculateFirstItem() // DONE
         {
+            recipeIndex++;
+            nextItemToAdd = cookingRecipe.Recipe[recipeIndex]; // Advance to next item
+            Debug.Log("Next: " + (recipeIndex < cookingRecipe.Recipe.Count ? nextItemToAdd.Name : "None"));
+        }
+
+        private void EndCooking() // DONE
+        {
+            // Minigame OFF
             IsMinigameOn = false;
-            // Dialogue
-            AudioManager.Instance.PlaySFX("Mission Success");
             
+            AudioManager.Instance.PlaySFX("Mission Success");
+
             // Triggers
             ReminderTrigger.Instance.SetKitchenAsDone();
             ReminderTrigger.Instance.ActivateTrigger();
-
-            // Mission Successful Dialogue
+            
+            // Dialogue
             if(missionSuccessfulDialogue != null)
             {
                 DialogueManager.Instance.StartDialogue(missionSuccessfulDialogue);
@@ -79,16 +83,40 @@ namespace Cooking.Control
 
             // Get rid of recipe note
             kitchenRecipeNote.DisposeOf();
-            // UI
+            
+            // Reset UI
             cookingUI.ResetHeldItem();
             cookingUI.gameObject.SetActive(false);
 
-            // Change State
+            // Invoke Events
             OnStateChanged?.Invoke();
         }
 
-        private void WrongIngredientNotice() // Dialogue and Sound
+        public void HoldItem(AbstractCookingItem cookingItem) // DONE
         {
+            if (!IsMinigameOn) return;
+
+            CheckItemValidation(cookingItem);
+        }
+
+        private void CheckItemValidation(AbstractCookingItem cookingItem) // DONE
+        {
+            // Invalid Items
+            if (cookingItem == null) return; // Null
+
+            if (cookingItem.GetItemData() != nextItemToAdd) // Wrong Item
+            {
+                WrongCookingItem();
+                return;
+            }
+
+            // Valid Item
+            CalculateNextStep(cookingItem); 
+        }
+
+        private void WrongCookingItem() // DONE ?
+        {
+            // Audio and Dialogue
             AudioManager.Instance.PlaySFX("Mission Fail");
 
             if (wrongIngredientDialogue != null)
@@ -97,95 +125,42 @@ namespace Cooking.Control
             }
         }
 
-        public void HoldItem(AbstractCookingItem cookingItem)
+        private void CalculateNextStep(AbstractCookingItem cookingItem) // DONE
         {
-            if (!IsMinigameOn) return;
+            PickUpItem(cookingItem);
 
-            CheckRecipeStep(cookingItem);
-        }
-
-        private void CheckRecipeStep(AbstractCookingItem cookingItem)
-        {
-            if (cookingItem == null && !_firstItem) return;    // Invalid Item 
-            if (cookingItem.GetItemData() != nextItemToAdd)   // Wrong Item
-            {
-                RevertCookingStep();   
-                return;
-            }
-            CalculateNextStep(cookingItem); // Valid
-        }
-
-        private void CalculateNextStep(AbstractCookingItem cookingItem = null)
-        {
-            if(cookingItem == null && _firstItem) // Firt item of the recipe
-            {
-                recipeIndex++;
-                nextItemToAdd = cookingRecipe.Recipe[recipeIndex]; // Advance to next item
-                _firstItem = false;
-                Debug.Log("Next: " + (recipeIndex < cookingRecipe.Recipe.Count ? nextItemToAdd.Name : "None"));
-                return;
-            }
-
-            // ----- Other Items -----
             recipeIndex++;
-            if (recipeIndex < cookingRecipe.Recipe.Count) // there are items to go through
+            
+            if (recipeIndex < cookingRecipe.Recipe.Count) 
             {
-                PickUpItem(cookingItem);
                 nextItemToAdd = cookingRecipe.Recipe[recipeIndex]; // Advance to next item
             }
             else
             {
-                PickUpItem(cookingItem);
                 RecipeCompleted();
             }
 
             Debug.Log("Next: " + (recipeIndex < cookingRecipe.Recipe.Count ? nextItemToAdd.Name : "None"));
         }
 
-        private void PickUpItem(AbstractCookingItem cookingItem)
+        private void PickUpItem(AbstractCookingItem cookingItem) // DONE
         {
-            previousItem = currentHeldItem; // Remember current item
             currentHeldItem = cookingItem;
+
             // Set up UI
             cookingUI.SetHeldItem(cookingItem);
-            // Pick up Sound
+
+            // Audio
             AudioManager.Instance.PlaySFX("Pick Up");
         }
 
-        private void RecipeCompleted()
+        private void RecipeCompleted() // TIDY UP
         {
             Debug.Log("Complete!");
-            nextItemToAdd = null;
+            
+            // nextItemToAdd = null; // RESET VARIABLES
 
             EndCooking();
-        }
-
-        private void RevertCookingStep()
-        {
-            // check index bounds
-            if (recipeIndex >= 0) recipeIndex -= 1; // Return 1 step
-
-            if(previousItem != null) { 
-                // Re-enable item
-                currentHeldItem.gameObject.SetActive(true);
-            }
-
-            // Reset current item and UI
-            cookingUI.ResetHeldItem();
-            ResetCurrentItem();
-
-            // Re-calculate
-            CalculateNextStep();
-
-            WrongIngredientNotice(); // Warn Player
-        }
-
-        private void ResetCurrentItem() 
-        {
-            if (previousItem != null)
-            {
-                cookingUI.SetHeldItem(currentHeldItem);
-            }
         }
     }
 }
