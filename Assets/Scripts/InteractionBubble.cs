@@ -10,6 +10,15 @@ public class InteractionBubble : MonoBehaviour
     [SerializeField] private GameObject interactionPopUp;
     [SerializeField] private TextMeshProUGUI interactionPopUpText;
 
+
+    private void Start()
+    {
+        if(playerInteract == null)
+        {
+            playerInteract = FindObjectOfType<PlayerInteract>();
+        }
+    }
+
     private void Update()
     {
         if (playerInteract.CheckInteractables() != null)
