@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Pool Note
   m_EditorClassIdentifier: 
   Temporary: 0
-  ReadableTime: 3
+  ReadableTime: 4
   NoteName: You Can Swim
   Label: Dear Louis
-  Notes: You are LITERALLY a FISH Idiot!
+  Notes: You are LITERALLY a FISH Louis!

@@ -34,6 +34,8 @@ namespace Cooking.Control
 
         private bool _firstItem = true;
 
+        public static Action OnStateChanged;
+
         private void Awake()
         {
             if(Instance == null)
@@ -53,6 +55,9 @@ namespace Cooking.Control
             // UI
             cookingUI.gameObject.SetActive(false);
 
+            // Change State
+            OnStateChanged?.Invoke();
+            
             CalculateNextStep();
         }
 
@@ -77,6 +82,9 @@ namespace Cooking.Control
             // UI
             cookingUI.ResetHeldItem();
             cookingUI.gameObject.SetActive(false);
+
+            // Change State
+            OnStateChanged?.Invoke();
         }
 
         private void WrongIngredientNotice() // Dialogue and Sound

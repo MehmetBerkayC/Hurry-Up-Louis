@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Temporary: 0
   ReadableTime: 5
-  NoteName: Meal Recipe
-  Label: RECIPE
-  Notes: "Delicious Tuna Sandwich Recipe\n- Put pan on stove\n- Potato basket, then
-    knife, go to cutting board\n- Put them on stove\n--- Activate Fries and deactivate
-    stove\n- Get bacon, put on stove\n- Get eggs put on stove\n- Get salt and pepper
-    put on stove\n- Get bread go to cutting board to slice it\n--- Activate sliced
-    bread, bacon and eggs, deactivate stove and cutting board\n- Get sliced bread
-    \n- Get bacon and eggs"
+  NoteName: Breakfast Recipe
+  Label: Bacon and Eggs with Fries
+  Notes: "- Put a PAN on STOVE\n- Get potatoes from the POTATO BASKET\n- Take a KNIFE
+    and cut potatoes on the CUTTING BOARD\n- Put the cut potatoes to STOVE\n- Find
+    a PLATE and get fries from STOVE\n- Get BACON, put on STOVE\n- Get EGGS put on
+    STOVE\n- Get SALT and PEPPER \n- Season the meal on the STOVE\n- Get some BREAD,
+    go to CUTTING BOARD to slice it\n- Pick up the SLICED BREAD\n- Pick up the cooked
+    BACON AND EGGS and eat it"

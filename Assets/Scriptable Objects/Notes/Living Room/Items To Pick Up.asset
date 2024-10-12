@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Items To Pick Up
   m_EditorClassIdentifier: 
   Temporary: 0
-  ReadableTime: 5
+  ReadableTime: 7
   NoteName: Needed Items
   Label: Find Work Stuff
-  Notes: "- Briefcase (Over here you moron)\n- Umbrella (I don't wanna get wet) (In
-    living room)\n- Launch (Go to the Kitchen)\n- Suit (Bedroom) (You can pass through
-    the swim fishman)\n- Monitor (Living Room) (PC doesn't work without it)  \n-
-    Documents (?????)"
+  Notes: "- Briefcase, should be on the table next to this note\n- Umbrella\n- Lunch,
+    maybe on the fridge?\n- Suit\n- Monitor - Work PC doesn't work without it for
+    some reason... \n- Documents "
