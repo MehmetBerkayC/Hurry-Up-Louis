@@ -24,12 +24,12 @@ public class UICookingItem : MonoBehaviour
         // Get the right image component
         Component[] componentsInChildren = GetComponentsInChildren<Image>();
         itemImage = (Image)componentsInChildren[1];
-
-        ResetHeldItem();
     }
 
     public void SetHeldItem(AbstractCookingItem itemToHold)
     {
+        ResetHeldItem();
+
         if (itemToHold.GetItemData() == null) return;
         // Item Data
         heldItemData = itemToHold.GetItemData();
