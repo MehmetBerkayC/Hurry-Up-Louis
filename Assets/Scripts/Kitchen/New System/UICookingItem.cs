@@ -3,7 +3,6 @@ using Cooking.World;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -30,12 +29,17 @@ public class UICookingItem : MonoBehaviour
     {
         ResetHeldItem();
 
+        // Check Validity 
         if (itemToHold.GetItemData() == null) return;
-        // Item Data
+
+        // Set up UI 
         heldItemData = itemToHold.GetItemData();
         itemNameText.text = heldItemData.Name;
 
-        if (heldItemData.Sprite == null) itemImage.enabled = false;
+        if (heldItemData.Sprite == null)
+        {
+            itemImage.enabled = false;
+        }
         else
         {
             itemImage.enabled = true;
@@ -44,7 +48,7 @@ public class UICookingItem : MonoBehaviour
         
         gameObject.SetActive(true);
 
-        // World Item
+        // World Item Configuration
         heldItem = itemToHold;
         if (!heldItem.AlwaysActive)
         {
@@ -58,13 +62,5 @@ public class UICookingItem : MonoBehaviour
         heldItemData = null;
         itemNameText.text = "";
         itemImage.sprite = null;
-    }
-
-    public void RevertHeldItem()
-    {
-        // Have to re-enable gameobject that holds the item
-        heldItem.gameObject.SetActive(true);
-
-        ResetHeldItem();
     }
 }
