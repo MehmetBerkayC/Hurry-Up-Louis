@@ -32,7 +32,8 @@ public class BathroomMinigameManager : MonoBehaviour
     private bool _isMiniGameOn;
     private bool _targetAlreadyCalculated;
 
-    private List<SelfCareItem> selectedItems = new List<SelfCareItem>();
+    private List<SelfCareItem> selectedItems = new();
+    private List<UISelfCareItemHolder> populatedItems = new();
 
     private int _targetScore;
     private int _currentScore;
@@ -97,12 +98,18 @@ public class BathroomMinigameManager : MonoBehaviour
 
     private void PopulateItems()
     {
+        if(populatedItems.Count > 0)
+        {
+            return;
+        }
+
         foreach (SelfCareItem item in itemDatabase.Items)
         {
             // Selectable Items Display
-            Instantiate(uiItemPrefab, uiItemsParent.transform).TryGetComponent(out UISelfCareItemHolder clickableHolder);
-            clickableHolder.careItem = item;
-            clickableHolder.Initialize();
+            Instantiate(uiItemPrefab, uiItemsParent.transform).TryGetComponent(out UISelfCareItemHolder clickableItemHolder);
+            clickableItemHolder.careItem = item;
+            populatedItems.Add(clickableItemHolder);
+            clickableItemHolder.Initialize();
         }
     }
 
@@ -119,8 +126,6 @@ public class BathroomMinigameManager : MonoBehaviour
         {
             FindEmptySlot(badSlots, selfCareItem);
         }
-
-        AudioManager.Instance.PlaySFX("Select");
 
         UpdateCurrentValue();
     }
@@ -166,15 +171,24 @@ public class BathroomMinigameManager : MonoBehaviour
     private void GameCompleted()
     {
         _isMiniGameOn = false;
+        populatedItems.Clear();
 
+        // Audio
         AudioManager.Instance.PlaySFX("Mission Success");
+        
+        // UI
         ToggleUI();
 
+        // Player
         ResumePlayerMovement();
+        
+        // Dialogue
         DialogueManager.Instance.StartDialogue(endMiniGameDialogue);
 
+        // Triggers
         ReminderTrigger.Instance.ActivateTrigger();
 
+        // Events
         OnMinigameComplete?.Invoke();
     }
 
@@ -234,7 +248,6 @@ public class BathroomMinigameManager : MonoBehaviour
     public bool RemoveItemFromList(SelfCareItem selfCareItem)
     {
         bool returnValue = selectedItems.Remove(selfCareItem);
-        AudioManager.Instance.PlaySFX("Select");
         UpdateCurrentValue();
         return returnValue;
     }
