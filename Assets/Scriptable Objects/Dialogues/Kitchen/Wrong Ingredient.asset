@@ -15,3 +15,6 @@ MonoBehaviour:
   CharacterName: Louis Poisson D'eau Douce
   Sentences:
   - Oops.. This wasn't right!
+  - This doesn't feel right, I should take a look at the recipe again.
+  - What was next again?.. Can't remember but this doesn't look right...
+  IsRandomSentencePool: 1

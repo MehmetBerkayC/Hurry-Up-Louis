@@ -1,11 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Text;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -13,15 +10,15 @@ public class DialogueManager : MonoBehaviour
 
     [SerializeField] KeyCode keyToSeeNextLine = KeyCode.Tab;
     
-    [SerializeField] GameObject dialoquePanel;
+    [SerializeField] GameObject dialoguePanel;
     [SerializeField] TextMeshProUGUI nameText;
-    [SerializeField] TextMeshProUGUI dialoqueBox;
+    [SerializeField] TextMeshProUGUI dialogueBox;
     
     [SerializeField] Animator dialogueAnimator;
     
     public static DialogueManager Instance;
 
-    Queue<string> dialoqueMessages;
+    Queue<string> dialogueMessages;
 
     private bool _isDialogueOpen;
     
@@ -38,7 +35,7 @@ public class DialogueManager : MonoBehaviour
             Destroy(this.gameObject);
         }
 
-        dialoqueMessages = new Queue<string>();
+        dialogueMessages = new Queue<string>();
     }
 
     private void Start()
@@ -50,14 +47,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (_isDialogueOpen && Input.GetKeyDown(keyToSeeNextLine))
         {
-            if (dialoqueBox.text == sentence)
+            if (dialogueBox.text == sentence)
             {
                 DisplayNextSentence();
             }
             else
             {
                 StopAllCoroutines();
-                dialoqueBox.text = sentence;
+                dialogueBox.text = sentence;
             }
         }
     }
@@ -77,8 +74,8 @@ public class DialogueManager : MonoBehaviour
         playerController.gameObject.TryGetComponent(out PlayerInteract playerInteract);
         playerInteract.IsInteractable = false;
 
-        if (!dialoquePanel.activeInHierarchy) { // Safety
-            dialoquePanel.SetActive(true);
+        if (!dialoguePanel.activeInHierarchy) { // Safety
+            dialoguePanel.SetActive(true);
         }
 
         dialogueAnimator.SetBool("IsOpen", true);
@@ -86,11 +83,20 @@ public class DialogueManager : MonoBehaviour
         // Debug.Log("Start conversation with" + dialogue.CharacterName);
         nameText.text = dialogue.CharacterName;
 
-        dialoqueMessages.Clear();
+        dialogueMessages.Clear();
 
-        foreach (string sentence in dialogue.Sentences)
+        // Is it a random dialogue pool?
+        if (dialogue.IsRandomSentencePool)
         {
-            dialoqueMessages.Enqueue(sentence);
+            string line = GetRandomLineFromDialogue(dialogue);
+            dialogueMessages.Enqueue(line);
+        }
+        else
+        {
+            foreach (string sentence in dialogue.Sentences)
+            {
+                dialogueMessages.Enqueue(sentence);
+            }
         }
 
         DisplayNextSentence(); // Display first message
@@ -98,13 +104,13 @@ public class DialogueManager : MonoBehaviour
 
     public void DisplayNextSentence() // use from a button or key
     {
-        if (dialoqueMessages.Count == 0)
+        if (dialogueMessages.Count == 0)
         {
             EndDialoque();
             return;
         }
 
-        sentence = dialoqueMessages.Dequeue();
+        sentence = dialogueMessages.Dequeue();
         
         StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
@@ -115,11 +121,11 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator TypeSentence(string sentence)
     {
-        dialoqueBox.text = "";
+        dialogueBox.text = "";
 
         foreach (char letter in sentence.ToCharArray())
         {
-            dialoqueBox.text += letter;
+            dialogueBox.text += letter;
             yield return null;
         }
     }
@@ -140,5 +146,12 @@ public class DialogueManager : MonoBehaviour
             GameManager.Instance.StartGameTimer();
             GameManager.Instance.FreshStart = false;
         }
+    }
+
+
+    public string GetRandomLineFromDialogue(Dialogue dialogue)
+    {
+        // Random Sentence
+        return dialogue.Sentences[UnityEngine.Random.Range(0, dialogue.Sentences.Length)];
     }
 }

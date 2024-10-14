@@ -7627,9 +7627,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 668807371975556989}
     - target: {fileID: 3992180543325134362, guid: 6b2ccd69f2b1f7e48a56486693339774, type: 3}
+      propertyPath: dialogueBox
+      value: 
+      objectReference: {fileID: 7650761037046460447}
+    - target: {fileID: 3992180543325134362, guid: 6b2ccd69f2b1f7e48a56486693339774, type: 3}
       propertyPath: dialoqueBox
       value: 
       objectReference: {fileID: 7650761037046460447}
+    - target: {fileID: 3992180543325134362, guid: 6b2ccd69f2b1f7e48a56486693339774, type: 3}
+      propertyPath: dialoguePanel
+      value: 
+      objectReference: {fileID: 1382835989549625419}
     - target: {fileID: 3992180543325134362, guid: 6b2ccd69f2b1f7e48a56486693339774, type: 3}
       propertyPath: dialoquePanel
       value: 
