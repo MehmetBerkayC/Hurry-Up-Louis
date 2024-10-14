@@ -108,13 +108,13 @@ namespace Cooking.Control
             if (_recipeIndex < cookingRecipe.Recipe.Count) 
             {
                 _nextItemToAdd = cookingRecipe.Recipe[_recipeIndex]; // Advance to next item
+                Debug.Log("Next: " + (_recipeIndex < cookingRecipe.Recipe.Count ? _nextItemToAdd.Name : "None"));
             }
             else
             {
                 RecipeCompleted();
             }
 
-            Debug.Log("Next: " + (_recipeIndex < cookingRecipe.Recipe.Count ? _nextItemToAdd.Name : "None"));
         }
 
         private void PickUpItem(AbstractCookingItem cookingItem) // DONE

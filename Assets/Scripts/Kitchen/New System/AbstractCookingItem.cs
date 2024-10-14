@@ -15,10 +15,10 @@ namespace Cooking.World
 
         protected void Start()
         {
-            InitializeItem();
+            VisualizeItem();
         }
 
-        protected void InitializeItem()
+        protected void VisualizeItem()
         {
             if (itemData != null)
             {
@@ -34,7 +34,7 @@ namespace Cooking.World
         public void SetItemData(CookingItemData itemInfo)
         {
                 itemData = itemInfo;
-                InitializeItem();
+                VisualizeItem();
         }
     }
 }

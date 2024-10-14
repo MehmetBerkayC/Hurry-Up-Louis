@@ -28,14 +28,16 @@ namespace Cooking.Data
 
         private new void Start()
         {
+            base.Start();
             AssignAndDeactivate_VisualsAndCollider();
         }
 
         private void AssignAndDeactivate_VisualsAndCollider()
         {
-            coll = GetComponent<Collider2D>();
+            TryGetComponent(out coll);
             coll.enabled = false;
-            spriteRenderer = GetComponent<SpriteRenderer>();
+
+            TryGetComponent(out spriteRenderer);
             spriteRenderer.enabled = false;
         }
 
@@ -76,7 +78,7 @@ namespace Cooking.Data
         {
             // Get new item
             AbstractCookingItem item = CookingController.Instance.CurrentItem;
-            Debug.Log(item);
+            //Debug.Log(item);
             if (item != null)
             {
                 _previousItems.Add(item);
@@ -88,8 +90,16 @@ namespace Cooking.Data
                 CheckPrerequisiteItems();
 
             // More items than needed
-            if (_previousItems.Count > prerequisiteItems.Count) { 
+            if (_previousItems.Count > prerequisiteItems.Count) {
+                Debug.Log($"Removing item from array of {_previousItems.Count}");
                 _previousItems.RemoveAt(0); // remove first item
+                Debug.Log($"New array size {_previousItems.Count}");
+                foreach (var itemName in _previousItems)
+                {
+                    Debug.Log(itemName);
+                }
+                // Then check items again
+                CheckPrerequisiteItems();
             }
         }
 
@@ -104,19 +114,23 @@ namespace Cooking.Data
                     CookingItemData previousItem = _previousItems[i].GetItemData();
                     CookingItemData requiredItem = prerequisiteItems[i].GetItemData();
 
-                    if (previousItem != requiredItem) { 
-                        Debug.Log("Item order not met, aborting operation!");
-                        break;
+                    if (previousItem == requiredItem) {
+                        validConditionSteps ++;
                     }
                     else
                     {
-                        validConditionSteps ++;
+                        Debug.Log($"Item order not met, aborting operation!");
+                        Debug.Log($"Required: {requiredItem}, Current: {previousItem}");
+                        break;
                     }
                 }
 
                 // Conditions Satisfied
-                if (validConditionSteps == prerequisiteItems.Count) 
+                if (validConditionSteps == prerequisiteItems.Count)
+                {
+                    Debug.Log($"{itemData.Name} conditions satisfied");
                     ItemConditionsSatisfied();
+                }
             }
         }
 
@@ -139,7 +153,7 @@ namespace Cooking.Data
 
             IsInteractable = true;
             coll.enabled = true;
-            InitializeItem();
+            VisualizeItem();
         }
 
         private void CheckAffectedItems() // DONE
