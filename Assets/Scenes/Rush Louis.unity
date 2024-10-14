@@ -5283,6 +5283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate
       objectReference: {fileID: 0}
+    - target: {fileID: 2064134308205344023, guid: a3700dd19eb3ae846a599e3cbb270cce, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3584262719220656794, guid: a3700dd19eb3ae846a599e3cbb270cce, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.89
@@ -5582,6 +5586,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Knife
       objectReference: {fileID: 0}
+    - target: {fileID: 547955326527799282, guid: 33618253c0aef0c499a22c9aed38fb4f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3063053247878848639, guid: 33618253c0aef0c499a22c9aed38fb4f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.04
@@ -5691,6 +5699,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cutting Board
       objectReference: {fileID: 0}
+    - target: {fileID: 6432544264586383727, guid: dd33388fb814a284ca688a61dd68c5c5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8384682335822532322, guid: dd33388fb814a284ca688a61dd68c5c5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.03
@@ -5751,6 +5763,10 @@ PrefabInstance:
     - target: {fileID: 6491095224389045964, guid: a3492d87f47a37841942fb25f810a44c, type: 3}
       propertyPath: m_Name
       value: Salt
+      objectReference: {fileID: 0}
+    - target: {fileID: 6491095224389045964, guid: a3492d87f47a37841942fb25f810a44c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8578684885049643329, guid: a3492d87f47a37841942fb25f810a44c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -6181,6 +6197,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pepper
       objectReference: {fileID: 0}
+    - target: {fileID: 7309560152466736039, guid: 21c0cc787c99f544cab8f28c314227ea, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8253377430279625866, guid: 21c0cc787c99f544cab8f28c314227ea, type: 3}
       propertyPath: m_Radius
       value: 1.3717301
@@ -6286,6 +6306,10 @@ PrefabInstance:
     - target: {fileID: 7552007317097463232, guid: b19ad8500d4994643806f0ecd5f19e21, type: 3}
       propertyPath: m_Name
       value: Bacon and Eggs
+      objectReference: {fileID: 0}
+    - target: {fileID: 7552007317097463232, guid: b19ad8500d4994643806f0ecd5f19e21, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7973055641621757594, guid: b19ad8500d4994643806f0ecd5f19e21, type: 3}
       propertyPath: itemsToDeactivate.Array.size
@@ -6613,6 +6637,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Plate with Fries
       objectReference: {fileID: 0}
+    - target: {fileID: 244963248557728793, guid: 3b757c2ede4fd8b49ac7ad39b3939c98, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4815048569323932239, guid: 3b757c2ede4fd8b49ac7ad39b3939c98, type: 3}
       propertyPath: prerequisiteItems.Array.size
       value: 3
@@ -6685,6 +6713,10 @@ PrefabInstance:
     - target: {fileID: 248769919402217882, guid: def536e964f91d34c960279d1422e99c, type: 3}
       propertyPath: m_Name
       value: Potato Basket
+      objectReference: {fileID: 0}
+    - target: {fileID: 248769919402217882, guid: def536e964f91d34c960279d1422e99c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3344857480362561047, guid: def536e964f91d34c960279d1422e99c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -7016,6 +7048,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Eggs
       objectReference: {fileID: 0}
+    - target: {fileID: 2145719874191973929, guid: 722bec2ce8634ec45a4b68f2ef0e4973, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3521740275110199716, guid: 722bec2ce8634ec45a4b68f2ef0e4973, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.25
@@ -7113,10 +7149,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sliced Bread
       objectReference: {fileID: 0}
+    - target: {fileID: 4713334926700061907, guid: 7f86e53f168ea0c418b1183184ce58c7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7634122765651575728, guid: 7f86e53f168ea0c418b1183184ce58c7, type: 3}
+      propertyPath: itemsToDeactivate.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7634122765651575728, guid: 7f86e53f168ea0c418b1183184ce58c7, type: 3}
       propertyPath: prerequisiteItems.Array.size
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 7634122765651575728, guid: 7f86e53f168ea0c418b1183184ce58c7, type: 3}
+      propertyPath: itemsToDeactivate.Array.data[0]
+      value: 
+      objectReference: {fileID: 1102114361}
     - target: {fileID: 7634122765651575728, guid: 7f86e53f168ea0c418b1183184ce58c7, type: 3}
       propertyPath: prerequisiteItems.Array.data[0]
       value: 
@@ -7199,6 +7247,10 @@ PrefabInstance:
     - target: {fileID: 8989969959751226301, guid: 3a098d7b1764fb94fb8a0354edab4b2a, type: 3}
       propertyPath: m_Name
       value: Bacon
+      objectReference: {fileID: 0}
+    - target: {fileID: 8989969959751226301, guid: 3a098d7b1764fb94fb8a0354edab4b2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7469,6 +7521,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pan
       objectReference: {fileID: 0}
+    - target: {fileID: 6146759566045301808, guid: 4aa4ab6b328209d43b1baf95edce3e96, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8670891110312793021, guid: 4aa4ab6b328209d43b1baf95edce3e96, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.81
@@ -7678,6 +7734,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Stove
       objectReference: {fileID: 0}
+    - target: {fileID: 6418760270858861823, guid: 32ba69d8293e6d04eafc907334c04c62, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8362226494960477042, guid: 32ba69d8293e6d04eafc907334c04c62, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.44
@@ -7862,6 +7922,10 @@ PrefabInstance:
     - target: {fileID: 5716634963595489394, guid: 1317967fa82140e47b2d893c94074c13, type: 3}
       propertyPath: m_Name
       value: Bread
+      objectReference: {fileID: 0}
+    - target: {fileID: 5716634963595489394, guid: 1317967fa82140e47b2d893c94074c13, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6389679910579187551, guid: 1317967fa82140e47b2d893c94074c13, type: 3}
       propertyPath: m_Radius
