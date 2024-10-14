@@ -6106,7 +6106,7 @@ PrefabInstance:
       objectReference: {fileID: 1267373148}
     - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
       propertyPath: remainingTimeInSeconds
-      value: 300
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2934373902528053645, guid: dd9753852d288e74b92735a729012606, type: 3}
       propertyPath: triggersInLevel.Array.size

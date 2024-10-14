@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SFXVolumeValue>k__BackingField: 0.2
-  <MusicVolumeValue>k__BackingField: 0.1
+  <MusicVolumeValue>k__BackingField: 0.15
   MusicSource: {fileID: 0}
   SFXSource: {fileID: 0}
   SFXSounds:
@@ -372,4 +372,9 @@ MonoBehaviour:
     Clip: {fileID: 8300000, guid: d2e8e2e43505f8544aab46921d98c02e, type: 3}
     Pitch: 1
     Loop: 0
+    source: {fileID: 0}
+  - Name: Start Menu
+    Clip: {fileID: 8300000, guid: 22c44f4c50bf8c4448c8f9ca3e8000a8, type: 3}
+    Pitch: 1
+    Loop: 1
     source: {fileID: 0}

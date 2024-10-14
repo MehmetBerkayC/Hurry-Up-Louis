@@ -74,14 +74,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.H))
-        {
-            AudioManager.Instance.PlaySFX("Note Paper");
-        }
-
         if (!_once) // Start Game
         {
-            AudioManager.Instance.PlayMusic("Main Theme");
             UpdateGameState(GameState.Bedroom);
             _once = true;
         }
@@ -96,15 +90,11 @@ public class GameManager : MonoBehaviour
         {
             if (IsGoodEnd)
             {
-                SceneManager.LoadScene("Good End Screen");
-                AudioManager.Instance.StopMusic("Main Theme");
-                AudioManager.Instance.PlayMusic("Good Ending");
+                MenuManager.Instance.LoadGoodEndScreen();
             }
             else
             {
-                SceneManager.LoadScene("Bad End Screen");
-                AudioManager.Instance.StopMusic("Main Theme");
-                AudioManager.Instance.PlayMusic("Bad Ending");
+                MenuManager.Instance.LoadBadEndScreen();
             }
         }
     }

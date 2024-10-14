@@ -131,5 +131,24 @@ public class AudioManager : MonoBehaviour
         }
         sound.source.Stop();
     }
+    
+    public void Stop()
+    {
+        foreach (Sound sound in MusicSounds)
+        {
+            if (sound.source != null)
+            {
+                sound.source.Stop();
+            }
+        }
+        
+        foreach (Sound sound in SFXSounds)
+        {
+            if(sound.source != null)
+            {
+                sound.source.Stop();
+            }
+        }
+    }
 
 }
