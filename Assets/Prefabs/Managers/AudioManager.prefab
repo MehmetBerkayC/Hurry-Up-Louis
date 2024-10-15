@@ -303,9 +303,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <SFXVolumeValue>k__BackingField: 0.2
-  <MusicVolumeValue>k__BackingField: 0.15
-  MusicSource: {fileID: 0}
-  SFXSource: {fileID: 0}
+  <MusicVolumeValue>k__BackingField: 0.1
+  MusicSource: {fileID: 8669997329575828287}
+  SFXSource: {fileID: 1186223991159392181}
   SFXSounds:
   - Name: Mission Success
     Clip: {fileID: 8300000, guid: 4bc96e480f3869b459062b9cf999c2d9, type: 3}

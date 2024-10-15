@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1eae4b479ecf5aa4da8fc2e0cf5a0a8b, type: 3}
   m_Name: Last Item Remaining
   m_EditorClassIdentifier: 
+  IsRandomSentencePool: 0
   CharacterName: Louis Poisson D'eau Douce
   Sentences:
   - I'm still missing something...
