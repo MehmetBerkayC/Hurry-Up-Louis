@@ -15,6 +15,9 @@ I still don't think my focus will be on expanding and continuing this demo but n
 It is still not a complete game but it is close to being a fully functional end product.
 </p>
 
+<details>
+<summary>What Changed?</summary>
+
 ### Tidied up and overhauled systems
 <ul>
  <li>Game Management</li>
@@ -34,5 +37,7 @@ Sound
  <li>Theme Musics</li>
  <li>Sound Effects</li>
 </ul>
+
+</details>
 
 #### Check out the game from: [![Itch.io](https://img.shields.io/badge/-Itch.io-000?&logo=itch.io)](https://mehmetberkayc.itch.io)
