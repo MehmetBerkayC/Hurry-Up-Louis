@@ -9,8 +9,11 @@ Hurry Up Louis is a short Adventure game where player controls the actions of a 
 Made for the 7 days Game Jam "FishFest" in collaboration with [Abdullah Dedeoğlu](https://github.com/abdullahdedeoglu) and [Çağatay Ateş](https://github.com/AgeOfTheHorseMoon)
 
 ## <p align="center">*Now a Polished Demo*</p>
-Finally had time to polish the faulty game systems and fix the bugs present in the prototype, I still don't think my focus will be on expanding and continuing this demo but nice to see mistakes I've made previously.
+Finally had time to polish the faulty game systems and fix the bugs present in the prototype and finally in WebGL. 
+<p>
+I still don't think my focus will be on expanding and continuing this demo but nice to see mistakes I've made previously.
 It is still not a complete game but it is close to being a fully functional end product.
+</p>
 
 ### Tidied up and overhauled systems
 <ul>
